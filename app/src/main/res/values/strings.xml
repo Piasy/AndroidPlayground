@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">AndroidPlayground</string>
+    <string name="bitmap_load_memory_test">Bitmap load memory test</string>
+    <string name="recycler_view_inside_scroll_view">RecyclerView inside ScrollView</string>
+    <string name="collapsing_app_bar">Collapsing app bar</string>
 </resources>

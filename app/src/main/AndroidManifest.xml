@@ -11,16 +11,20 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             >
-        <activity
-                android:name=".RecyclerViewInsideScrollViewActivity"
-                android:theme="@android:style/Theme.DeviceDefault.NoActionBar.Fullscreen"
-                >
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity
+                android:name=".RecyclerViewInsideScrollViewActivity"
+                android:theme="@android:style/Theme.DeviceDefault.NoActionBar.Fullscreen"
+                />
         <activity android:name=".BitmapLoadTestActivity"/>
+        <activity android:name=".CollapsingAppBarActivity"
+                android:theme="@style/Theme.AppCompat.NoActionBar"
+                />
     </application>
 
 </manifest>
