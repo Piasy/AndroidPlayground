@@ -1,10 +1,10 @@
 package com.github.piasy.androidplayground;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,7 +19,7 @@ import butterknife.ButterKnife;
 /**
  * Created by Piasy{github.com/Piasy} on 15/10/2.
  */
-public class CollapsingAppBarActivity extends AppCompatActivity {
+public class CollapsingAppBarActivity extends Activity {
     @Bind(R.id.mRecyclerView)
     RecyclerView mRecyclerView;
     @Bind(R.id.mAppBarLayout)

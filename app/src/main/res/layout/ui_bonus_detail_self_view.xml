@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/mLlBonusDetailContainerSelf"
+        android:layout_width="170dp"
+        android:layout_height="151dp"
+        android:background="@drawable/iv_bonus_detail_bg"
+        android:gravity="center_horizontal"
+        android:layout_gravity="right"
+        android:orientation="vertical"
+        >
+
+        <TextView
+                android:id="@+id/mTvBonusContentSelf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="88dp"
+                android:textColor="#ffffff"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:singleLine="true"
+                android:maxWidth="130dp"
+                android:text="的打赏的打赏的打赏的打赏"
+                />
+
+        <TextView
+                android:id="@+id/mTvBonusAmountSelf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:textSize="24sp"
+                android:gravity="center"
+                android:singleLine="true"
+                android:maxWidth="130dp"
+                android:text="￥1234.56"
+                />
+</LinearLayout>

@@ -28,4 +28,12 @@
             android:text="@string/collapsing_app_bar"
             android:textAllCaps="false"
             />
+
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/mBtnBonusAnimation"
+            android:text="@string/bonus_animation"
+            android:textAllCaps="false"
+            />
 </LinearLayout>
