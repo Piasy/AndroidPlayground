@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import com.transitionseverywhere.TransitionManager;
 
 /**
  * Created by Piasy{github.com/Piasy} on 15/10/2.
@@ -24,8 +24,10 @@ public class CollapsingAppBarActivity extends Activity {
     RecyclerView mRecyclerView;
     @Bind(R.id.mAppBarLayout)
     AppBarLayout mAppBarLayout;
-    @Bind(R.id.mCoordinatorLayout)
-    CoordinatorLayout mCoordinatorLayout;
+    @Bind(R.id.mTvHint)
+    TextView mTvHint;
+    @Bind(R.id.mContentHolder)
+    LinearLayout mContentHolder;
 
     private int mAppBarHeight = -1;
     private int mCurrentAppBarOffset;   // -height ==> 0
@@ -41,6 +43,7 @@ public class CollapsingAppBarActivity extends Activity {
             @Override
             public void onClick() {
                 mAppBarLayout.setExpanded(false);
+                showTip();
             }
         });
         mRecyclerView.setAdapter(adapter);
@@ -63,12 +66,24 @@ public class CollapsingAppBarActivity extends Activity {
                     if ((float) mCurrentAppBarOffset / mAppBarHeight <
                             APP_BAR_AUTO_COLLAPSE_RATION) {
                         mAppBarLayout.setExpanded(true);
+                        hideTip();
                     } else {
                         mAppBarLayout.setExpanded(false);
+                        showTip();
                     }
                 }
             }
         });
+    }
+
+    private void showTip() {
+        TransitionManager.beginDelayedTransition(mContentHolder);
+        mTvHint.setVisibility(View.VISIBLE);
+    }
+
+    private void hideTip() {
+        TransitionManager.beginDelayedTransition(mContentHolder);
+        mTvHint.setVisibility(View.GONE);
     }
 
     public static class Adapter extends RecyclerView.Adapter<ViewHolder> {
