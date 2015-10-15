@@ -2,10 +2,12 @@ package com.github.piasy.androidplayground;
 
 import android.app.Activity;
 import android.app.DialogFragment;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.transition.TransitionInflater;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -67,6 +69,11 @@ public class BottomPopUpWindowActivity extends Activity {
         popupWindow.showAtLocation(mContentHolder, Gravity.BOTTOM, 0, 0);
     }
 
+    @OnClick(R.id.mButton1)
+    public void onClick1() {
+        new BottomDialogFragment().show(getFragmentManager(), "BottomDialogFragment");
+    }
+
     @OnClick(R.id.mButton2)
     public void onClick2() {
         showToast("Click2");
@@ -111,7 +118,8 @@ public class BottomPopUpWindowActivity extends Activity {
 
         @OnClick(R.id.mTvGiveBonus)
         void give() {
-            Toast.makeText(mContext, mEtBonusAmount.getText().toString(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, mEtBonusAmount.getText().toString(), Toast.LENGTH_SHORT)
+                    .show();
             dismiss();
         }
 
@@ -136,6 +144,41 @@ public class BottomPopUpWindowActivity extends Activity {
                             getResources().getDisplayMetrics()));
             window.setGravity(Gravity.CENTER);
             window.setBackgroundDrawableResource(android.R.color.transparent);
+        }
+    }
+
+    public static class BottomDialogFragment extends DialogFragment {
+
+        @OnClick(R.id.mCancel)
+        public void close() {
+            dismiss();
+        }
+
+        @Nullable
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                Bundle savedInstanceState) {
+            getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+            View view = inflater.inflate(R.layout.ui_bottom_popup_window, null);
+            ButterKnife.bind(this, view);
+            return view;
+        }
+
+        @Override
+        public void onResume() {
+            super.onResume();
+            Window window = getDialog().getWindow();
+            window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT,
+                    (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 170,
+                            getResources().getDisplayMetrics()));
+            window.setGravity(Gravity.BOTTOM);
+            window.setBackgroundDrawableResource(android.R.color.transparent);
+        }
+
+        @Override
+        public void onStart() {
+            super.onStart();
+            getDialog().getWindow().setWindowAnimations(R.style.popup_window_anim_style);
         }
     }
 }
