@@ -1,47 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
+              android:id="@+id/mContentHolder"
+              android:gravity="center_horizontal"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:background="@android:color/holo_green_light"
         >
 
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/mBtnBitmapLoadMemoryTest"
-            android:text="@string/bitmap_load_memory_test"
+            android:id="@+id/mButton"
+            android:text="BottomPopUpWindow"
             android:textAllCaps="false"
             />
 
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/mBtnRecyclerViewInsideScrollView"
-            android:text="@string/recycler_view_inside_scroll_view"
+            android:id="@+id/mButton2"
+            android:text="MaterialDialogs"
             android:textAllCaps="false"
             />
 
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/mBtnCollapsingAppBar"
-            android:text="@string/collapsing_app_bar"
+            android:id="@+id/mButton3"
+            android:text="PopUpWindow"
             android:textAllCaps="false"
             />
 
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/mBtnBonusAnimation"
-            android:text="@string/bonus_animation"
+            android:id="@+id/mButton4"
+            android:text="CustomDialogFragment"
             android:textAllCaps="false"
             />
 
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/mBtnBottomPopupWindow"
-            android:text="BottomPopupWindow"
-            android:textAllCaps="false"
+    <include layout="@layout/ui_dialog"
+             android:layout_width="250dp"
+             android:layout_height="186dp"
+             android:layout_marginTop="200dp"
             />
 </LinearLayout>

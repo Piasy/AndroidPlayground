@@ -20,7 +20,7 @@ public class MainActivity extends Activity {
 
     @OnClick({
             R.id.mBtnBitmapLoadMemoryTest, R.id.mBtnRecyclerViewInsideScrollView,
-            R.id.mBtnCollapsingAppBar, R.id.mBtnBonusAnimation,
+            R.id.mBtnCollapsingAppBar, R.id.mBtnBonusAnimation, R.id.mBtnBottomPopupWindow,
     })
     public void onClick(View v) {
         switch (v.getId()) {
@@ -35,6 +35,9 @@ public class MainActivity extends Activity {
                 break;
             case R.id.mBtnBonusAnimation:
                 startActivity(new Intent(this, BonusAnimationActivity.class));
+                break;
+            case R.id.mBtnBottomPopupWindow:
+                startActivity(new Intent(this, BottomPopUpWindowActivity.class));
                 break;
         }
     }

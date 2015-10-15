@@ -21,6 +21,7 @@
         <activity android:name=".BitmapLoadTestActivity"/>
         <activity android:name=".CollapsingAppBarActivity"/>
         <activity android:name=".BonusAnimationActivity"/>
+        <activity android:name=".BottomPopUpWindowActivity"/>
     </application>
 
 </manifest>

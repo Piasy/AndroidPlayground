@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/dialog_bg_layer1"/>
+    <item android:drawable="@drawable/corner_bg"
+          android:top="10dp"
+          android:right="10dp"/>
+</layer-list>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+        android:shape="rectangle">
+    <item android:state_pressed="true" android:drawable="@drawable/give_bonus_pressed_bg"/>
+    <item android:drawable="@drawable/give_bonus_bg"/>
+</selector>
