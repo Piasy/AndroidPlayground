@@ -3,9 +3,8 @@
               android:orientation="vertical"
               android:id="@+id/mPopupWindowHolder"
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
+              android:layout_height="170dp"
               android:padding="10dp"
-              android:gravity="bottom"
               xmlns:tools="http://schemas.android.com/tools"
         >
 

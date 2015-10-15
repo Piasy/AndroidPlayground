@@ -2,12 +2,10 @@ package com.github.piasy.androidplayground;
 
 import android.app.Activity;
 import android.app.DialogFragment;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.transition.TransitionInflater;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -159,7 +157,7 @@ public class BottomPopUpWindowActivity extends Activity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
             getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-            View view = inflater.inflate(R.layout.ui_bottom_popup_window, null);
+            View view = inflater.inflate(R.layout.ui_bottom_dialog_fragment, null);
             ButterKnife.bind(this, view);
             return view;
         }
