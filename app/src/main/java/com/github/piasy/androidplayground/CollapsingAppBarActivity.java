@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import com.transitionseverywhere.TransitionManager;
 
 /**
@@ -29,9 +30,30 @@ public class CollapsingAppBarActivity extends Activity {
     @Bind(R.id.mContentHolder)
     LinearLayout mContentHolder;
 
+    @Bind(R.id.mTvClick)
+    TextView mTvClick;
+    @Bind(R.id.mLlCollapse)
+    LinearLayout mLlCollapse;
+
+    @OnClick({R.id.mLlCollapse, R.id.mTvClick})
+    public void clicked(View v) {
+        if (v.getId() == R.id.mTvClick) {
+            mTvClick.setVisibility(View.GONE);
+            mLlCollapse.setVisibility(View.VISIBLE);
+        } if (v.getId() == R.id.mLlCollapse) {
+            mTvClick.setVisibility(View.VISIBLE);
+            mLlCollapse.setVisibility(View.GONE);
+        }
+    }
+
     private int mAppBarHeight = -1;
     private int mCurrentAppBarOffset;   // -height ==> 0
     private final float APP_BAR_AUTO_COLLAPSE_RATION = 0.3F;
+
+    @OnClick(R.id.iv_user_home)
+    public void start() {
+        mAppBarLayout.setExpanded(true);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,13 +99,13 @@ public class CollapsingAppBarActivity extends Activity {
     }
 
     private void showTip() {
-        TransitionManager.beginDelayedTransition(mContentHolder);
-        mTvHint.setVisibility(View.VISIBLE);
+        //TransitionManager.beginDelayedTransition(mContentHolder);
+        //mTvHint.setVisibility(View.VISIBLE);
     }
 
     private void hideTip() {
-        TransitionManager.beginDelayedTransition(mContentHolder);
-        mTvHint.setVisibility(View.GONE);
+        //TransitionManager.beginDelayedTransition(mContentHolder);
+        //mTvHint.setVisibility(View.GONE);
     }
 
     public static class Adapter extends RecyclerView.Adapter<ViewHolder> {

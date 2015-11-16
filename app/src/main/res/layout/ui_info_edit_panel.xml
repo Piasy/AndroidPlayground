@@ -15,12 +15,23 @@
             android:textColor="#000000"
             />
     <TextView
+            android:id="@+id/mTvClick"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="12dp"
             android:text="Input title"
             android:textColor="#000000"
             />
+    <LinearLayout
+            android:id="@+id/mLlCollapse"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="#ffffff"
+            android:orientation="vertical"
+            android:visibility="gone"
+            >
+
+    </LinearLayout>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

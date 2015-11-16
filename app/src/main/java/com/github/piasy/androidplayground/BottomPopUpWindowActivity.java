@@ -69,7 +69,7 @@ public class BottomPopUpWindowActivity extends Activity {
 
     @OnClick(R.id.mButton1)
     public void onClick1() {
-        new BottomDialogFragment().show(getFragmentManager(), "BottomDialogFragment");
+        new TopDownDialogFragment().show(getFragmentManager(), "TopDownDialogFragment");
     }
 
     @OnClick(R.id.mButton2)
@@ -145,7 +145,7 @@ public class BottomPopUpWindowActivity extends Activity {
         }
     }
 
-    public static class BottomDialogFragment extends DialogFragment {
+    public static class TopDownDialogFragment extends DialogFragment implements View.OnClickListener {
 
         @OnClick(R.id.mCancel)
         public void close() {
@@ -177,6 +177,11 @@ public class BottomPopUpWindowActivity extends Activity {
         public void onStart() {
             super.onStart();
             getDialog().getWindow().setWindowAnimations(R.style.popup_window_anim_style);
+        }
+
+        @Override
+        public void onClick(View v) {
+
         }
     }
 }

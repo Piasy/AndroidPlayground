@@ -63,6 +63,7 @@
                         android:id="@+id/mTvHint"
                         android:text="无法收到好友的直播消息，去设置>>"
                         android:paddingTop="10dp"
+                        android:visibility="gone"
                         />
 
                 <TextView

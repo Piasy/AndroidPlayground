@@ -1,1 +1,1 @@
-include ':app', ':appmarshmallow'
+include ':app', ':appmarshmallow', ':keyboardeventdemo', ':notificationtest'
