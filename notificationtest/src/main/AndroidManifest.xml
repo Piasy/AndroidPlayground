@@ -17,8 +17,10 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".NotifyActivity"
+        <!--<activity android:name=".NotifyActivity"
                 android:launchMode="singleTask"
+                />-->
+        <activity android:name=".NotifyActivity"
                 />
     </application>
 
