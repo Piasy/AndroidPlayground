@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="280dp"
+              android:layout_height="60dp"
+              android:background="@drawable/bg_inviting_dialog"
+              android:clickable="true"
+              android:visibility="gone"
+              tools:visibility="visible"
+        >
+
+    <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/mToAvatar"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            tools:src="@drawable/iv_sample"
+            app:civ_border_width="0dp"
+            />
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="9dp"
+            android:layout_toRightOf="@+id/mToAvatar"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            >
+
+        <TextView
+                android:id="@+id/mTvToUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_32pt"
+                android:maxWidth="155dp"
+                android:singleLine="true"
+                tools:text="Username"
+                />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_dark_white_c"
+                android:textSize="@dimen/text_28pt"
+                android:text="正在准备接受切屏"
+                />
+    </LinearLayout>
+
+    <cn.iwgang.countdownview.CountdownView
+            android:id="@+id/mCountDownTimber"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:textSize="15sp"
+            android:textColor="@android:color/white"
+            tools:text="30"
+            app:isHideTimeBackground="true"
+            app:isShowDay="false"
+            app:isShowHour="false"
+            app:isShowMinute="false"
+            app:timeTextColor="@color/dark_black"
+            app:timeTextSize="@dimen/text_40pt"
+            />
+</RelativeLayout>

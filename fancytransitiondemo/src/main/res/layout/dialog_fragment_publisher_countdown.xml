@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="94dp"
+              android:layout_height="94dp"
+              android:background="@drawable/bg_publisher_countdown_dialog"
+              android:clickable="true"
+        >
+
+    <com.github.piasy.fancytransitiondemo.CountdownAnimationTextView
+            android:id="@+id/mCountDownAnim"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:textSize="@dimen/text_64pt"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:layout_gravity="center"
+            tools:text="5"
+            />
+</FrameLayout>

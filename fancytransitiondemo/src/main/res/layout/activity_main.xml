@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/mLlContainer"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:paddingLeft="@dimen/activity_horizontal_margin"
+              android:paddingRight="@dimen/activity_horizontal_margin"
+              android:paddingTop="@dimen/activity_vertical_margin"
+              android:paddingBottom="@dimen/activity_vertical_margin"
+              tools:context="com.github.piasy.fancytransitiondemo.MainActivity"
+        >
+
+    <Button
+            android:id="@+id/mBtnInvitedView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="被切屏者"
+            android:textAllCaps="false"
+            />
+
+    <Button
+            android:id="@+id/mBtnPublisherView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mBtnInvitedView"
+            android:text="切屏者"
+            android:textAllCaps="false"
+            />
+
+    <Button
+            android:id="@+id/mBtnOthersView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mBtnPublisherView"
+            android:text="其他观众"
+            android:textAllCaps="false"
+            />
+
+    <include layout="@layout/dialog_fragment_inviting"
+             android:id="@+id/mRlInvitingDialogContainer"
+             android:layout_width="280dp"
+             android:layout_height="60dp"
+             android:layout_centerHorizontal="true"
+             android:layout_alignParentBottom="true"
+             android:layout_marginBottom="77dp"
+            />
+</RelativeLayout>
