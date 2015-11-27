@@ -2,15 +2,13 @@ package com.github.piasy.recyclerviewinsidescrollviewdemo;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Rect;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -47,60 +45,17 @@ public class RecyclerViewInsideScrollViewActivity extends Activity {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                recyclerView.setLayoutManager(
+                startActivity(new Intent(RecyclerViewInsideScrollViewActivity.this,
+                        BehaviorActivity.class));
+                /*recyclerView.setLayoutManager(
                         new GridLayoutManager(RecyclerViewInsideScrollViewActivity.this, 3));
                 recyclerView.setAdapter(adapter);
                 adapter.setContentCount(3);
                 adapter.notifyDataSetChanged();
                 recyclerView.getLayoutParams().height =
-                        (int) (getResources().getDisplayMetrics().density * 140 * 1);
+                        (int) (getResources().getDisplayMetrics().density * 140 * 1);*/
             }
         });
-    }
-
-    public static class NestedScrollViewScrollChangedListener
-            implements ViewTreeObserver.OnScrollChangedListener {
-
-        private final HeaderScrollOffPercentListener mHeaderScrollOffPercentListener;
-        private final View mHeaderView;
-        private final float mScrollOffStartRatio;
-        private int mStartScrollOffBottom = -1;
-        private int mHeaderViewBottom;
-        private final Rect mLocalRect = new Rect();
-        private final Rect mGlobalRect = new Rect();
-
-        public NestedScrollViewScrollChangedListener(
-                HeaderScrollOffPercentListener headerScrollOffPercentListener, View headerView,
-                float scrollOffStartRatio) {
-            mHeaderScrollOffPercentListener = headerScrollOffPercentListener;
-            mHeaderView = headerView;
-            mScrollOffStartRatio = scrollOffStartRatio;
-        }
-
-        public interface HeaderScrollOffPercentListener {
-            void onHeaderScrollOffPercent(float percent);
-        }
-
-        @Override
-        public void onScrollChanged() {
-            mHeaderView.getGlobalVisibleRect(mGlobalRect);
-            mHeaderView.getLocalVisibleRect(mLocalRect);
-            if (mStartScrollOffBottom == -1) {
-                mStartScrollOffBottom = (int) (mHeaderView.getBottom() * mScrollOffStartRatio);
-                mHeaderViewBottom = mHeaderView.getBottom();
-            }
-            if (mLocalRect.top > mStartScrollOffBottom &&
-                    mHeaderViewBottom != mStartScrollOffBottom) {
-                mHeaderScrollOffPercentListener.onHeaderScrollOffPercent(
-                        ((float) mLocalRect.top - mStartScrollOffBottom) /
-                                (mHeaderViewBottom - mStartScrollOffBottom));
-            } else if ((mLocalRect.top <= 0 && mGlobalRect.top <= 0) ||
-                    mHeaderViewBottom == mStartScrollOffBottom) {
-                mHeaderScrollOffPercentListener.onHeaderScrollOffPercent(1);
-            } else {
-                mHeaderScrollOffPercentListener.onHeaderScrollOffPercent(0);
-            }
-        }
     }
 
     public static class Adapter extends RecyclerView.Adapter<ViewHolder> {

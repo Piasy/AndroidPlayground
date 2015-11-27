@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                 android:orientation="vertical"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="match_parent"
+                                                 android:fitsSystemWindows="false"
+                                                 android:background="#BF000000"
+        >
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            >
+        <ImageButton
+                android:id="@+id/mIbClose"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="right"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@null"
+                android:src="@drawable/ic_close_white_36dp"
+                />
+    </FrameLayout>
+
+    <TextView
+            android:id="@+id/mTvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="122dp"
+            android:text="直播结束"
+            android:textSize="28sp"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            app:layout_behavior=".behavior.TitleBehavior"
+            app:target="@+id/mTvContent"
+            />
+
+    <LinearLayout
+            android:id="@+id/mLlStatistics"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="160dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            app:layout_behavior=".behavior.StatisticsBehavior"
+            >
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="18dp"
+                android:text="77人观看 直播时长 00:15:59"
+                android:textSize="13sp"
+                android:textColor="#BFFFFFFF"
+                android:gravity="center"
+                />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_marginTop="23dp"
+                android:text="收到 6 人打赏 25.60 元"
+                android:textSize="17sp"
+                android:textColor="#BFFFFFFF"
+                android:gravity="center"
+                />
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:text="打赏 3 人 6.80 元"
+                android:textSize="17sp"
+                android:textColor="#BFFFFFFF"
+                android:gravity="center"
+                />
+    </LinearLayout>
+
+    <TextView
+            android:id="@+id/mTvPlayersList"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="347dp"
+            android:text="被打赏播主列表"
+            android:textSize="28sp"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            />
+
+    <android.support.v4.widget.NestedScrollView
+            android:id="@+id/mNestedScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+            <!--<view
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#19FFFFFF"
+                    />-->
+
+            <TextView
+                    android:id="@+id/mTvContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="400dp"
+                    style="@style/TextAppearance.AppCompat.Display3"
+                    android:text="A\nB\nC\nD\nE\nF\nG\nH\nI\nJ\nK\nL\nM\nN\nO\nP\nQ\nR\nS\nT\nU\nV\nW\nX\nY\nZ"
+                    android:background="@android:color/holo_red_light"
+                    />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>
