@@ -1,11 +1,11 @@
 <android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/black"
-                android:clickable="true"
-                tools:context=".TransferringFragment"
+                                               xmlns:tools="http://schemas.android.com/tools"
+                                               xmlns:app="http://schemas.android.com/apk/res-auto"
+                                               android:layout_width="match_parent"
+                                               android:layout_height="match_parent"
+                                               android:background="@android:color/black"
+                                               android:clickable="true"
+                                               tools:context=".TransferringFragment"
         >
 
     <ImageButton
@@ -59,19 +59,28 @@
             app:civ_border_width="0dp"
             />
 
-    <TextView
-            android:id="@+id/mFromUsername"
-            android:layout_width="wrap_content"
+    <FrameLayout
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
             android:layout_below="@+id/mFromAvatar"
             android:layout_alignLeft="@+id/mFromAvatar"
-            android:textColor="@color/white_transparent_75"
-            android:textSize="@dimen/text_26pt"
-            android:alpha="0"
-            tools:text="from"
-            tools:alpha="1"
-            />
+            android:layout_marginLeft="-15dp"
+            >
+
+        <TextView
+                android:id="@+id/mFromUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white_transparent_75"
+                android:textSize="@dimen/text_26pt"
+                android:gravity="center"
+                android:singleLine="true"
+                android:alpha="0"
+                tools:text="FromUsernameFromUsernameFromUsername"
+                tools:alpha="1"
+                />
+    </FrameLayout>
 
     <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/mToAvatar"
@@ -85,17 +94,26 @@
             tools:alpha="1"
             />
 
-    <TextView
-            android:id="@+id/mToUsername"
-            android:layout_width="wrap_content"
+    <FrameLayout
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
             android:layout_below="@+id/mToAvatar"
             android:layout_alignLeft="@+id/mToAvatar"
-            android:textColor="@color/white_transparent_75"
-            android:textSize="@dimen/text_26pt"
-            android:alpha="0"
-            tools:text="to"
-            tools:alpha="1"
-            />
+            android:layout_marginTop="7dp"
+            android:layout_marginLeft="-15dp"
+            >
+
+        <TextView
+                android:id="@+id/mToUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white_transparent_75"
+                android:textSize="@dimen/text_26pt"
+                android:gravity="center"
+                android:singleLine="true"
+                android:alpha="0"
+                tools:text="ToUsernameToUsernameToUsername"
+                tools:alpha="1"
+                />
+    </FrameLayout>
 </android.support.percent.PercentRelativeLayout>

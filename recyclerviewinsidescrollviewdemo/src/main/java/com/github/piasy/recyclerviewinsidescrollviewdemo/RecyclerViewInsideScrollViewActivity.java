@@ -2,14 +2,13 @@ package com.github.piasy.recyclerviewinsidescrollviewdemo;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,33 +28,21 @@ public class RecyclerViewInsideScrollViewActivity extends Activity {
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.mRecyclerView);
         final Adapter adapter = new Adapter(this);
         recyclerView.setNestedScrollingEnabled(false);
+        recyclerView.setLayoutManager(new FixedHeightGridLayoutManager(this, 3));
+        recyclerView.setAdapter(adapter);
+        adapter.setContentCount(100);
+        adapter.notifyDataSetChanged();
 
         NestedScrollView nestedScrollView = (NestedScrollView) findViewById(R.id.mNestedScrollView);
         nestedScrollView.getViewTreeObserver()
-                .addOnScrollChangedListener(new NestedScrollViewScrollChangedListener(
-                        new NestedScrollViewScrollChangedListener.HeaderScrollOffPercentListener() {
+                .addOnScrollChangedListener(new NSVHeaderScrollOutPercentListener(
+                        new NSVHeaderScrollOutPercentListener.HeaderScrollOutPercentageListener() {
                             @Override
                             public void onHeaderScrollOffPercent(float percent) {
                                 int alpha = (int) (percent * 255);
                                 title.setTextColor(alpha << 24 | 0xFFFFFF);
                             }
-                        }, header, 0.618F));
-
-        ImageButton imageButton = (ImageButton) findViewById(R.id.mImageButton);
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(RecyclerViewInsideScrollViewActivity.this,
-                        BehaviorActivity.class));
-                /*recyclerView.setLayoutManager(
-                        new GridLayoutManager(RecyclerViewInsideScrollViewActivity.this, 3));
-                recyclerView.setAdapter(adapter);
-                adapter.setContentCount(3);
-                adapter.notifyDataSetChanged();
-                recyclerView.getLayoutParams().height =
-                        (int) (getResources().getDisplayMetrics().density * 140 * 1);*/
-            }
-        });
+                        }, header, 0.618F, 1.0F));
     }
 
     public static class Adapter extends RecyclerView.Adapter<ViewHolder> {

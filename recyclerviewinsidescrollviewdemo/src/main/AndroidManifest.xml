@@ -9,10 +9,9 @@
             android:label="@string/app_name"
             android:supportsRtl="true"
             >
-        <activity android:name=".RecyclerViewInsideScrollViewActivity">
-        </activity>
+        <activity android:name=".RecyclerViewInsideScrollViewActivity" />
         <activity android:name=".BehaviorActivity"
-                  android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+                  android:theme="@style/NoActionBar.Transparent"
                 >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

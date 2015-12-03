@@ -8,44 +8,25 @@
                                                  android:background="#BF000000"
         >
 
-    <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            >
-        <ImageButton
-                android:id="@+id/mIbClose"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="right"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="15dp"
-                android:background="@null"
-                android:src="@drawable/ic_close_white_36dp"
-                />
-    </FrameLayout>
-
-    <TextView
-            android:id="@+id/mTvTitle"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_marginTop="122dp"
-            android:text="直播结束"
-            android:textSize="28sp"
-            android:textColor="@android:color/white"
-            android:gravity="center"
-            app:layout_behavior=".behavior.TitleBehavior"
-            app:target="@+id/mTvContent"
-            />
-
     <LinearLayout
             android:id="@+id/mLlStatistics"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="160dp"
+            android:layout_height="460dp"
             android:orientation="vertical"
             android:gravity="center_horizontal"
-            app:layout_behavior=".behavior.StatisticsBehavior"
+            app:layout_behavior=".behavior.TitleBehavior"
+            app:target="@+id/mTvContent"
             >
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="111dp"
+                android:text="直播结束"
+                android:textSize="28sp"
+                android:textColor="@android:color/white"
+                android:gravity="center"
+                />
 
         <TextView
                 android:layout_width="match_parent"
@@ -73,23 +54,28 @@
                 android:textColor="#BFFFFFFF"
                 android:gravity="center"
                 />
+
+        <TextView
+                android:id="@+id/mTvPlayersList"
+                android:layout_width="match_parent"
+                android:layout_height="112dp"
+                android:layout_marginTop="111dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="被打赏播主列表"
+                android:textSize="28sp"
+                android:textColor="@android:color/white"
+                android:gravity="center"
+                android:background="@android:color/holo_green_light"
+                />
     </LinearLayout>
 
-    <TextView
-            android:id="@+id/mTvPlayersList"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_marginTop="347dp"
-            android:text="被打赏播主列表"
-            android:textSize="28sp"
-            android:textColor="@android:color/white"
-            android:gravity="center"
-            />
-
-    <android.support.v4.widget.NestedScrollView
+    <!-- its margin_top is total height of mFlTitleBar and mTvPlayersList-->
+    <com.github.piasy.recyclerviewinsidescrollviewdemo.NoFlingNestedScrollView
             android:id="@+id/mNestedScrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="166dp"
             >
 
         <LinearLayout
@@ -97,22 +83,45 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 >
-            <!--<view
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#19FFFFFF"
-                    />-->
-
             <TextView
                     android:id="@+id/mTvContent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="400dp"
-                    style="@style/TextAppearance.AppCompat.Display3"
+                    android:layout_marginTop="294dp"
+                    android:textSize="30sp"
+                    android:textColor="@android:color/black"
                     android:text="A\nB\nC\nD\nE\nF\nG\nH\nI\nJ\nK\nL\nM\nN\nO\nP\nQ\nR\nS\nT\nU\nV\nW\nX\nY\nZ"
                     android:background="@android:color/holo_red_light"
                     />
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </com.github.piasy.recyclerviewinsidescrollviewdemo.NoFlingNestedScrollView>
+
+    <FrameLayout
+            android:id="@+id/mFlTitleBar"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            >
+
+        <TextView
+                android:id="@+id/mTvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="直播结束"
+                android:textSize="18sp"
+                android:textColor="#00FFFFFF"
+                android:gravity="center"
+                android:layout_gravity="center_vertical"
+                />
+
+        <ImageButton
+                android:id="@+id/mIbClose"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginRight="15dp"
+                android:background="@null"
+                android:src="@drawable/ic_close_white_36dp"
+                />
+    </FrameLayout>
 
 </android.support.design.widget.CoordinatorLayout>

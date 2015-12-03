@@ -8,7 +8,6 @@ import android.support.design.widget.CoordinatorLayout;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
-import android.widget.TextView;
 import com.github.piasy.recyclerviewinsidescrollviewdemo.R;
 
 /**
@@ -16,30 +15,21 @@ import com.github.piasy.recyclerviewinsidescrollviewdemo.R;
  */
 public class TitleBehavior extends CoordinatorLayout.Behavior<View> {
 
-    private static final int MARGIN_TOP_MIN_DP = 15;
-    private static final int MARGIN_TOP_MAX_DP = 122;
+    private static final int STATUS_BAR_HEIGHT_DP = 25;
+    // {margin_top of mTvContent}
+    private static final int MARGIN_TOP_MIN_ABS_DP = 294;
+    // {margin_top of mNestedScrollView} + STATUS_BAR_HEIGHT_DP - {height of mFlTitleBar}
+    private static final int START_MOVE_DOWN_POSITION_DP = 137;
 
-    private static final int TEXT_SIZE_DELTA_SP = 11;
-    private static final int TEXT_SIZE_MIN_SP = 17;
-    private static final int TEXT_SIZE_MAX_SP = 28;
-
-    private static final int TEXT_COLOR_DELTA_ALPHA = 0x1A;
-    private static final int TEXT_COLOR_MIN_ALPHA = 0xE5;
-    private static final int TEXT_COLOR_MAX_ALPHA = 0xFF;
-
-    private static final int DEPENDENCY_INIT_TOP_DP = 400;
-
-    private final int mMarginTopMinPx;
-    private final int mMarginTopMaxPx;
-    private final int mMarginTopDeltaPx;
+    private final int mStatusBarHeightPx;
+    private final int mMarginTopMinAbsPx;
+    private final int mStartMoveDownPositionPx;
 
     @IdRes
     private final int mTargetId;
 
-    private float mCurrentTextSizeSp = TEXT_SIZE_MAX_SP;
-    private int mCurrentTextColorAlpha = TEXT_COLOR_MAX_ALPHA;
-    private int mCurrentDependencyTopPx;
-    private int mStartMovingDownDependencyMarginTopPx;
+    private final Rect mTargetGlobalRect = new Rect();
+    private final Rect mTargetLocalRect = new Rect();
 
     public TitleBehavior(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -49,146 +39,43 @@ public class TitleBehavior extends CoordinatorLayout.Behavior<View> {
         if (mTargetId == -1) {
             throw new IllegalStateException("Must set target id");
         }
-        mMarginTopMinPx =
-                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, MARGIN_TOP_MIN_DP,
+        mStatusBarHeightPx =
+                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, STATUS_BAR_HEIGHT_DP,
                         context.getResources().getDisplayMetrics());
-        mMarginTopMaxPx =
-                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, MARGIN_TOP_MAX_DP,
+        mMarginTopMinAbsPx =
+                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, MARGIN_TOP_MIN_ABS_DP,
                         context.getResources().getDisplayMetrics());
-        mMarginTopDeltaPx = mMarginTopMaxPx - mMarginTopMinPx;
-        mCurrentDependencyTopPx =
-                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, DEPENDENCY_INIT_TOP_DP,
-                        context.getResources().getDisplayMetrics());
+        mStartMoveDownPositionPx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                START_MOVE_DOWN_POSITION_DP, context.getResources().getDisplayMetrics());
     }
 
     @Override
     public boolean onStartNestedScroll(CoordinatorLayout coordinatorLayout, View child,
             View directTargetChild, View target, int nestedScrollAxes) {
-        return child instanceof TextView;
+        return true;
     }
-
-    private final Rect mGlobalRect = new Rect();
 
     @Override
     public void onNestedScroll(CoordinatorLayout coordinatorLayout, View child, View target,
             int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed) {
-        target.findViewById(mTargetId).getGlobalVisibleRect(mGlobalRect);
-        mCurrentDependencyTopPx = mGlobalRect.top;
         offset(child, target, dyConsumed);
     }
 
     public void offset(View child, View target, int dy) {
-        TextView textView = (TextView) child;
-        int top = textView.getTop();
-        if (dy > 0) {
-            // moving up
-            if (top - dy >= mMarginTopMinPx) {
-                textView.setTop(top - dy);
-                if (top - dy == mMarginTopMinPx) {
-                    target.findViewById(mTargetId).getGlobalVisibleRect(mGlobalRect);
-                    mStartMovingDownDependencyMarginTopPx = mGlobalRect.top;
-                }
-
-                mCurrentTextColorAlpha -= (float) dy / mMarginTopDeltaPx * TEXT_COLOR_DELTA_ALPHA;
-                if (TEXT_COLOR_MIN_ALPHA <= mCurrentTextColorAlpha &&
-                        mCurrentTextColorAlpha <= TEXT_COLOR_MAX_ALPHA) {
-                    textView.setTextColor(mCurrentTextColorAlpha << 24 | 0xFFFFFF);
-                } else {
-                    mCurrentTextColorAlpha = TEXT_COLOR_MIN_ALPHA;
-                }
-
-                ////float scale = 1 -
-                ////        (float) dy / mMarginTopDeltaPx * TEXT_SIZE_DELTA_SP / mCurrentTextSizeSp;
-                //mCurrentTextSizeSp -= (float) dy / mMarginTopDeltaPx * TEXT_SIZE_DELTA_SP;
-                //if (TEXT_SIZE_MIN_SP <= mCurrentTextSizeSp &&
-                //        mCurrentTextSizeSp <= TEXT_SIZE_MAX_SP) {
-                //    //textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mCurrentTextSizeSp);
-                //
-                //    //textView.setScaleX(scale);
-                //    //textView.setScaleY(scale);
-                //} else {
-                //    mCurrentTextSizeSp = TEXT_SIZE_MIN_SP;
-                //}
-            } else if (top > mMarginTopMinPx) {
-                textView.setTop(mMarginTopMinPx);
-                target.findViewById(mTargetId).getGlobalVisibleRect(mGlobalRect);
-                mStartMovingDownDependencyMarginTopPx = mGlobalRect.top + top - mMarginTopMinPx;
-
-                mCurrentTextColorAlpha -= (float) (top - mMarginTopMinPx) / mMarginTopDeltaPx *
-                        TEXT_COLOR_DELTA_ALPHA;
-                if (TEXT_COLOR_MIN_ALPHA <= mCurrentTextColorAlpha &&
-                        mCurrentTextColorAlpha <= TEXT_COLOR_MAX_ALPHA) {
-                    textView.setTextColor(mCurrentTextColorAlpha << 24 | 0xFFFFFF);
-                } else {
-                    mCurrentTextColorAlpha = TEXT_COLOR_MIN_ALPHA;
-                }
-
-                ////float scale = 1 -
-                ////        (float) (top - mMarginTopMinPx) / mMarginTopDeltaPx * TEXT_SIZE_DELTA_SP /
-                ////                mCurrentTextSizeSp;
-                //mCurrentTextSizeSp -=
-                //        (float) (top - mMarginTopMinPx) / mMarginTopDeltaPx * TEXT_SIZE_DELTA_SP;
-                //if (TEXT_SIZE_MIN_SP <= mCurrentTextSizeSp &&
-                //        mCurrentTextSizeSp <= TEXT_SIZE_MAX_SP) {
-                //    //textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mCurrentTextSizeSp);
-                //
-                //    //textView.setScaleX(scale);
-                //    //textView.setScaleY(scale);
-                //} else {
-                //    mCurrentTextSizeSp = TEXT_SIZE_MIN_SP;
-                //}
-            }
-        } else if (mCurrentDependencyTopPx >= mStartMovingDownDependencyMarginTopPx) {
-            // moving down
-            if (top - dy <= mMarginTopMaxPx) {
-                textView.setTop(top - dy);
-
-                mCurrentTextColorAlpha -= (float) dy / mMarginTopDeltaPx * TEXT_COLOR_DELTA_ALPHA;
-                if (TEXT_COLOR_MIN_ALPHA <= mCurrentTextColorAlpha &&
-                        mCurrentTextColorAlpha <= TEXT_COLOR_MAX_ALPHA) {
-                    textView.setTextColor(mCurrentTextColorAlpha << 24 | 0xFFFFFF);
-                } else {
-                    mCurrentTextColorAlpha = TEXT_COLOR_MAX_ALPHA;
-                }
-
-                ////float scale = 1 -
-                ////        (float) dy / mMarginTopDeltaPx * TEXT_SIZE_DELTA_SP / mCurrentTextSizeSp;
-                //mCurrentTextSizeSp -= (float) dy / mMarginTopDeltaPx * TEXT_SIZE_DELTA_SP;
-                //if (TEXT_SIZE_MIN_SP <= mCurrentTextSizeSp &&
-                //        mCurrentTextSizeSp <= TEXT_SIZE_MAX_SP) {
-                //    //textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mCurrentTextSizeSp);
-                //
-                //    //textView.setScaleX(scale);
-                //    //textView.setScaleY(scale);
-                //} else {
-                //    mCurrentTextSizeSp = TEXT_SIZE_MAX_SP;
-                //}
-            } else if (top < mMarginTopMaxPx) {
-                textView.setTop(mMarginTopMaxPx);
-
-                mCurrentTextColorAlpha -= (float) (top - mMarginTopMaxPx) / mMarginTopDeltaPx *
-                        TEXT_COLOR_DELTA_ALPHA;
-                if (TEXT_COLOR_MIN_ALPHA <= mCurrentTextColorAlpha &&
-                        mCurrentTextColorAlpha <= TEXT_COLOR_MAX_ALPHA) {
-                    textView.setTextColor(mCurrentTextColorAlpha << 24 | 0xFFFFFF);
-                } else {
-                    mCurrentTextColorAlpha = TEXT_COLOR_MAX_ALPHA;
-                }
-
-                ////float scale = 1 -
-                ////        (float) (top - mMarginTopMaxPx) / mMarginTopDeltaPx * TEXT_SIZE_DELTA_SP /
-                ////                mCurrentTextSizeSp;
-                //mCurrentTextSizeSp -=
-                //        (float) (top - mMarginTopMaxPx) / mMarginTopDeltaPx * TEXT_SIZE_DELTA_SP;
-                //if (TEXT_SIZE_MIN_SP <= mCurrentTextSizeSp &&
-                //        mCurrentTextSizeSp <= TEXT_SIZE_MAX_SP) {
-                //    //textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mCurrentTextSizeSp);
-                //
-                //    //textView.setScaleX(scale);
-                //    //textView.setScaleY(scale);
-                //} else {
-                //    mCurrentTextSizeSp = TEXT_SIZE_MAX_SP;
-                //}
+        target.findViewById(mTargetId).getGlobalVisibleRect(mTargetGlobalRect);
+        target.findViewById(mTargetId).getLocalVisibleRect(mTargetLocalRect);
+        if (dy > 0 || mTargetGlobalRect.top > mStartMoveDownPositionPx ||
+                mTargetLocalRect.top == 0) {
+            float newY = mTargetGlobalRect.top - child.getHeight() - mStatusBarHeightPx;
+            if (-mMarginTopMinAbsPx <= newY && newY <= 0) {
+                // newY is in legal range, so just follow target
+                child.setY(newY);
+            } else if (newY < -mMarginTopMinAbsPx) {
+                // newY is too small, i.e. up over scroll happened, but it shouldn't
+                child.setY(-mMarginTopMinAbsPx);
+            } else if (0 < newY) {
+                // newY is greater than 0, i.e. down over scroll happened, but it shouldn't
+                child.setY(0);
             }
         }
     }

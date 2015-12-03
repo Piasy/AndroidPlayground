@@ -1,4 +1,4 @@
-include ':bitmaploadtest', ':appmarshmallow', ':keyboardeventdemo', ':notificationtest', ':bonusanimationdemo',
+include ':bitmaploadtest', ':appmarshmallow', ':keyboardeventdemo', ':notificationtest', ':bonusanimationdemo', ':fragmentaddorderingdemo',
         ':dialogfragmentdemo',
         ':recyclerviewinsidescrollviewdemo',
         ':fancytransitiondemo', ':collapsingappbardemo'
