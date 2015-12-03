@@ -1,12 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                                  xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                 xmlns:tools="http://schemas.android.com/tools"
                                                  android:orientation="vertical"
                                                  android:layout_width="match_parent"
                                                  android:layout_height="match_parent"
                                                  android:fitsSystemWindows="false"
                                                  android:background="#BF000000"
         >
+
+    <!-- its margin_top is total height of mFlTitleBar and mTvPlayersList-->
+    <com.github.piasy.recyclerviewinsidescrollviewdemo.NoFlingNestedScrollView
+            android:id="@+id/mNestedScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="166dp"
+            >
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/mRvDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="294dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    />
+        </LinearLayout>
+    </com.github.piasy.recyclerviewinsidescrollviewdemo.NoFlingNestedScrollView>
 
     <LinearLayout
             android:id="@+id/mLlStatistics"
@@ -15,7 +41,7 @@
             android:orientation="vertical"
             android:gravity="center_horizontal"
             app:layout_behavior=".behavior.TitleBehavior"
-            app:target="@+id/mTvContent"
+            app:target="@+id/mRvDetails"
             >
 
         <TextView
@@ -46,6 +72,7 @@
                 android:textColor="#BFFFFFFF"
                 android:gravity="center"
                 />
+
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
@@ -55,46 +82,37 @@
                 android:gravity="center"
                 />
 
-        <TextView
-                android:id="@+id/mTvPlayersList"
+        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="112dp"
                 android:layout_marginTop="111dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:text="被打赏播主列表"
-                android:textSize="28sp"
-                android:textColor="@android:color/white"
-                android:gravity="center"
-                android:background="@android:color/holo_green_light"
-                />
-    </LinearLayout>
-
-    <!-- its margin_top is total height of mFlTitleBar and mTvPlayersList-->
-    <com.github.piasy.recyclerviewinsidescrollviewdemo.NoFlingNestedScrollView
-            android:id="@+id/mNestedScrollView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="166dp"
-            >
-
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 >
-            <TextView
-                    android:id="@+id/mTvContent"
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/mRvPublishers"
                     android:layout_width="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_height="53dp"
+                    android:layout_gravity="center_horizontal"
+                    />
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#1AFFFFFF"
+                    />
+            <TextView
+                    android:id="@+id/mTvPublisherName"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="294dp"
-                    android:textSize="30sp"
-                    android:textColor="@android:color/black"
-                    android:text="A\nB\nC\nD\nE\nF\nG\nH\nI\nJ\nK\nL\nM\nN\nO\nP\nQ\nR\nS\nT\nU\nV\nW\nX\nY\nZ"
-                    android:background="@android:color/holo_red_light"
+                    android:layout_marginTop="13dp"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/white"
+                    tools:text="张瑞圣的打赏详情"
                     />
         </LinearLayout>
-    </com.github.piasy.recyclerviewinsidescrollviewdemo.NoFlingNestedScrollView>
+    </LinearLayout>
 
     <FrameLayout
             android:id="@+id/mFlTitleBar"

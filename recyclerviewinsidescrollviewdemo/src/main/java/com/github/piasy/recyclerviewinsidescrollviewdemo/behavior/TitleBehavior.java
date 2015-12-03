@@ -62,20 +62,23 @@ public class TitleBehavior extends CoordinatorLayout.Behavior<View> {
     }
 
     public void offset(View child, View target, int dy) {
-        target.findViewById(mTargetId).getGlobalVisibleRect(mTargetGlobalRect);
-        target.findViewById(mTargetId).getLocalVisibleRect(mTargetLocalRect);
-        if (dy > 0 || mTargetGlobalRect.top > mStartMoveDownPositionPx ||
-                mTargetLocalRect.top == 0) {
-            float newY = mTargetGlobalRect.top - child.getHeight() - mStatusBarHeightPx;
-            if (-mMarginTopMinAbsPx <= newY && newY <= 0) {
-                // newY is in legal range, so just follow target
-                child.setY(newY);
-            } else if (newY < -mMarginTopMinAbsPx) {
-                // newY is too small, i.e. up over scroll happened, but it shouldn't
-                child.setY(-mMarginTopMinAbsPx);
-            } else if (0 < newY) {
-                // newY is greater than 0, i.e. down over scroll happened, but it shouldn't
-                child.setY(0);
+        View realTarget = target.findViewById(mTargetId);
+        if (realTarget != null) {
+            realTarget.getGlobalVisibleRect(mTargetGlobalRect);
+            realTarget.getLocalVisibleRect(mTargetLocalRect);
+            if (dy > 0 || mTargetGlobalRect.top > mStartMoveDownPositionPx ||
+                    mTargetLocalRect.top == 0) {
+                float newY = mTargetGlobalRect.top - child.getHeight() - mStatusBarHeightPx;
+                if (-mMarginTopMinAbsPx <= newY && newY <= 0) {
+                    // newY is in legal range, so just follow target
+                    child.setY(newY);
+                } else if (newY < -mMarginTopMinAbsPx) {
+                    // newY is too small, i.e. up over scroll happened, but it shouldn't
+                    child.setY(-mMarginTopMinAbsPx);
+                } else if (0 < newY) {
+                    // newY is greater than 0, i.e. down over scroll happened, but it shouldn't
+                    child.setY(0);
+                }
             }
         }
     }
