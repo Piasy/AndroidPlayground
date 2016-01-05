@@ -1,21 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
         >
 
     <Button
+            android:id="@+id/mBtnPlay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/mBtnPlay"
             android:text="Play"
             android:layout_gravity="bottom"
             />
 
-    <View
-            android:id="@+id/mLlBonusDetailContainer"
-            android:layout_width="12.14dp"
-            android:layout_height="10.79dp"
-            android:layout_gravity="center"
+    <com.github.piasy.bonusanimationdemo.BonusAnimationView
+            android:id="@+id/mBonusAnimationView"
+            android:layout_width="111dp"
+            android:layout_height="113dp"
+            android:layout_marginTop="100dp"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone"
+            tools:visibility="visible"
             />
+
 </FrameLayout>

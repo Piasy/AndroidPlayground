@@ -1,15 +1,8 @@
 package com.github.piasy.bonusanimationdemo;
 
 import android.app.Activity;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.TypedValue;
+import android.util.Log;
 import android.view.View;
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -17,6 +10,7 @@ import butterknife.OnClick;
 import com.facebook.rebound.BaseSpringSystem;
 import com.facebook.rebound.SimpleSpringListener;
 import com.facebook.rebound.Spring;
+import com.facebook.rebound.SpringConfig;
 import com.facebook.rebound.SpringSystem;
 import com.facebook.rebound.SpringUtil;
 import java.lang.ref.WeakReference;
@@ -25,8 +19,12 @@ import java.lang.ref.WeakReference;
  * Created by Piasy{github.com/Piasy} on 15/10/10.
  */
 public class BonusAnimationActivity extends Activity {
-    @Bind(R.id.mLlBonusDetailContainer)
-    View mLlBonusDetailContainer;
+    @Bind(R.id.mBonusAnimationView)
+    BonusAnimationView mBonusAnimationView;
+
+    private static final int QC_TENSION = 100;
+
+    private static final int QC_FRICTION = 9;
 
     private final BaseSpringSystem mSpringSystem = SpringSystem.create();
     private final BonusMsgSpringListener mBonusMsgSpringListener = new BonusMsgSpringListener(this);
@@ -45,18 +43,11 @@ public class BonusAnimationActivity extends Activity {
             float mappedValue =
                     (float) SpringUtil.mapValueFromRangeToRange(spring.getCurrentValue(), 0, 1, 1,
                             1.5);
-            if (mReference.get() != null && mReference.get().mLlBonusDetailContainer != null) {
-                mReference.get().mLlBonusDetailContainer.setScaleX(mappedValue);
-                mReference.get().mLlBonusDetailContainer.setScaleY(mappedValue);
+            if (mReference.get() != null && mReference.get().mBonusAnimationView != null) {
+                mReference.get().mBonusAnimationView.setScaleX(mappedValue);
+                mReference.get().mBonusAnimationView.setScaleY(mappedValue);
             }
-        }
-
-        @Override
-        public void onSpringAtRest(Spring spring) {
-            super.onSpringAtRest(spring);
-            /*if (mReference.get() != null) {
-                mReference.get().playBonusMsgEndAnimation();
-            }*/
+            Log.d("BonusAnimTest", "mappedValue: " + mappedValue);
         }
     }
 
@@ -66,87 +57,47 @@ public class BonusAnimationActivity extends Activity {
     @OnClick(R.id.mBtnPlay)
     public void onPlay() {
         if (mIsShowing) {
-            playBonusMsgEndAnimationHidden();
+            playBonusMsgEndAnimation();
             mIsShowing = false;
         } else {
-            playBonusMsgAnimationHidden(mShowTimes % 2 == 0);
+            playBonusMsgAnimation(mShowTimes % 2 == 0);
             mShowTimes++;
             mIsShowing = true;
         }
     }
-
-    private Bitmap mBitmap;
-    private Canvas mCanvas;
-    private Paint mPaint;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bonus_animation);
         ButterKnife.bind(this);
-        mLlBonusDetailContainer.setVisibility(View.GONE);
         mScaleSpring = mSpringSystem.createSpring();
         mScaleSpring.addListener(mBonusMsgSpringListener);
+        mScaleSpring.setCurrentValue(0.07);
+        mScaleSpring.setSpringConfig(SpringConfig.fromOrigamiTensionAndFriction(QC_TENSION,
+                QC_FRICTION));
 
-        mBonusDetailBgWidth = (int) (170 * getResources().getDisplayMetrics().density);
-        mBonusDetailBgHeight = (int) (151 * getResources().getDisplayMetrics().density);
-        mMarginBig = (int) (114 * getResources().getDisplayMetrics().density);
-        mMarginSmall = (int) (100 * getResources().getDisplayMetrics().density);
-        mBitmap = Bitmap.createBitmap(mBonusDetailBgWidth, mBonusDetailBgHeight,
-                Bitmap.Config.ARGB_8888);
-        mCanvas = new Canvas(mBitmap);
-        mPaint = new Paint();
-        mPaint.setColor(Color.WHITE);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                mBonusAnimationView.initResources(BonusAnimationActivity.this);
+            }
+        }).start();
     }
 
-    private int mBonusDetailBgWidth;
-    private int mBonusDetailBgHeight;
-    private int mMarginSmall;
-    private int mMarginBig;
+    private void playBonusMsgAnimation(boolean self) {
+        String content = "优 张瑞圣\uD83D\uDE04";
+        String bonusMessage = "我在吃吃吃吃\uD83D\uDE04";
+        String money = "￥1.00";
+        mBonusAnimationView.setContent(content, money, bonusMessage, self);
+        mBonusAnimationView.setVisibility(View.VISIBLE);
 
-    private Bitmap createBonusDetailBitmap(boolean self) {
-        if (self) {
-            String content = "YOLO的打赏" + mShowTimes;
-            mCanvas.drawBitmap(
-                    BitmapFactory.decodeResource(getResources(), R.drawable.iv_bonus_detail_bg), 0,
-                    0, mPaint);
-            mPaint.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 14,
-                    getResources().getDisplayMetrics()));
-            int width = (int) mPaint.measureText(content);
-            mCanvas.drawText(content, (mBonusDetailBgWidth - width) / 2, mMarginSmall, mPaint);
-            String money = "￥1234.5" + mShowTimes;
-            mPaint.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 24,
-                    getResources().getDisplayMetrics()));
-            width = (int) mPaint.measureText(money);
-            mCanvas.drawText(money, (mBonusDetailBgWidth - width) / 2, mMarginSmall +
-                    TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 14,
-                            getResources().getDisplayMetrics()) * 2, mPaint);
-        } else {
-            String content = "YOLO的打赏" + mShowTimes;
-            mCanvas.drawBitmap(
-                    BitmapFactory.decodeResource(getResources(), R.drawable.iv_bonus_detail_bg), 0,
-                    0, mPaint);
-            mPaint.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 16,
-                    getResources().getDisplayMetrics()));
-            int width = (int) mPaint.measureText(content);
-            mCanvas.drawText(content, (mBonusDetailBgWidth - width) / 2, mMarginBig, mPaint);
-        }
-        return mBitmap;
+        mScaleSpring.setEndValue(1);
     }
 
-    private void playBonusMsgAnimationHidden(boolean self) {
-        Bitmap bitmap = createBonusDetailBitmap(self);
-        Drawable drawable = new BitmapDrawable(getResources(), bitmap);
-        mLlBonusDetailContainer.setBackgroundDrawable(drawable);
-        mLlBonusDetailContainer.setVisibility(View.VISIBLE);
+    private void playBonusMsgEndAnimation() {
+        mScaleSpring.setCurrentValue(0.07);
 
-        mScaleSpring.setEndValue(26);
-    }
-
-    private void playBonusMsgEndAnimationHidden() {
-        mScaleSpring.setCurrentValue(1);
-        mLlBonusDetailContainer.setVisibility(View.GONE);
-        mLlBonusDetailContainer.setScaleX(1.5F);
-        mLlBonusDetailContainer.setScaleY(1.5F);
+        mBonusAnimationView.setVisibility(View.GONE);
     }
 }
