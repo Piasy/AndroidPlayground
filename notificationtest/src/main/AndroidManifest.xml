@@ -17,10 +17,14 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <!--<activity android:name=".NotifyActivity"
-                android:launchMode="singleTask"
-                />-->
-        <activity android:name=".NotifyActivity"
+
+        <activity
+                android:name=".NotifyActivity"
+                android:parentActivityName=".SecondActivity"
+                />
+        <activity
+                android:name=".SecondActivity"
+                android:parentActivityName=".MainActivity"
                 />
     </application>
 
