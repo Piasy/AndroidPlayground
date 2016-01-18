@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:fresco="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/mFlLuckyMoney"
+        android:layout_width="274dp"
+        android:layout_height="361dp"
+        android:background="@drawable/bg_lucky_money_full"
+        android:layout_gravity="center"
+        android:clickable="true"
+        android:gravity="center_horizontal"
+        >
+
+    <ImageButton
+            android:id="@+id/mIbClose"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:background="@null"
+            android:src="@drawable/iv_close_white_small"
+            android:layout_gravity="right"
+            />
+
+    <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/mAvatar"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="35dp"
+            fresco:roundAsCircle="true"
+            fresco:actualImageScaleType="centerCrop"
+            fresco:placeholderImage="@drawable/sample_avatar"
+            fresco:placeholderImageScaleType="centerCrop"
+            fresco:roundingBorderWidth="2dp"
+            />
+
+    <TextView
+            android:id="@+id/mTvUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="135dp"
+            android:text="YOLO"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_40pt"
+            />
+
+    <TextView
+            android:id="@+id/mTvHint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="161dp"
+            android:text="@string/unpack_lucky_money_hint"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_26pt"
+            />
+
+    <TextView
+            android:id="@+id/mTvWish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="193dp"
+            android:text="@string/unpack_lucky_money_wish"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_40pt"
+            />
+
+    <TextView
+            android:id="@+id/mTvGotMoney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="215dp"
+            android:textColor="@color/dark_black"
+            tools:text="@string/bonus_text_formatter"
+            android:textSize="@dimen/text_28pt"
+            android:visibility="gone"
+            tools:visibility="visible"
+            />
+
+    <ImageView
+            android:id="@+id/mIvUnpack"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="240dp"
+            android:src="@drawable/iv_unpack"
+            />
+
+</FrameLayout>

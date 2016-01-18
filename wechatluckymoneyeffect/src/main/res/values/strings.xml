@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">WeChatLuckyMoneyEffect</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="unpack_lucky_money_hint">播主红包，金额随机</string>
+    <string name="unpack_lucky_money_wish">恭喜发财，大吉大利！</string>
+    <string name="unpack_lucky_money_empty_hint">手慢了，红包派完了</string>
+
+    <string name="bonus_text_formatter" formatted="false">%.2f\u0020元</string>
+</resources>
