@@ -12,7 +12,6 @@ import android.util.TypedValue;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,8 +28,8 @@ import rx.functions.Action1;
  */
 public class UnpackLuckyMoneyDialogFragment extends BaseDialogFragment {
 
-    private static final int WIDTH = 274;
-    private static final int HEIGHT = 361;
+    private static final int WIDTH = 270;
+    private static final int HEIGHT = 360;
     private static final int TO_Y_DEGREES = 360;
     private static final int DURATION_MILLIS = 500;
     private static final int UNPACK_CHANGE_BG_DELAY = DURATION_MILLIS / 4;
@@ -39,8 +38,8 @@ public class UnpackLuckyMoneyDialogFragment extends BaseDialogFragment {
     private static final float TEXT_SIZE_PROPORTION = 2.69F;
     private static final float DIM_AMOUNT = 0.5F;
     public static final int TWO = 2;
-
-    private FrameLayout mFlLuckyMoney;
+    public static final int BG_MOVE_UP_DIP = -195;
+    public static final int BG_MOVE_DOWN_DIP = 130;
 
     private ImageButton mIbClose;
 
@@ -53,6 +52,10 @@ public class UnpackLuckyMoneyDialogFragment extends BaseDialogFragment {
     private TextView mTvWish;
 
     private TextView mTvGotMoney;
+
+    private ImageView mIvLuckyMoneyAboveHalf;
+
+    private ImageView mIvLuckyMoneyBelowHalf;
 
     private ImageView mIvUnpack;
 
@@ -100,7 +103,6 @@ public class UnpackLuckyMoneyDialogFragment extends BaseDialogFragment {
 
     @Override
     protected void bindViews(View view) {
-        mFlLuckyMoney = ButterKnife.findById(view, R.id.mFlLuckyMoney);
         mIbClose = ButterKnife.findById(view, R.id.mIbClose);
         mAvatar = ButterKnife.findById(view, R.id.mAvatar);
         mTvUsername = ButterKnife.findById(view, R.id.mTvUsername);
@@ -108,7 +110,10 @@ public class UnpackLuckyMoneyDialogFragment extends BaseDialogFragment {
         mTvWish = ButterKnife.findById(view, R.id.mTvWish);
         mTvGotMoney = ButterKnife.findById(view, R.id.mTvGotMoney);
         mIvUnpack = ButterKnife.findById(view, R.id.mIvUnpack);
+        mIvLuckyMoneyAboveHalf = ButterKnife.findById(view, R.id.mIvLuckyMoneyAboveHalf);
+        mIvLuckyMoneyBelowHalf = ButterKnife.findById(view, R.id.mIvLuckyMoneyBelowHalf);
 
+        mTvUsername.setText("YOLO");
         listenOnClickRxy(mIbClose, new Action1<Void>() {
             @Override
             public void call(Void aVoid) {
@@ -135,7 +140,6 @@ public class UnpackLuckyMoneyDialogFragment extends BaseDialogFragment {
 
     @Override
     protected void unbindViews() {
-        mFlLuckyMoney = null;
         mIbClose = null;
         mAvatar = null;
         mTvUsername = null;
@@ -143,6 +147,9 @@ public class UnpackLuckyMoneyDialogFragment extends BaseDialogFragment {
         mTvWish = null;
         mTvGotMoney = null;
         mIvUnpack = null;
+        mIvLuckyMoneyAboveHalf = null;
+        mIvLuckyMoneyBelowHalf = null;
+
     }
 
     Random mRandom = new Random();
@@ -164,15 +171,24 @@ public class UnpackLuckyMoneyDialogFragment extends BaseDialogFragment {
 
     private void gotLuckyMoney(int moneyInCent) {
         mIvUnpack.clearAnimation();
-        mIvUnpack.setImageResource(R.drawable.iv_unpack);
         mIvUnpack.setVisibility(View.GONE);
-        mFlLuckyMoney.setBackgroundResource(R.drawable.bg_got_lucky_money);
+
+        mIvLuckyMoneyAboveHalf.animate()
+                .translationY(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, BG_MOVE_UP_DIP,
+                        getResources().getDisplayMetrics()))
+                .start();
+        mIvLuckyMoneyBelowHalf.animate()
+                .translationY(
+                        TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, BG_MOVE_DOWN_DIP,
+                                getResources().getDisplayMetrics()))
+                .start();
         mTvUsername.setTextColor(mResources.getColor(R.color.dark_black));
         mTvHint.setTextSize(TypedValue.COMPLEX_UNIT_SP, GOT_LUCKY_MONEY_HINT_TEXT_SIZE_SP);
         mTvHint.setTextColor(Color.parseColor("#FF999999"));
         mTvHint.setText(R.string.unpack_lucky_money_wish);
 
-        String amount = String.format(mResources.getString(R.string.bonus_text_formatter),
+        String amount = String.format(
+                mResources.getString(R.string.unpack_lucky_money_result_text_formatter),
                 (float) moneyInCent / HUNDRED);
         Spannable bonus = new SpannableString(amount);
         bonus.setSpan(new RelativeSizeSpan(TEXT_SIZE_PROPORTION), 0, amount.length() - TWO,

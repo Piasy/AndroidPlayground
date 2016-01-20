@@ -4,13 +4,28 @@
         xmlns:fresco="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/mFlLuckyMoney"
-        android:layout_width="274dp"
-        android:layout_height="361dp"
-        android:background="@drawable/bg_lucky_money_full"
+        android:layout_width="270dp"
+        android:layout_height="360dp"
         android:layout_gravity="center"
+        android:background="@drawable/bg_lucky_money"
         android:clickable="true"
         android:gravity="center_horizontal"
         >
+
+    <ImageView
+            android:id="@+id/mIvLuckyMoneyAboveHalf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/iv_lucky_money_above_half"
+            />
+
+    <ImageView
+            android:id="@+id/mIvLuckyMoneyBelowHalf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/iv_lucky_money_below_half"
+            android:layout_gravity="bottom"
+            />
 
     <ImageButton
             android:id="@+id/mIbClose"
@@ -38,9 +53,11 @@
             android:id="@+id/mTvUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxWidth="200dp"
+            android:singleLine="true"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="135dp"
-            android:text="YOLO"
+            tools:text="YOLO"
             android:textColor="@android:color/white"
             android:textSize="@dimen/text_40pt"
             />
@@ -74,7 +91,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="215dp"
             android:textColor="@color/dark_black"
-            tools:text="@string/bonus_text_formatter"
+            tools:text="@string/unpack_lucky_money_result_text_formatter"
             android:textSize="@dimen/text_28pt"
             android:visibility="gone"
             tools:visibility="visible"
