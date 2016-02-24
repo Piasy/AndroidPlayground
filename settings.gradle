@@ -1,4 +1,6 @@
-include ':bitmaploadtest', ':appmarshmallow', ':keyboardeventdemo', ':notificationtest', ':marqueedemo', ':fullscreendemo',
+include ':bitmaploadtest', ':appmarshmallow', ':keyboardeventdemo', ':notificationtest',
+        ':multiplefragmentlayerdemo',
+        ':marqueedemo', ':fullscreendemo', ':multilayerfragmentperf',
         ':reactnativedemo',
         ':bonusanimationdemo', ':fragmentaddorderingdemo', ':wechatluckymoneyeffect',
         ':dialogfragmentdemo',
