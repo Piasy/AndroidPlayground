@@ -22,45 +22,36 @@
  * SOFTWARE.
  */
 
-package com.github.piasy.fullscreendemo;
+package com.github.piasy.imageinlinetextdemo;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.util.LogPrinter;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.ImageSpan;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-
-    private static final String TAG = "ActivityTest";
-
-    static {
-        Looper.getMainLooper().setMessageLogging(new LogPrinter(Log.VERBOSE, TAG));
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
-    }
 
-    @OnClick(R.id.mBtnFullscreen)
-    public void fullscreen() {
-        startActivity(new Intent(this, FullscreenActivity.class));
-    }
+        TextView textView = (TextView) findViewById(R.id.mTextView);
+        SpannableStringBuilder builder = new SpannableStringBuilder();
+        builder.append("效率挺高图都出好了啊效率挺高图都出好了啊效率挺高图都出好了啊效率挺高图都出好了啊");
+        builder.append("   拍照留念   ");
+        builder.setSpan(new ImageSpan(this, R.drawable.iv_screenshot), builder.length() - 1,
+                builder.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        textView.setText(builder);
 
-    @OnClick(R.id.mBtnImmersive)
-    public void immersive() {
-        startActivity(new Intent(this, ImmersiveActivity.class));
+        TextView textView2 = (TextView) findViewById(R.id.mTextView2);
+        SpannableStringBuilder builder2 = new SpannableStringBuilder();
+        builder2.append("效率挺高图都出好了啊效率挺高图都出好了啊效率挺高图都出好了啊效率挺高图都出好了啊");
+        builder2.append("   拍照留念   ");
+        builder2.setSpan(new ImageSpan(this, R.drawable.iv_screenshot2), builder.length() - 1,
+                builder.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        textView2.setText(builder2);
     }
-
-    @OnClick(R.id.mBtnImmersiveSticky)
-    public void immersiveSticky() {
-        startActivity(new Intent(this, ImmersiveStickyActivity.class));
-    }
-
 }

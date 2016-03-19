@@ -1,4 +1,6 @@
 include ':bitmaploadtest', ':appmarshmallow', ':keyboardeventdemo', ':notificationtest',
+        ':taskdemo',
+        ':imageinlinetextdemo', ':guesturedetectordemo',
         ':multiplefragmentlayerdemo',
         ':marqueedemo', ':fullscreendemo', ':multilayerfragmentperf',
         ':reactnativedemo',

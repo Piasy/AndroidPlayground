@@ -22,45 +22,18 @@
  * SOFTWARE.
  */
 
-package com.github.piasy.fullscreendemo;
+package com.github.piasy.taskdemo;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Looper;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.util.LogPrinter;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+import org.junit.Test;
 
-public class MainActivity extends AppCompatActivity {
+import static org.junit.Assert.*;
 
-    private static final String TAG = "ActivityTest";
-
-    static {
-        Looper.getMainLooper().setMessageLogging(new LogPrinter(Log.VERBOSE, TAG));
+/**
+ * To work on unit tests, switch the Test Artifact in the Build Variants view.
+ */
+public class ExampleUnitTest {
+    @Test
+    public void addition_isCorrect() throws Exception {
+        assertEquals(4, 2 + 2);
     }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
-    }
-
-    @OnClick(R.id.mBtnFullscreen)
-    public void fullscreen() {
-        startActivity(new Intent(this, FullscreenActivity.class));
-    }
-
-    @OnClick(R.id.mBtnImmersive)
-    public void immersive() {
-        startActivity(new Intent(this, ImmersiveActivity.class));
-    }
-
-    @OnClick(R.id.mBtnImmersiveSticky)
-    public void immersiveSticky() {
-        startActivity(new Intent(this, ImmersiveStickyActivity.class));
-    }
-
 }

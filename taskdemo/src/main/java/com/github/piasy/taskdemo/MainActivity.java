@@ -22,45 +22,39 @@
  * SOFTWARE.
  */
 
-package com.github.piasy.fullscreendemo;
+package com.github.piasy.taskdemo;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.util.LogPrinter;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+import android.os.Bundle;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
-
-    private static final String TAG = "ActivityTest";
-
-    static {
-        Looper.getMainLooper().setMessageLogging(new LogPrinter(Log.VERBOSE, TAG));
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
-    }
 
-    @OnClick(R.id.mBtnFullscreen)
-    public void fullscreen() {
-        startActivity(new Intent(this, FullscreenActivity.class));
-    }
+        findViewById(R.id.mSimple).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, SimpleActivity.class));
+            }
+        });
 
-    @OnClick(R.id.mBtnImmersive)
-    public void immersive() {
-        startActivity(new Intent(this, ImmersiveActivity.class));
-    }
+        findViewById(R.id.mSingleTask).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, SingleTaskFirstActivity.class));
+            }
+        });
 
-    @OnClick(R.id.mBtnImmersiveSticky)
-    public void immersiveSticky() {
-        startActivity(new Intent(this, ImmersiveStickyActivity.class));
+        findViewById(R.id.mSingleTask2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, SingleTaskSecondActivity.class));
+            }
+        });
     }
-
 }

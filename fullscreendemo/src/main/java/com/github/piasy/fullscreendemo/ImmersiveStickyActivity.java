@@ -58,4 +58,9 @@ public class ImmersiveStickyActivity extends AppCompatActivity {
                     View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 }

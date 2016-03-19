@@ -22,45 +22,29 @@
  * SOFTWARE.
  */
 
-package com.github.piasy.fullscreendemo;
+apply plugin: 'com.android.application'
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Looper;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.util.LogPrinter;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
 
-public class MainActivity extends AppCompatActivity {
-
-    private static final String TAG = "ActivityTest";
-
-    static {
-        Looper.getMainLooper().setMessageLogging(new LogPrinter(Log.VERBOSE, TAG));
+    defaultConfig {
+        applicationId "com.github.piasy.taskdemo"
+        minSdkVersion 14
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
     }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
     }
+}
 
-    @OnClick(R.id.mBtnFullscreen)
-    public void fullscreen() {
-        startActivity(new Intent(this, FullscreenActivity.class));
-    }
-
-    @OnClick(R.id.mBtnImmersive)
-    public void immersive() {
-        startActivity(new Intent(this, ImmersiveActivity.class));
-    }
-
-    @OnClick(R.id.mBtnImmersiveSticky)
-    public void immersiveSticky() {
-        startActivity(new Intent(this, ImmersiveStickyActivity.class));
-    }
-
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.2.1'
 }

@@ -22,45 +22,16 @@
  * SOFTWARE.
  */
 
-package com.github.piasy.fullscreendemo;
+package com.github.piasy.taskdemo;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Looper;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.util.LogPrinter;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+import android.app.Application;
+import android.test.ApplicationTestCase;
 
-public class MainActivity extends AppCompatActivity {
-
-    private static final String TAG = "ActivityTest";
-
-    static {
-        Looper.getMainLooper().setMessageLogging(new LogPrinter(Log.VERBOSE, TAG));
+/**
+ * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>
+ */
+public class ApplicationTest extends ApplicationTestCase<Application> {
+    public ApplicationTest() {
+        super(Application.class);
     }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
-    }
-
-    @OnClick(R.id.mBtnFullscreen)
-    public void fullscreen() {
-        startActivity(new Intent(this, FullscreenActivity.class));
-    }
-
-    @OnClick(R.id.mBtnImmersive)
-    public void immersive() {
-        startActivity(new Intent(this, ImmersiveActivity.class));
-    }
-
-    @OnClick(R.id.mBtnImmersiveSticky)
-    public void immersiveSticky() {
-        startActivity(new Intent(this, ImmersiveStickyActivity.class));
-    }
-
 }

@@ -22,45 +22,35 @@
  * SOFTWARE.
  */
 
-package com.github.piasy.fullscreendemo;
+package com.github.piasy.taskdemo;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.util.Log;
-import android.util.LogPrinter;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
-
-    private static final String TAG = "ActivityTest";
-
-    static {
-        Looper.getMainLooper().setMessageLogging(new LogPrinter(Log.VERBOSE, TAG));
-    }
+public class SingleTaskFirstActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+        setContentView(R.layout.activity_single_task_first);
+
+        Log.d("TaskDemo", "SingleTaskFirstActivity::onCreate");
+
+        findViewById(R.id.mButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SingleTaskFirstActivity.this, SimpleActivity.class));
+            }
+        });
     }
 
-    @OnClick(R.id.mBtnFullscreen)
-    public void fullscreen() {
-        startActivity(new Intent(this, FullscreenActivity.class));
-    }
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
 
-    @OnClick(R.id.mBtnImmersive)
-    public void immersive() {
-        startActivity(new Intent(this, ImmersiveActivity.class));
+        Log.d("TaskDemo", "SingleTaskFirstActivity::onNewIntent");
     }
-
-    @OnClick(R.id.mBtnImmersiveSticky)
-    public void immersiveSticky() {
-        startActivity(new Intent(this, ImmersiveStickyActivity.class));
-    }
-
 }
