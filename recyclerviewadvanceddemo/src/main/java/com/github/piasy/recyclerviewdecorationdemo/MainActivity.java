@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int OUT_SET_LEFT = 0;
     public static final int OUT_SET_TOP = 0;
     public static final int OUT_SET_RIGHT = 0;
-    public static final int OUT_SET_BOTTOM = 50;
+    public static final int OUT_SET_BOTTOM = 25;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 return 10;
             }
         });
-        rv.addItemDecoration(new ListDividerDecoration(this, ListDividerDecoration.VERTICAL_LIST));
+        rv.addItemDecoration(new VerticalDividerDecoration());
 
         ((TextView) findViewById(R.id.mTv)).setText(
                 String.format("outRect.set(%d, %d, %d, %d)", OUT_SET_LEFT, OUT_SET_TOP,
