@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.github.piasy.recyclerviewdecorationdemo;
+package com.github.piasy.recyclerviewscrollbug;
 
 import org.junit.Test;
 
