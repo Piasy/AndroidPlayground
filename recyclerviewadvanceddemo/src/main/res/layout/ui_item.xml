@@ -22,11 +22,47 @@
   ~ SOFTWARE.
   -->
 
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-          android:id="@+id/mTv"
-          android:orientation="vertical"
-          android:layout_width="match_parent"
-          android:layout_height="100dp"
-          android:gravity="center"
-          android:background="@android:color/holo_blue_bright"
-        />
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="65dp"
+             android:layout_marginTop="3dp"
+             android:background="@drawable/chat_message_text_bg"
+        >
+
+    <TextView
+            android:id="@+id/mTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="9dp"
+            android:paddingRight="9dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="3.5dp"
+            android:textSize="16sp"
+            android:textColor="@android:color/white"
+            tools:text="Hello world? Hello world? Hello world? Hello world? Hello world? Hello world?"
+            />
+
+    <View
+            android:id="@+id/vBgLike"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/bg_like_circle_background"
+            android:visibility="invisible"
+            tools:visibility="visible"
+            />
+
+    <ImageView
+            android:id="@+id/ivLike"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_heart_outline_white"
+            android:visibility="invisible"
+            tools:visibility="visible"
+            />
+</FrameLayout>
+

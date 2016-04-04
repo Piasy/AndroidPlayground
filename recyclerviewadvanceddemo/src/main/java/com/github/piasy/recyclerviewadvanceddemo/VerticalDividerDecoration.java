@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.github.piasy.recyclerviewdecorationdemo;
+package com.github.piasy.recyclerviewadvanceddemo;
 
 import android.graphics.Canvas;
 import android.graphics.Color;

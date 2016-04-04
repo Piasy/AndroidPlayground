@@ -26,44 +26,16 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingTop="@dimen/activity_vertical_margin"
-                android:paddingBottom="@dimen/activity_vertical_margin"
-                android:background="@android:color/holo_green_light"
-                tools:context="com.github.piasy.recyclerviewdecorationdemo.MainActivity"
+                android:background="@drawable/bg"
         >
     <android.support.v7.widget.RecyclerView
             android:id="@+id/mRv"
-            android:layout_width="100dp"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="80dp"
             android:layout_height="400dp"
-            android:layout_centerInParent="true"
-            android:background="@android:color/holo_red_light"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="60dp"
             tools:listitem="@layout/ui_item"
-            />
-
-    <TextView
-            android:id="@+id/mTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/mRv"
-            android:layout_marginTop="10dp"
-            android:layout_centerHorizontal="true"
-            tools:text="outRect.set(%d, %d, %d, %d)"
-            android:textSize="20sp"
-            />
-
-    <ImageButton
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/press_state_demo"
-            />
-
-    <ImageButton
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentRight="true"
-            android:background="@null"
-            android:src="@drawable/press_state_demo"
             />
 </RelativeLayout>

@@ -23,5 +23,5 @@
   -->
 
 <resources>
-    <string name="app_name">RecyclerViewDecorationDemo</string>
+    <string name="app_name">RecyclerViewAdvancedDemo</string>
 </resources>
