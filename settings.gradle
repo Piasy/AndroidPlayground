@@ -4,7 +4,7 @@ include ':bitmaploadtest', ':appmarshmallow', ':keyboardeventdemo', ':notificati
         ':taskdemo',
         ':imageinlinetextdemo', ':guesturedetectordemo',
         ':multiplefragmentlayerdemo',
-        ':marqueedemo', ':fullscreendemo', ':multilayerfragmentperf',
+        ':AdcancedTextDemo', ':fullscreendemo', ':multilayerfragmentperf',
         ':reactnativedemo',
         ':bonusanimationdemo', ':fragmentaddorderingdemo', ':wechatluckymoneyeffect',
         ':dialogfragmentdemo',
