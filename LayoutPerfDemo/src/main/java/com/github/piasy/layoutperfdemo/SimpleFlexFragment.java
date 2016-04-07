@@ -22,35 +22,26 @@
  * SOFTWARE.
  */
 
-apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
+package com.github.piasy.layoutperfdemo;
 
-android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import timber.log.Timber;
 
-    defaultConfig {
-        applicationId "com.github.piasy.layoutperfdemo"
-        minSdkVersion 15
-        targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+public class SimpleFlexFragment extends Fragment {
+    public SimpleFlexFragment() {
+        // Required empty public constructor
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        long start = System.nanoTime();
+        View view = inflater.inflate(R.layout.fragment_simple_flex, container, false);
+        long end = System.nanoTime();
+        Timber.d("SimpleFlexFragment inflate: " + (end - start) + " ns");
+        return view;
     }
-}
-
-dependencies {
-    compile 'com.android.support:appcompat-v7:23.2.1'
-    compile 'com.github.mmin18:flexlayout:1.2.0'
-    compile 'com.android.support:support-v4:23.2.1'
-    compile 'com.jakewharton:butterknife:7.0.1'
-    compile 'com.jakewharton.timber:timber:4.1.2'
-
-    apt 'com.github.promeg:xlog-compiler:2.1.1'
-    compile 'com.github.promeg:xlog-android:2.1.1'
 }

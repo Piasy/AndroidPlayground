@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ The MIT License (MIT)
+  ~
+  ~ Copyright (c) 2016 Piasy
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~ SOFTWARE.
+  -->
+
+<com.github.piasy.layoutperfdemo.MeasurableFlexLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                      xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                      android:layout_width="match_parent"
+                                                      android:layout_height="match_parent"
+                                                      android:background="@android:color/black"
+                                                      android:clickable="true"
+        >
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            app:layout_top="15dp"
+            android:background="#26FFFFFF"
+            />
+
+    <ImageView
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            app:layout_left="15dp"
+            app:layout_top="prev.bottom+11dp"
+            android:src="@drawable/sample_avatar"
+            />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_top="prev.top+12dp"
+            app:layout_left="prev.right+12dp"
+            android:singleLine="true"
+            android:maxWidth="200dp"
+            android:textColor="@android:color/white"
+            android:textSize="17sp"
+            android:text="1234567890123456789012345678901234567"
+            />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_top="prev.bottom+9dp"
+            app:layout_left="prev.left"
+            android:singleLine="true"
+            android:maxWidth="200dp"
+            android:textColor="#A3FFFFFF"
+            android:textSize="14sp"
+            android:text="1234567890123456789012345678901234567"
+            />
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_right="parent.width-15dp"
+            app:layout_centerY="59dp"
+            android:src="@drawable/arrow"
+            />
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            app:layout_top="113dp"
+            android:background="#26FFFFFF"
+            />
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            app:layout_top="143dp"
+            android:background="#26FFFFFF"
+            />
+
+    <!-- easy and perfect to locate -->
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_top="158dp"
+            app:layout_centerX="parent.width/6"
+            android:src="@drawable/iv_add_contact_friend"
+            />
+
+    <!-- easy and perfect alignment -->
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_top="prev.bottom+10dp"
+            app:layout_centerX="prev.centerX"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="添加通讯录好友"
+            android:textColor="#A3FFFFFF"
+            android:textSize="13sp"
+            />
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_left="prev.right+4dp"
+            app:layout_centerY="prev.centerY"
+            android:src="@drawable/iv_red_point_hint"
+            />
+
+    <!-- easy and perfect to locate -->
+    <View
+            android:layout_width="1px"
+            android:layout_height="88dp"
+            app:layout_top="143dp"
+            app:layout_centerX="parent.width/3"
+            android:background="#26FFFFFF"
+            />
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_centerX="parent.width/2"
+            app:layout_top="158dp"
+            android:src="@drawable/iv_add_weixin_friend"
+            />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_centerX="parent.width/2"
+            app:layout_top="prev.bottom+10dp"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="添加微信好友"
+            android:textColor="#A3FFFFFF"
+            android:textSize="13sp"
+            />
+
+    <!-- easy and perfect to locate -->
+    <View
+            android:layout_width="1px"
+            android:layout_height="88dp"
+            app:layout_top="143dp"
+            app:layout_centerX="2*parent.width/3"
+            android:background="#26FFFFFF"
+            />
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_top="158dp"
+            app:layout_centerX="5*parent.width/6"
+            android:src="@drawable/iv_add_qq_friend"
+            />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_top="prev.bottom+10dp"
+            app:layout_centerX="prev.centerX"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="添加QQ好友"
+            android:textColor="#A3FFFFFF"
+            android:textSize="13sp"
+            />
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            app:layout_top="231dp"
+            android:background="#26FFFFFF"
+            />
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            app:layout_top="261dp"
+            android:background="#26FFFFFF"
+            />
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_top="prev.bottom+7dp"
+            app:layout_left="15dp"
+            android:src="@drawable/iv_user_home_bonus"
+            />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_centerY="prev.centerY"
+            app:layout_left="prev.right+15dp"
+            android:text="我的账户"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            />
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_right="parent.width-15dp"
+            app:layout_centerY="prev.centerY"
+            android:src="@drawable/arrow"
+            />
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            app:layout_top="305dp"
+            android:background="#26FFFFFF"
+            />
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            app:layout_top="prev.bottom+30dp"
+            android:background="#26FFFFFF"
+            />
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_top="prev.bottom+7dp"
+            app:layout_left="15dp"
+            android:src="@drawable/iv_feedback"
+            />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_centerY="prev.centerY"
+            app:layout_left="prev.right+15dp"
+            android:text="意见反馈"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            app:layout_centerY="prev.centerY"
+            app:layout_right="next.left-9dp"
+            android:textSize="14sp"
+            android:textColor="@android:color/white"
+            android:text="2"
+            android:background="@drawable/settings_list_item_count_red_bg"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            />
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_right="parent.width-15dp"
+            app:layout_centerY="prev.centerY"
+            android:src="@drawable/arrow"
+            />
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            app:layout_top="379dp"
+            android:background="#26FFFFFF"
+            />
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_top="prev.bottom+7dp"
+            app:layout_left="15dp"
+            android:src="@drawable/ic_system_message"
+            />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_centerY="prev.centerY"
+            app:layout_left="prev.right+15dp"
+            android:text="系统消息"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            app:layout_centerY="prev.centerY"
+            app:layout_right="next.left-9dp"
+            android:textSize="14sp"
+            android:textColor="@android:color/white"
+            android:text="2"
+            android:background="@drawable/settings_list_item_count_red_bg"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            />
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_right="parent.width-15dp"
+            app:layout_centerY="prev.centerY"
+            android:src="@drawable/arrow"
+            />
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            app:layout_top="423dp"
+            android:background="#26FFFFFF"
+            />
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_top="prev.bottom+7dp"
+            app:layout_left="15dp"
+            android:src="@drawable/icon_about_yolo"
+            />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_centerY="prev.centerY"
+            app:layout_left="prev.right+15dp"
+            android:text="关于YOLO"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            />
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_right="parent.width-15dp"
+            app:layout_centerY="prev.centerY"
+            android:src="@drawable/arrow"
+            />
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            app:layout_top="467dp"
+            android:background="#26FFFFFF"
+            />
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            app:layout_top="prev.bottom+49dp"
+            android:background="#26FFFFFF"
+            />
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_top="prev.bottom+7dp"
+            app:layout_left="15dp"
+            android:src="@drawable/iv_logout"
+            />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_centerY="prev.centerY"
+            app:layout_left="prev.right+15dp"
+            android:text="退出登录"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            />
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_right="parent.width-15dp"
+            app:layout_centerY="prev.centerY"
+            android:src="@drawable/arrow"
+            />
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            app:layout_top="560dp"
+            android:background="#26FFFFFF"
+            />
+
+</com.github.piasy.layoutperfdemo.MeasurableFlexLayout>

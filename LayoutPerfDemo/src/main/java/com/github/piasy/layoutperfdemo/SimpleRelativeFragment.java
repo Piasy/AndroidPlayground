@@ -24,16 +24,30 @@
 
 package com.github.piasy.layoutperfdemo;
 
-import org.junit.Test;
-
-import static org.junit.Assert.*;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import com.promegu.xlog.base.XLog;
+import timber.log.Timber;
 
 /**
- * To work on unit tests, switch the Test Artifact in the Build Variants view.
+ * A simple {@link Fragment} subclass.
  */
-public class ExampleUnitTest {
-    @Test
-    public void addition_isCorrect() throws Exception {
-        assertEquals(4, 2 + 2);
+public class SimpleRelativeFragment extends Fragment {
+
+    public SimpleRelativeFragment() {
+        // Required empty public constructor
+    }
+
+    @XLog
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        long start = System.nanoTime();
+        View view = inflater.inflate(R.layout.fragment_simple_relative, container, false);
+        long end = System.nanoTime();
+        Timber.d("SimpleRelativeFragment inflate: " + (end - start) + " ns");
+        return view;
     }
 }

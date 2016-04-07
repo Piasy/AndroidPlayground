@@ -26,6 +26,8 @@ package com.github.piasy.layoutperfdemo;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,5 +35,54 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+    }
+
+    @OnClick(R.id.mBtnSimpleOther)
+    public void otherLayout() {
+        getSupportFragmentManager().beginTransaction()
+                .add(android.R.id.content, new SimpleOtherFragment())
+                .addToBackStack("SimpleOtherFragment")
+                .commit();
+    }
+
+    @OnClick(R.id.mBtnSimpleRelative)
+    public void relativeLayout() {
+        getSupportFragmentManager().beginTransaction()
+                .add(android.R.id.content, new SimpleRelativeFragment())
+                .addToBackStack("SimpleRelativeFragment")
+                .commit();
+    }
+
+    @OnClick(R.id.mBtnSimpleFlex)
+    public void flexLayout() {
+        getSupportFragmentManager().beginTransaction()
+                .add(android.R.id.content, new SimpleFlexFragment())
+                .addToBackStack("SimpleFlexFragment")
+                .commit();
+    }
+
+    @OnClick(R.id.mBtnComplexOther)
+    public void complexOtherLayout() {
+        getSupportFragmentManager().beginTransaction()
+                .add(android.R.id.content, new ComplexOtherFragment())
+                .addToBackStack("ComplexOtherFragment")
+                .commit();
+    }
+
+    @OnClick(R.id.mBtnComplexRelative)
+    public void complexRelativeLayout() {
+        getSupportFragmentManager().beginTransaction()
+                .add(android.R.id.content, new ComplexRelativeFragment())
+                .addToBackStack("ComplexRelativeFragment")
+                .commit();
+    }
+
+    @OnClick(R.id.mBtnComplexFlex)
+    public void complexFlexLayout() {
+        getSupportFragmentManager().beginTransaction()
+                .add(android.R.id.content, new ComplexFlexFragment())
+                .addToBackStack("ComplexFlexFragment")
+                .commit();
     }
 }

@@ -22,35 +22,22 @@
  * SOFTWARE.
  */
 
-apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
+package com.github.piasy.layoutperfdemo;
 
-android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+import android.app.Application;
+import com.github.promeg.xlog_android.lib.XLogConfig;
+import timber.log.Timber;
 
-    defaultConfig {
-        applicationId "com.github.piasy.layoutperfdemo"
-        minSdkVersion 15
-        targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+/**
+ * Created by Piasy{github.com/Piasy} on 4/6/16.
+ */
+public class DemoApp extends Application {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        XLogConfig.config(XLogConfig.newConfigBuilder(this)
+                /*.logMethods(Arrays.asList(new XLogMethod(FrameLayout.class, "onLayout"),
+                        new XLogMethod(RelativeLayout.class, "onLayout")))*/.build());
+        Timber.plant(new Timber.DebugTree());
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-}
-
-dependencies {
-    compile 'com.android.support:appcompat-v7:23.2.1'
-    compile 'com.github.mmin18:flexlayout:1.2.0'
-    compile 'com.android.support:support-v4:23.2.1'
-    compile 'com.jakewharton:butterknife:7.0.1'
-    compile 'com.jakewharton.timber:timber:4.1.2'
-
-    apt 'com.github.promeg:xlog-compiler:2.1.1'
-    compile 'com.github.promeg:xlog-android:2.1.1'
 }

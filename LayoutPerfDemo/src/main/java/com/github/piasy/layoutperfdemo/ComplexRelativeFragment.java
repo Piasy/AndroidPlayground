@@ -24,14 +24,30 @@
 
 package com.github.piasy.layoutperfdemo;
 
-import android.app.Application;
-import android.test.ApplicationTestCase;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import com.promegu.xlog.base.XLog;
+import timber.log.Timber;
 
 /**
- * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>
+ * A simple {@link Fragment} subclass.
  */
-public class ApplicationTest extends ApplicationTestCase<Application> {
-    public ApplicationTest() {
-        super(Application.class);
+public class ComplexRelativeFragment extends Fragment {
+
+    public ComplexRelativeFragment() {
+        // Required empty public constructor
+    }
+
+    @XLog
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        long start = System.nanoTime();
+        View view = inflater.inflate(R.layout.fragment_complex_relative, container, false);
+        long end = System.nanoTime();
+        Timber.d("ComplexRelativeFragment inflate: " + (end - start) + " ns");
+        return view;
     }
 }

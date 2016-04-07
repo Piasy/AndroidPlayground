@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ The MIT License (MIT)
+  ~
+  ~ Copyright (c) 2016 Piasy
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~ SOFTWARE.
+  -->
+
+<com.github.piasy.layoutperfdemo.MeasurableGridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                      android:layout_width="match_parent"
+                                                      android:layout_height="match_parent"
+                                                      android:columnCount="1"
+                                                      android:rowCount="16"
+                                                      android:background="@android:color/black"
+                                                      android:clickable="true"
+        >
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_marginTop="15dp"
+            android:layout_height="1px"
+            android:background="#26FFFFFF"
+            />
+
+    <GridLayout
+            android:id="@+id/mGlSelfInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="3"
+            android:background="#05FFFFFF"
+            >
+
+        <ImageView
+                android:id="@+id/sdv_avatar"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="12dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/sample_avatar"
+                />
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+
+            <TextView
+                    android:id="@+id/tv_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="23dp"
+                    android:singleLine="true"
+                    android:maxWidth="200dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="17sp"
+                    android:text="1234567890123456789012345678901234567"
+                    />
+
+            <TextView
+                    android:id="@+id/tv_yolo_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="9dp"
+                    android:layout_marginBottom="23dp"
+                    android:singleLine="true"
+                    android:maxWidth="200dp"
+                    android:textColor="#A3FFFFFF"
+                    android:textSize="14sp"
+                    android:text="1234567890123456789012345678901234567"
+                    />
+        </LinearLayout>
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|right"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/arrow"
+                />
+    </GridLayout>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#26FFFFFF"
+            />
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_marginTop="30dp"
+            android:layout_height="1px"
+            android:background="#26FFFFFF"
+            />
+
+    <LinearLayout
+            android:id="@+id/gl_check_update"
+            android:layout_width="match_parent"
+            android:layout_height="88dp"
+            android:orientation="horizontal"
+            >
+
+        <LinearLayout
+                android:id="@+id/ll_contact_friend"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:background="#05FFFFFF"
+                >
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/iv_add_contact_friend"
+                    />
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:text="添加通讯录好友"
+                        android:textColor="#A3FFFFFF"
+                        android:textSize="13sp"
+                        />
+
+                <ImageView
+                        android:id="@+id/iv_red_point_hint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/iv_red_point_hint"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginStart="4dp"
+                        />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="#26FFFFFF"
+                />
+
+        <LinearLayout
+                android:id="@+id/ll_weixin_friend"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:background="#05FFFFFF"
+                >
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/iv_add_weixin_friend"
+                    />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="添加微信好友"
+                    android:textColor="#A3FFFFFF"
+                    android:textSize="13sp"
+                    />
+        </LinearLayout>
+
+        <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="#26FFFFFF"
+                />
+
+        <LinearLayout
+                android:id="@+id/ll_qq_friend"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:background="#05FFFFFF"
+                >
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/iv_add_qq_friend"
+                    />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="添加QQ好友"
+                    android:textColor="#A3FFFFFF"
+                    android:textSize="13sp"
+                    />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#26FFFFFF"
+            />
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_marginTop="30dp"
+            android:layout_height="1px"
+            android:background="#26FFFFFF"
+            />
+
+    <GridLayout
+            android:id="@+id/mGlMyBonus"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:columnCount="3"
+            android:rowCount="1"
+            android:background="#05FFFFFF"
+            >
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="7dp"
+                android:src="@drawable/iv_user_home_bonus"
+                />
+
+        <TextView
+                android:id="@+id/mTvBonus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_gravity="center_vertical"
+                android:text="我的账户"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                />
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|right"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/arrow"
+                />
+    </GridLayout>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#26FFFFFF"
+            />
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_marginTop="30dp"
+            android:layout_height="1px"
+            android:background="#26FFFFFF"
+            />
+
+    <LinearLayout
+            android:id="@+id/mLlFeedback"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="#05FFFFFF"
+            >
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="7dp"
+                android:src="@drawable/iv_feedback"
+                />
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="15dp"
+                android:layout_gravity="center_vertical"
+                android:text="意见反馈"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                />
+
+        <TextView
+                android:id="@+id/mTvFeedbackUnread"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="9dp"
+                android:textSize="14sp"
+                android:textColor="@android:color/white"
+                android:text="2"
+                android:background="@drawable/settings_list_item_count_red_bg"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                />
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/arrow"
+                />
+    </LinearLayout>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_height="1px"
+            android:background="#26FFFFFF"
+            />
+
+    <LinearLayout
+            android:id="@+id/mLlSystemMessage"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="#05FFFFFF"
+            >
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="7dp"
+                android:src="@drawable/ic_system_message"
+                />
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="15dp"
+                android:layout_gravity="center_vertical"
+                android:text="系统消息"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                />
+
+        <TextView
+                android:id="@+id/mTvSystemMessageUnread"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="9dp"
+                android:textSize="14sp"
+                android:textColor="@android:color/white"
+                android:text="2"
+                android:background="@drawable/settings_list_item_count_red_bg"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                />
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/arrow"
+                />
+    </LinearLayout>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_height="1px"
+            android:background="#26FFFFFF"
+            />
+
+    <GridLayout
+            android:id="@+id/mGlAboutYolo"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:rowCount="1"
+            android:columnCount="3"
+            android:background="#05FFFFFF"
+            >
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="7dp"
+                android:layout_column="0"
+                android:src="@drawable/icon_about_yolo"
+                />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_gravity="center_vertical"
+                android:layout_column="1"
+                android:text="关于YOLO"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                />
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|right"
+                android:layout_marginRight="15dp"
+                android:layout_column="2"
+                android:src="@drawable/arrow"
+                />
+    </GridLayout>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#26FFFFFF"
+            />
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_marginTop="49dp"
+            android:layout_height="1px"
+            android:background="#26FFFFFF"
+            />
+
+    <GridLayout
+            android:id="@+id/mGlLogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="3"
+            android:rowCount="1"
+            android:background="#05FFFFFF"
+            >
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="7dp"
+                android:src="@drawable/iv_logout"
+                />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_gravity="center_vertical"
+                android:text="退出登录"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                />
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|right"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/arrow"
+                />
+    </GridLayout>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#26FFFFFF"
+            />
+
+</com.github.piasy.layoutperfdemo.MeasurableGridLayout>
