@@ -31,10 +31,10 @@ import timber.log.Timber;
 /**
  * Created by Piasy{github.com/Piasy} on 16/4/11.
  */
+@ActivityScope
 public class DemoDirectInjectDependency {
     private final Context mContext;
 
-    @ActivityScope
     @Inject
     public DemoDirectInjectDependency(Context context) {
         mContext = context;
