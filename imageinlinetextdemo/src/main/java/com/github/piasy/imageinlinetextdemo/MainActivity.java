@@ -48,10 +48,9 @@ public class MainActivity extends AppCompatActivity {
 
         TextView textView2 = (TextView) findViewById(R.id.mTextView2);
         SpannableStringBuilder builder2 = new SpannableStringBuilder();
-        builder2.append("效率挺高图都出好了啊效率挺高图都出好了啊效率挺高图都出好了啊效率挺高图都出好了啊");
-        builder2.append("   拍照留念   ");
-        builder2.setSpan(new ImageSpan(this, R.drawable.iv_screenshot2), builder.length() - 1,
-                builder.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        builder2.append("   效率挺高图都出好了啊效率挺高图都出好了啊效率挺高图都出好了啊效率挺高图都出好了啊");
+        builder2.setSpan(new ImageSpan(this, R.drawable.iv_missed_group_live), 0, 1,
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         textView2.setText(builder2);
     }
 }

@@ -1,4 +1,5 @@
 include ':BitmapLoadTest', ':AppMarshmallow', ':KeyboardEventDemo', ':NotificationTest',
+        ':Dagger2ScopeInstanceDemo',
         ':LayoutPerfDemo',
         ':RecyclerViewScrollBug',
         ':RecyclerViewAdvancedDemo',
