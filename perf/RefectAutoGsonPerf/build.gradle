@@ -1,0 +1,102 @@
+import org.aspectj.bridge.IMessage
+import org.aspectj.bridge.MessageHandler
+import org.aspectj.tools.ajc.Main
+
+/*
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2016 Piasy
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "com.github.piasy.refectautogsonperf"
+        minSdkVersion 16
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile project(':aop:AOPDemoLib')
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.google.code.gson:gson:2.6.2'
+    apt 'com.google.auto.value:auto-value:1.2'
+    provided 'com.google.auto.value:auto-value:1.2'
+    compile 'com.github.piasy:auto-value-gson-annotations:0.2.5-og'
+    apt 'com.github.piasy:auto-value-gson-processor:0.2.5-og'
+}
+
+final def log = project.logger
+final def variants = project.android.applicationVariants
+
+variants.all { variant ->
+    if (!variant.buildType.isDebuggable()) {
+        log.debug("Skipping non-debuggable build type '${variant.buildType.name}'.")
+        return;
+    }
+
+    JavaCompile javaCompile = variant.javaCompile
+    javaCompile.doLast {
+        String[] args = ["-showWeaveInfo",
+                         "-1.5",
+                         "-inpath", javaCompile.destinationDir.toString(),
+                         "-aspectpath", javaCompile.classpath.asPath,
+                         "-d", javaCompile.destinationDir.toString(),
+                         "-classpath", javaCompile.classpath.asPath,
+                         "-bootclasspath", project.android.bootClasspath.join(File.pathSeparator)]
+        log.debug "ajc args: " + Arrays.toString(args)
+
+        MessageHandler handler = new MessageHandler(true);
+        new Main().run(args, handler);
+        for (IMessage message : handler.getMessages(null, true)) {
+            switch (message.getKind()) {
+                case IMessage.ABORT:
+                case IMessage.ERROR:
+                case IMessage.FAIL:
+                    log.error message.message, message.thrown
+                    break;
+                case IMessage.WARNING:
+                    log.warn message.message, message.thrown
+                    break;
+                case IMessage.INFO:
+                    log.info message.message, message.thrown
+                    break;
+                case IMessage.DEBUG:
+                    log.debug message.message, message.thrown
+                    break;
+            }
+        }
+    }
+}

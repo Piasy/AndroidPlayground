@@ -24,4 +24,8 @@
 
 <resources>
     <string name="app_name">ImageInlineTextDemo</string>
+
+    <string name="chat_too_many_missed_group_live_message_formatter" formatted="false">
+        \u0020\u0020错过了\u0020%s\u0020\u0020的\u0020%d\u0020场直播
+    </string>
 </resources>

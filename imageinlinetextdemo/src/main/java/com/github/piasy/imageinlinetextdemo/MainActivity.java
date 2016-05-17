@@ -28,6 +28,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.text.style.ImageSpan;
 import android.widget.TextView;
 
@@ -47,10 +48,25 @@ public class MainActivity extends AppCompatActivity {
         textView.setText(builder);
 
         TextView textView2 = (TextView) findViewById(R.id.mTextView2);
-        SpannableStringBuilder builder2 = new SpannableStringBuilder();
-        builder2.append("   效率挺高图都出好了啊效率挺高图都出好了啊效率挺高图都出好了啊效率挺高图都出好了啊");
-        builder2.setSpan(new ImageSpan(this, R.drawable.iv_missed_group_live), 0, 1,
+
+        SpannableStringBuilder message = new SpannableStringBuilder();
+        StringBuilder namesBuilder = new StringBuilder();
+        namesBuilder.append("初涛、胖胖、A-红族-剋; K、Yan.G、红烧、琨君、张瑞圣、优络技术、燕晨、潘涛");
+        int missedGroupLiveCount = 28;
+        message.append(
+                String.format(getString(R.string.chat_too_many_missed_group_live_message_formatter),
+                        namesBuilder, missedGroupLiveCount));
+        message.setSpan(new ImageSpan(this, R.drawable.iv_missed_group_live), 0, 1,
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        textView2.setText(builder2);
+        int nameStartPos = 6;
+        message.setSpan(new ForegroundColorSpan(this.getResources().getColor(R.color.yolo_yellow)),
+                nameStartPos, nameStartPos + namesBuilder.length(),
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        int countStartPos = nameStartPos + namesBuilder.length() + 4;
+        message.setSpan(new ForegroundColorSpan(this.getResources().getColor(R.color.yolo_yellow)),
+                countStartPos, countStartPos + String.valueOf(missedGroupLiveCount).length(),
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        textView2.setText(message);
     }
 }
