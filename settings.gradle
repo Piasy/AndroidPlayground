@@ -1,16 +1,20 @@
-include ':perf:BitmapLoadTest', ':AppMarshmallow', ':KeyboardEventDemo', ':NotificationTest',
-        ':perf:RefectAutoGsonPerf',
-        ':aop:AOPDemo', ':aop:AOPDemoLib', ':perf:ReflectlessAutoGsonPerf',
-        ':Dagger2ScopeInstanceDemo',
-        ':perf:LayoutPerfDemo',
-        ':RecyclerViewScrollBug',
-        ':RecyclerViewAdvancedDemo',
-        ':TaskDemo',
-        ':ImageInlineTextDemo', ':GuestureDetectorDemo',
-        ':MultipleFragmentLayerDemo',
-        ':effect:AdvancedTextDemo', ':FullScreenDemo', ':perf:MultilayerFragmentPerf',
-        ':ReactNativeDemo',
-        ':effect:BonusAnimationDemo', ':effect:FragmentAddOrderingDemo', ':WeChatLuckyMoneyEffect',
-        ':effect:DialogFragmentDemo',
-        ':RecyclerViewInsideScrollViewDemo',
-        ':effect:FancyTransitionDemo', ':effect:CollapsingAppBarDemo'
+include ':try:AppMarshmallow', ':try:TryOpenGL', ':try:TryConstraintLayout', ':try:FullScreenDemo',
+
+        ':reproduce:KeyboardEventDemo', ':reproduce:NotificationTest',
+        ':reproduce:RecyclerViewScrollBug',
+
+        ':perf:RefectAutoGsonPerf', ':perf:ReflectlessAutoGsonPerf', ':perf:LayoutPerfDemo',
+        ':perf:BitmapLoadTest', ':perf:MultilayerFragmentPerf',
+
+        ':aop:AOPDemo', ':aop:AOPDemoLib',
+        
+        ':showcase:Dagger2ScopeInstanceDemo', ':showcase:TaskDemo',
+
+        ':effect:RecyclerViewAdvancedDemo', ':effect:ImageInlineTextDemo',
+        ':effect:GuestureDetectorDemo', ':effect:MultipleFragmentLayerDemo',
+        ':effect:AdvancedTextDemo', ':effect:BonusAnimationDemo', ':effect:FragmentAddOrderingDemo',
+        ':effect:WeChatLuckyMoneyEffect', ':effect:DialogFragmentDemo',
+        ':effect:RecyclerViewInsideScrollViewDemo', ':effect:FancyTransitionDemo',
+        ':effect:CollapsingAppBarDemo',
+
+        ':ReactNativeDemo'
