@@ -1,13 +1,14 @@
 include ':try:AppMarshmallow', ':try:TryOpenGL', ':try:TryConstraintLayout', ':try:FullScreenDemo',
 
+
         ':reproduce:KeyboardEventDemo', ':reproduce:NotificationTest',
-        ':reproduce:RecyclerViewScrollBug',
+        ':reproduce:RecyclerViewScrollBug', ':reproduce:FlexLayoutTextSizeBug',
 
         ':perf:RefectAutoGsonPerf', ':perf:ReflectlessAutoGsonPerf', ':perf:LayoutPerfDemo',
         ':perf:BitmapLoadTest', ':perf:MultilayerFragmentPerf',
 
         ':aop:AOPDemo', ':aop:AOPDemoLib',
-        
+
         ':showcase:Dagger2ScopeInstanceDemo', ':showcase:TaskDemo',
 
         ':effect:RecyclerViewAdvancedDemo', ':effect:ImageInlineTextDemo',
