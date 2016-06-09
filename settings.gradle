@@ -4,6 +4,7 @@ include ':try:AppMarshmallow', ':try:TryOpenGL', ':try:TryConstraintLayout', ':t
 
         ':reproduce:KeyboardEventDemo', ':reproduce:NotificationTest',
         ':reproduce:RecyclerViewScrollBug', ':reproduce:FlexLayoutTextSizeBug',
+        ':reproduce:OnceKillRestoreBug',
 
         ':perf:RefectAutoGsonPerf', ':perf:ReflectlessAutoGsonPerf', ':perf:LayoutPerfDemo',
         ':perf:BitmapLoadTest', ':perf:MultilayerFragmentPerf',
