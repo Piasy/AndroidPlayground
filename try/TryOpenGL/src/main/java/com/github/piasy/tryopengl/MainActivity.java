@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean mRendererSet;
     private GLSurfaceView mGlSurfaceView;
+    private MyRenderer mRenderer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,8 @@ public class MainActivity extends AppCompatActivity {
         mGlSurfaceView = (GLSurfaceView) findViewById(R.id.mGLSurfaceView);
 
         mGlSurfaceView.setEGLContextClientVersion(2);
-        mGlSurfaceView.setRenderer(new MyRenderer(getResources()));
+        mRenderer = new MyRenderer(getResources());
+        mGlSurfaceView.setRenderer(mRenderer);
         mGlSurfaceView.setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);
         mRendererSet = true;
     }
@@ -43,11 +45,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onRestart() {
-        super.onRestart();
+    protected void onResume() {
+        super.onResume();
         if (mRendererSet) {
             mGlSurfaceView.onResume();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mRenderer.destroy();
     }
 
     static class MyRenderer implements GLSurfaceView.Renderer {
@@ -97,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
 
         private int mWidth;
         private int mHeight;
+        private int[] mTexNames;
 
         MyRenderer(Resources resources) {
             mResources = resources;
@@ -140,12 +149,12 @@ public class MainActivity extends AppCompatActivity {
             mMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uMVPMatrix");
             mTexSamplerHandle = GLES20.glGetUniformLocation(mProgram, "s_texture");
 
-            int[] texNames = new int[1];
-            GLES20.glGenTextures(1, texNames, 0);
+            mTexNames = new int[1];
+            GLES20.glGenTextures(1, mTexNames, 0);
 
             Bitmap bitmap = BitmapFactory.decodeResource(mResources, R.drawable.p_300px);
             GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
-            GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texNames[0]);
+            GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, mTexNames[0]);
             GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER,
                     GLES20.GL_LINEAR);
             GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER,
@@ -187,6 +196,10 @@ public class MainActivity extends AppCompatActivity {
             GLES20.glDisableVertexAttribArray(mTexCoordHandle);
 
             Utils.sendImage(mWidth, mHeight);
+        }
+
+        void destroy() {
+            GLES20.glDeleteTextures(1, mTexNames, 0);
         }
 
         static int loadShader(int type, String shaderCode) {
