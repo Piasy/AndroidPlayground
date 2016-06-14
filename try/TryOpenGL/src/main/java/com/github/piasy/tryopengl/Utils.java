@@ -13,23 +13,21 @@ import java.nio.ByteBuffer;
 /**
  * Created by Piasy{github.com/Piasy} on 6/7/16.
  */
-public class Utils {
+class Utils {
 
     static void sendImage(int width, int height) {
-        ByteBuffer mRgbaBuf = ByteBuffer.allocateDirect(width * height * 4);
-        mRgbaBuf.position(0);
+        ByteBuffer rgbaBuf = ByteBuffer.allocateDirect(width * height * 4);
+        rgbaBuf.position(0);
+        long start = System.nanoTime();
         GLES20.glReadPixels(0, 0, width, height, GLES20.GL_RGBA, GLES20.GL_UNSIGNED_BYTE,
-                mRgbaBuf);
-        saveRgb2Bitmap(mRgbaBuf, Environment.getExternalStorageDirectory().getAbsolutePath()
-                + "/gl_dump_"
-                + width
-                + "_"
-                + height
-                + ".png", width, height);
+                rgbaBuf);
+        long end = System.nanoTime();
+        Log.d("TryOpenGL", "glReadPixels: " + (end - start));
+        saveRgb2Bitmap(rgbaBuf, Environment.getExternalStorageDirectory().getAbsolutePath()
+                + "/gl_dump_" + width + "_" + height + ".png", width, height);
     }
 
     static void saveRgb2Bitmap(Buffer buf, String filename, int width, int height) {
-        // Save the generated bitmap to a PNG so we can see what it looks like.
         Log.d("TryOpenGL", "Creating " + filename);
         BufferedOutputStream bos = null;
         try {
