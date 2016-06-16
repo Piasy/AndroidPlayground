@@ -78,29 +78,34 @@ public class RgbYuvConverter {
     private static void yuv2rgbaBitOp(int width, int height, byte[] yuv, byte[] rgba) {
         int R, G, B;
         int Y, Cb = 0, Cr = 0;
-        int cOffset, pixelIndex;
-        for (int row = 0, size = width * height; row < height; row++) {
-            for (int column = 0; column < width; column++) {
-                pixelIndex = row * width + column;
+        int cOffset, pixelIndex, rOffset;
+        int row = 0, size = width * height;
+        for (; row < height; row++) {
+            int column = 0;
+            int rowDiv2 = row >> 1;
+            pixelIndex = row * width;
+            for (; column < width; column++) {
                 Y = yuv[pixelIndex];
                 if (Y < 0) {
                     Y += 255;
                 }
-                Y = Y + (Y >> 3) + (Y >> 5) + (Y >> 7);
                 if ((column & 0x1) == 0) {
-                    cOffset = size + (row >> 1) * width + column;
+                    cOffset = size + rowDiv2 * width + column;
                     Cr = yuv[cOffset];
                     Cr = Cr < 0 ? Cr + 127 : Cr - 128;
                     Cb = yuv[cOffset + 1];
                     Cb = Cb < 0 ? Cb + 127 : Cb - 128;
                 }
+                Y = Y + (Y >> 3) + (Y >> 5);
                 R = Y + Cr + (Cr >> 1) + (Cr >> 4) + (Cr >> 5);
-                G = Y - (Cb >> 2) - (Cb >> 3) - (Cb >> 6) - (Cr >> 1) - (Cr >> 2) - (Cr >> 4);
-                B = Y + (Cb << 1) + (Cb >> 6);
-                rgba[4 * pixelIndex] = clampByte(R);
-                rgba[4 * pixelIndex + 1] = clampByte(G);
-                rgba[4 * pixelIndex + 2] = clampByte(B);
-                rgba[4 * pixelIndex + 3] = clampByte(255);
+                G = Y - (Cb >> 1) + (Cb >> 3) - Cr + (Cr >> 3) + (Cr >> 4);
+                B = Y + (Cb << 1);
+                rOffset = pixelIndex << 2;
+                rgba[rOffset] = clampByte(R);
+                rgba[rOffset + 1] = clampByte(G);
+                rgba[rOffset + 2] = clampByte(B);
+                rgba[rOffset + 3] = clampByte(255);
+                pixelIndex++;
             }
         }
     }
@@ -182,9 +187,13 @@ public class RgbYuvConverter {
         int R, G, B;
         int Y, Cb, Cr;
         int cOffset, pixelIndex;
-        for (int row = 0, size = width * height; row < height; row++) {
-            for (int column = 0; column < width; column++) {
-                pixelIndex = row * width + column << 2;
+        int row = 0, size = width * height;
+        for (; row < height; row++) {
+            int column = 0;
+            int row_M_width = row * width;
+            int row_div2_M_width = (row >> 1) * width;
+            for (; column < width; column++) {
+                pixelIndex = row_M_width + column << 2;
                 R = rgba[pixelIndex];
                 if (R < 0) {
                     R += 256;
@@ -200,7 +209,7 @@ public class RgbYuvConverter {
                 Y = (R >> 2) + (R >> 7) + (G >> 1) + (G >> 8) + (B >> 4) + (B >> 5) + (B >> 8) + 16;
                 yuv[pixelIndex >> 2] = (byte) Y;
                 if ((row & 0x1) == 0 && (column & 0x1) == 0) {
-                    cOffset = size + (row >> 1) * width + column;
+                    cOffset = size + row_div2_M_width + column;
                     Cr = (R >> 1) - (R >> 4) - (G >> 2) - (G >> 3) + (G >> 7) - (B >> 4) - (B >> 7) + 128;
                     yuv[cOffset] = (byte) Cr;
                     Cb = -(R >> 3) - (R >> 6) - (R >> 7) - (G >> 2) - (G >> 5) - (G >> 7) + (B >> 1) - (B >> 4) + 128;

@@ -23,11 +23,11 @@ public class MainActivity extends AppCompatActivity {
         // 200, 200: 12, 15, 16
         // 300, 300: 93, 107, 110
 
-        testRgbPngConvert();
+        //testRgbPngConvert();
 
         testYuv2Rgba();
 
-        testRgba2Yub();
+        //testRgba2Yub();
     }
 
     private void testRgbPngConvert() {
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void testYuv2Rgba() {
         String input = Environment.getExternalStorageDirectory().getAbsolutePath()
-                + "/org_dump_640_480.yuv";
+                + "/dump_640_480.yuv";
         try {
             FileInputStream inputStream = new FileInputStream(input);
             ByteBuffer yuv = ByteBuffer.allocateDirect(width * height * 3 / 2);

@@ -43,6 +43,7 @@ JNIEXPORT void JNICALL Java_com_github_piasy_rgbyuvconverter_RgbYuvConverter_yuv
             rgba[rOffset + 1] = (jbyte) (G < 0 ? 0 : (G > 255 ? 255 : G));
             rgba[rOffset + 2] = (jbyte) (B < 0 ? 0 : (B > 255 ? 255 : B));
             rgba[rOffset + 3] = (jbyte) 0xFF;
+            pixelIndex++;
         }
     }
 
@@ -66,8 +67,10 @@ JNIEXPORT void JNICALL Java_com_github_piasy_rgbyuvconverter_RgbYuvConverter_rgb
     int row = 0, size = width * height;
     for (; row < height; row++) {
         int column = 0;
+        int row_M_width = row * width;
+        int row_div2_M_width = (row >> 1) * width;
         for (; column < width; column++) {
-            pixelIndex = row * width + column << 2;
+            pixelIndex = row_M_width + column << 2;
             R = rgba[pixelIndex];
             if (R < 0) {
                 R += 256;
@@ -83,7 +86,7 @@ JNIEXPORT void JNICALL Java_com_github_piasy_rgbyuvconverter_RgbYuvConverter_rgb
             Y = (R >> 2) + (R >> 7) + (G >> 1) + (G >> 8) + (B >> 4) + (B >> 5) + (B >> 8) + 16;
             yuv[pixelIndex >> 2] = (jbyte) Y;
             if ((row & 0x1) == 0 && (column & 0x1) == 0) {
-                cOffset = size + (row >> 1) * width + column;
+                cOffset = size + row_div2_M_width + column;
                 Cr = (R >> 1) - (R >> 4) - (G >> 2) - (G >> 3) + (G >> 7) - (B >> 4) - (B >> 7) +
                      128;
                 yuv[cOffset] = (jbyte) Cr;
