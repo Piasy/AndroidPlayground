@@ -294,4 +294,65 @@ public class RgbYuvConverter {
         bitmap.recycle();
         Log.d("RgbYuvConverter", "read " + filename);
     }
+
+    // width: 640, height: 480
+    public static void yuvCropRotateC180(int width, int height, byte[] yuvIn,
+            int outputHeight_, byte[] yuvOut) {
+        int delta = (height - outputHeight_) / 2;
+        int org_size = width * height, crop_size_minus_1 = width * outputHeight_ - 1;
+        int crop_len_minus_1 = width * outputHeight_ * 3 / 2;
+        int y_M_width, y_div_2_M_width, y_minus_delta_M_width, y_minus_delta_div_2_M_width;
+        int x, y = delta;
+        for (; y < height - delta; y++) {
+            y_M_width = y * width;
+            y_div_2_M_width = y_M_width >> 1;
+            y_minus_delta_M_width = (y - delta) * width;
+            y_minus_delta_div_2_M_width = y_minus_delta_M_width >> 1;
+            x = 0;
+            for (; x < width; x++) {
+                yuvOut[crop_size_minus_1 - y_minus_delta_M_width - x] = yuvIn[y_M_width + x];
+                if ((y & 0x1) == 0 && (x & 0x1) == 0) {
+                    yuvOut[crop_len_minus_1 - y_minus_delta_div_2_M_width - x] = yuvIn[org_size + y_div_2_M_width + x];
+                    yuvOut[crop_len_minus_1 - y_minus_delta_div_2_M_width - x - 1] = yuvIn[org_size + y_div_2_M_width + x + 1];
+                }
+            }
+        }
+    }
+
+    public static void yuvCropRotateC180Flip(int width, int height, byte[] yuvIn,
+            int outputHeight_, byte[] yuvOut) {
+        int delta = (height - outputHeight_) / 2;
+        int org_size = width * height, crop_size_minus = width * outputHeight_;
+        int y_M_width, y_div_2_M_width, h_minus_1_M_w, h_minus_1_div2_M_w;
+        int x, y = delta, y_end = height - delta;
+        for (; y < y_end; y++) {
+            y_M_width = y * width;
+            y_div_2_M_width = y_M_width >> 1;
+            h_minus_1_M_w = (height - 1 - y - delta) * width;
+            h_minus_1_div2_M_w = ((height - 1 - y - delta) >> 1) * width;
+            x = 0;
+            for (; x < width; x++) {
+                yuvOut[h_minus_1_M_w + x] = yuvIn[y_M_width + x];
+                if ((y & 0x1) == 0 && (x & 0x1) == 0) {
+                    yuvOut[crop_size_minus + h_minus_1_div2_M_w + x] = yuvIn[org_size + y_div_2_M_width + x];
+                    yuvOut[crop_size_minus + h_minus_1_div2_M_w + x + 1] = yuvIn[org_size + y_div_2_M_width + x + 1];
+                }
+            }
+        }
+    }
+
+    public static void yuvRotateC90(byte[] dst, byte[] src, int width, int height) {
+        int size = width * height;
+
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width-1; x++) {
+                dst[(width - 1 - x) * height + y] = src[y * width + x];
+                if (x % 2 == 0 && y % 2 == 0) {
+                    dst[size + (width - 1 - x) / 2 * height + y] = src[size + y / 2 * width + x];
+                    dst[size + (width - 1 - x) / 2 * height + y + 1] = src[size + y / 2 * width + x
+                            + 1];
+                }
+            }
+        }
+    }
 }

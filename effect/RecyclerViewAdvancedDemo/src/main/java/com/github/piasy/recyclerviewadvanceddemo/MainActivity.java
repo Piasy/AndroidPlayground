@@ -24,6 +24,7 @@
 
 package com.github.piasy.recyclerviewadvanceddemo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -40,10 +41,10 @@ import static butterknife.ButterKnife.findById;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final int OUT_SET_LEFT = 0;
-    public static final int OUT_SET_TOP = 0;
-    public static final int OUT_SET_RIGHT = 0;
-    public static final int OUT_SET_BOTTOM = 25;
+    static final int OUT_SET_LEFT = 0;
+    static final int OUT_SET_TOP = 0;
+    static final int OUT_SET_RIGHT = 0;
+    static final int OUT_SET_BOTTOM = 25;
 
     private static final String[] MSGS =
             new String[] { "One", "Two", "Three", "Four", "Five", "Six", "Seven" };
@@ -64,6 +65,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        findViewById(R.id.mContainer).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, SpanRvActivity.class));
+            }
+        });
 
         mRv = findById(this, R.id.mRv);
         mRv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true));

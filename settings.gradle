@@ -4,7 +4,7 @@ include ':try:AppMarshmallow', ':try:TryOpenGL', ':try:TryConstraintLayout', ':t
 
         ':reproduce:KeyboardEventDemo', ':reproduce:NotificationTest',
         ':reproduce:RecyclerViewScrollBug', ':reproduce:FlexLayoutTextSizeBug',
-        ':reproduce:OnceKillRestoreBug',
+        ':reproduce:OnceKillRestoreBug', ':reproduce:MX5Camera2YUV_420_888Bug',
 
         ':perf:RefectAutoGsonPerf', ':perf:ReflectlessAutoGsonPerf', ':perf:LayoutPerfDemo',
         ':perf:BitmapLoadTest', ':perf:MultilayerFragmentPerf',
@@ -12,6 +12,7 @@ include ':try:AppMarshmallow', ':try:TryOpenGL', ':try:TryConstraintLayout', ':t
         ':aop:AOPDemo', ':aop:AOPDemoLib',
 
         ':showcase:Dagger2ScopeInstanceDemo', ':showcase:TaskDemo',
+        ':showcase:OrientationDemo', ':showcase:PerfectAndroidModel',
 
         ':effect:RecyclerViewAdvancedDemo', ':effect:ImageInlineTextDemo',
         ':effect:GuestureDetectorDemo', ':effect:MultipleFragmentLayerDemo',

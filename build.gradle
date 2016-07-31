@@ -9,12 +9,14 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.0-alpha3'
+        classpath 'com.android.tools.build:gradle:2.2.0-alpha6'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
-        classpath 'com.squareup.sqldelight:gradle-plugin:0.3.2'
+        classpath 'com.netflix.nebula:gradle-extra-configurations-plugin:3.0.3'
+        classpath 'com.squareup.sqldelight:gradle-plugin:0.4.4'
         classpath 'me.tatarka:gradle-retrolambda:3.2.5'
 
         classpath 'org.aspectj:aspectjtools:1.8.9'
+
     }
 }
 

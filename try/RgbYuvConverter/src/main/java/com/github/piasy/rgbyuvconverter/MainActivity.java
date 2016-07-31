@@ -25,9 +25,72 @@ public class MainActivity extends AppCompatActivity {
 
         //testRgbPngConvert();
 
-        testYuv2Rgba();
+        //testYuv2Rgba();
 
         //testRgba2Yub();
+
+        //testCrop();
+
+        testRotate();
+
+        //testRotateFlip();
+    }
+
+    private void testRotateFlip() {
+        String filename = Environment.getExternalStorageDirectory().getAbsolutePath()
+                + "/org_640_480.yuv";
+        FileInputStream inputStream;
+        try {
+            inputStream = new FileInputStream(filename);
+            ByteBuffer yuv = ByteBuffer.allocateDirect(640 * 480 * 3 / 2);
+            inputStream.read(yuv.array());
+            inputStream.close();
+            ByteBuffer out = ByteBuffer.allocateDirect(640 * 384 * 3 / 2);
+
+            RgbYuvConverter.yuvCropRotateC180Flip(640, 480, yuv.array(), 384, out.array());
+            RgbYuvConverter.saveRawData(out, Environment.getExternalStorageDirectory().getAbsolutePath()
+                    + "/out_640_384.yuv");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void testRotate() {
+        String filename = Environment.getExternalStorageDirectory().getAbsolutePath()
+                + "/org_640_480.yuv";
+        FileInputStream inputStream;
+        try {
+            inputStream = new FileInputStream(filename);
+            ByteBuffer yuv = ByteBuffer.allocateDirect(640 * 480 * 3 / 2);
+            inputStream.read(yuv.array());
+            inputStream.close();
+            ByteBuffer out = ByteBuffer.allocateDirect(640 * 480 * 3 / 2);
+
+            RgbYuvConverter.yuvRotateC90(out.array(), yuv.array(), 640, 480);
+            RgbYuvConverter.saveRawData(out, Environment.getExternalStorageDirectory().getAbsolutePath()
+                    + "/rotated_480_640.yuv");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void testCrop() {
+        String filename = Environment.getExternalStorageDirectory().getAbsolutePath()
+                + "/org_640_480.yuv";
+        FileInputStream inputStream;
+        try {
+            inputStream = new FileInputStream(filename);
+            ByteBuffer yuv = ByteBuffer.allocateDirect(width * height * 3 / 2);
+            inputStream.read(yuv.array());
+            inputStream.close();
+            ByteBuffer out = ByteBuffer.allocateDirect(width * 368 * 3 / 2);
+
+            RgbYuvConverter.yuvCropRotateC180(width, height, yuv.array(), 368, out.array());
+            RgbYuvConverter.saveRawData(out, Environment.getExternalStorageDirectory().getAbsolutePath()
+                    + "/crop_640_368.yuv");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void testRgbPngConvert() {
