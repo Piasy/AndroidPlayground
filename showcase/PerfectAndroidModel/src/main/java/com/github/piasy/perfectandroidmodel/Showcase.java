@@ -11,11 +11,8 @@ import com.squareup.sqlbrite.BriteDatabase;
 import com.squareup.sqlbrite.SqlBrite;
 import java.io.IOException;
 import java.util.List;
-import okhttp3.Call;
-import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.Response;
 import org.threeten.bp.Duration;
 import org.threeten.bp.ZoneId;
 import org.threeten.bp.ZonedDateTime;
@@ -43,54 +40,54 @@ public class Showcase {
         following.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(followings -> {
-                    // 拿到了 API 返回数据(可能是 HTTP 缓存)
+                    // success
                 }, err -> {
-                    // 错误处理
+                    // fail
                 });
     }
 
     void handWriteOkHttp() {
         final Gson gson = new GsonBuilder().create();
-        Observable<List<GithubUser>> following = Observable.create(subscriber -> {
-            OkHttpClient client = new OkHttpClient();
-            Request request = new Request.Builder().url("https://api.github.com/Piasy/following")
-                    .get()
-                    .build();
-            client.newCall(request).enqueue(new Callback() {
-                @Override
-                public void onFailure(Call call, IOException e) {
-                    subscriber.onError(e);
-                }
+        final OkHttpClient client = new OkHttpClient();
 
-                @Override
-                public void onResponse(Call call, Response response) throws IOException {
-                    String body = response.body().string();
-                    List<GithubUser> users = gson.fromJson(body, new TypeToken<List<GithubUser>>() {
-                    }.getType());
-                    subscriber.onNext(users);
-                    subscriber.onCompleted();
-                }
-            });
-        });
+        Observable<List<GithubUser>> following =
+                Observable.create(subscriber -> {
+                    Request request = new Request.Builder()
+                            .url("https://api.github.com/Piasy/following")
+                            .get()
+                            .build();
+                    try {
+                        String body = client.newCall(request)
+                                .execute().body().string();
+                        List<GithubUser> users = gson.fromJson(body,
+                                new TypeToken<List<GithubUser>>() { }
+                                        .getType());
+                        subscriber.onNext(users);
+                        subscriber.onCompleted();
+                    } catch (IOException e) {
+                        subscriber.onError(e);
+                    }
+                });
 
         following.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(followings -> {
-                    // 拿到了 API 返回数据(可能是 HTTP 缓存)
+                    // success
                 }, err -> {
-                    // 错误处理
+                    // fail
                 });
     }
 
     void sqlBrite(List<GithubUser> users, Context context) {
-        BriteDatabase briteDb =
-                SqlBrite.create().wrapDatabaseHelper(new DbOpenHelper(context), Schedulers.io());
+        BriteDatabase briteDb = SqlBrite.create().wrapDatabaseHelper(
+                new DbOpenHelper(context), Schedulers.io());
 
         BriteDatabase.Transaction transaction = briteDb.newTransaction();
         try {
             for (int i = 0, size = users.size(); i < size; i++) {
                 briteDb.insert(GithubUser.TABLE_NAME,
-                        GithubUser.FACTORY.marshal(users.get(i)).asContentValues(),
+                        GithubUser.FACTORY.marshal(users.get(i))
+                                .asContentValues(),
                         SQLiteDatabase.CONFLICT_REPLACE);
             }
             transaction.markSuccessful();
@@ -167,12 +164,14 @@ public class Showcase {
     public static void main(String[] args) {
         DateTimeFormatter formatter = null;
 
-        ZonedDateTime time = ZonedDateTime.of(2016, 6, 10, 18, 29, 0, 0,
-                ZoneId.systemDefault());
+        ZonedDateTime time = ZonedDateTime.of(2016, 6, 10, 18, 29, 0, 0, ZoneId.systemDefault());
         ZonedDateTime after = time.plusDays(2).plusHours(3);
         Duration duration = Duration.between(time, after);
-        System.out.println(time.format(formatter) + ", " + after.format(formatter)
-                + ", " + duration.toHours());
+        System.out.println(time.format(formatter)
+                + ", "
+                + after.format(formatter)
+                + ", "
+                + duration.toHours());
         // 2016/06/10 18:29:00, 2016/06/12 21:29:00, 51
     }
 }

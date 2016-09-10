@@ -56,5 +56,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, SingleTaskSecondActivity.class));
             }
         });
+
+        findViewById(R.id.mNav).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, NotifyActivity.class);
+                NotificationUtil.fireNotification(
+                        intent, MainActivity.this);
+            }
+        });
     }
 }

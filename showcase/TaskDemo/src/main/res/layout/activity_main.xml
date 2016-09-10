@@ -52,4 +52,10 @@
             android:layout_height="wrap_content"
             android:text="Single task second"
             />
+    <Button
+            android:id="@+id/mNav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nav"
+            />
 </LinearLayout>

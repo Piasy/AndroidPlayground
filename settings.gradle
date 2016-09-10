@@ -1,13 +1,12 @@
 include ':try:AppMarshmallow', ':try:TryOpenGL', ':try:TryConstraintLayout', ':try:FullScreenDemo',
-        ':try:RgbYuvConverter',
-
+        ':try:RgbYuvConverter', ':try:ReplaceableResApp', ':try:ReplaceableResLib',
 
         ':reproduce:KeyboardEventDemo', ':reproduce:NotificationTest',
         ':reproduce:RecyclerViewScrollBug', ':reproduce:FlexLayoutTextSizeBug',
         ':reproduce:OnceKillRestoreBug', ':reproduce:MX5Camera2YUV_420_888Bug',
 
         ':perf:RefectAutoGsonPerf', ':perf:ReflectlessAutoGsonPerf', ':perf:LayoutPerfDemo',
-        ':perf:BitmapLoadTest', ':perf:MultilayerFragmentPerf',
+        ':perf:BitmapLoadTest', ':perf:MultilayerFragmentPerf', ':perf:InstanceOfPerf',
 
         ':aop:AOPDemo', ':aop:AOPDemoLib',
 
@@ -19,6 +18,6 @@ include ':try:AppMarshmallow', ':try:TryOpenGL', ':try:TryConstraintLayout', ':t
         ':effect:AdvancedTextDemo', ':effect:BonusAnimationDemo', ':effect:FragmentAddOrderingDemo',
         ':effect:WeChatLuckyMoneyEffect', ':effect:DialogFragmentDemo',
         ':effect:RecyclerViewInsideScrollViewDemo', ':effect:FancyTransitionDemo',
-        ':effect:CollapsingAppBarDemo',
+        ':effect:CollapsingAppBarDemo', ':effect:AdvancedFrescoDemo',
 
         ':ReactNativeDemo'

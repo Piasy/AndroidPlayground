@@ -22,7 +22,7 @@
   ~ SOFTWARE.
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.github.piasy.taskdemo"
+        package="com.github.piasy.taskdemo"
         >
 
     <application
@@ -40,12 +40,22 @@
             </intent-filter>
         </activity>
         <activity
+                android:name=".NotifyActivity"
+                android:parentActivityName=".MainActivity"
+                >
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".MainActivity"
+                    />
+        </activity>
+        <activity
                 android:name=".SingleTaskFirstActivity"
                 android:launchMode="singleTask"
                 android:taskAffinity="com.github.piasy.taskdemo.first"
                 />
         <activity android:name=".SimpleActivity"/>
-        <activity android:name=".SingleTaskSecondActivity"
+        <activity
+                android:name=".SingleTaskSecondActivity"
                 android:launchMode="singleTask"
                 />
     </application>

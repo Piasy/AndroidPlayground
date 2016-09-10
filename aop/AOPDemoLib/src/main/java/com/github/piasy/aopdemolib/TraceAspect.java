@@ -24,11 +24,7 @@
 
 package com.github.piasy.aopdemolib;
 
-import android.os.Environment;
 import android.util.Log;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.PrintWriter;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -59,10 +55,6 @@ public class TraceAspect {
         long stop = System.nanoTime();
 
         Log.d(className + "::" + methodName, "" + (stop - start));
-        PrintWriter writer = new PrintWriter(new FileOutputStream(
-                new File(Environment.getExternalStorageDirectory(), "reflect.log"), true));
-        writer.println(className + "::" + methodName + (stop - start));
-        writer.close();
 
         return result;
     }
