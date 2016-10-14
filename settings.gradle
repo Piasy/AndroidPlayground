@@ -1,5 +1,6 @@
 include ':try:AppMarshmallow', ':try:TryOpenGL', ':try:TryConstraintLayout', ':try:FullScreenDemo',
         ':try:RgbYuvConverter', ':try:ReplaceableResApp', ':try:ReplaceableResLib',
+        ':try:VoiceProcessing',
 
         ':reproduce:KeyboardEventDemo', ':reproduce:NotificationTest',
         ':reproduce:RecyclerViewScrollBug', ':reproduce:FlexLayoutTextSizeBug',
@@ -12,6 +13,7 @@ include ':try:AppMarshmallow', ':try:TryOpenGL', ':try:TryConstraintLayout', ':t
 
         ':showcase:Dagger2ScopeInstanceDemo', ':showcase:TaskDemo',
         ':showcase:OrientationDemo', ':showcase:PerfectAndroidModel',
+        ':showcase:GitStar',
 
         ':effect:RecyclerViewAdvancedDemo', ':effect:ImageInlineTextDemo',
         ':effect:GuestureDetectorDemo', ':effect:MultipleFragmentLayerDemo',

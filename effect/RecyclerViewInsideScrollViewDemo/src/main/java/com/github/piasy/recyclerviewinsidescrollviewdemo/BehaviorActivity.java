@@ -1,6 +1,7 @@
 package com.github.piasy.recyclerviewinsidescrollviewdemo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
@@ -70,8 +71,6 @@ public class BehaviorActivity extends AppCompatActivity {
         findById(this, R.id.mIbClose).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(new Intent(BehaviorActivity.this,
-                //        RecyclerViewInsideScrollViewActivity.class));
                 publisherAdapter.setContentCount(3);
             }
         });
@@ -147,7 +146,7 @@ public class BehaviorActivity extends AppCompatActivity {
         }
     }
 
-    public static class DetailAdapter extends RecyclerView.Adapter<DetailViewHolder> {
+    public class DetailAdapter extends RecyclerView.Adapter<DetailViewHolder> {
 
         private final Context mContext;
 
@@ -183,6 +182,8 @@ public class BehaviorActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(mContext, "Click: " + text, Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(BehaviorActivity.this,
+                            RecyclerViewInsideScrollViewActivity.class));
                 }
             });
         }

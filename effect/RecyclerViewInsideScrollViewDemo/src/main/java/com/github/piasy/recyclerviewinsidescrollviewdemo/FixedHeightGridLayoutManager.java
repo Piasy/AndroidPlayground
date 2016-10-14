@@ -25,7 +25,6 @@ public class FixedHeightGridLayoutManager extends GridLayoutManager {
     @Override
     public void onMeasure(RecyclerView.Recycler recycler, RecyclerView.State state,
             int widthSpec, int heightSpec) {
-        final int widthMode = View.MeasureSpec.getMode(widthSpec);
         final int heightMode = View.MeasureSpec.getMode(heightSpec);
 
         final int widthSize = View.MeasureSpec.getSize(widthSpec);
@@ -56,6 +55,9 @@ public class FixedHeightGridLayoutManager extends GridLayoutManager {
     private void measureScrapChild(RecyclerView.Recycler recycler, int position, int widthSpec,
             int heightSpec, int[] measuredDimension) {
 
+        if (getChildCount() == 0) {
+            return;
+        }
         View view = recycler.getViewForPosition(position);
         if (view.getVisibility() == View.GONE) {
             measuredDimension[0] = 0;
