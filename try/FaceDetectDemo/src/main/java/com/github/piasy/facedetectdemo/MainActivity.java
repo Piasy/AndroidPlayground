@@ -22,36 +22,16 @@
  * SOFTWARE.
  */
 
-apply plugin: 'com.android.application'
+package com.github.piasy.facedetectdemo;
 
-android {
-    compileSdkVersion rootProject.ext.androidCompileSdkVersion
-    buildToolsVersion rootProject.ext.androidBuildToolsVersion
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 
-    defaultConfig {
-        applicationId "com.github.piasy.recyclerviewadvanceddemo"
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode rootProject.ext.releaseVersionCode
-        versionName rootProject.ext.releaseVersionName
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-}
+public class MainActivity extends AppCompatActivity {
 
-dependencies {
-    compile('io.reactivex:rxandroid:1.0.1') {
-        exclude module: 'rxjava'
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
     }
-    compile('jp.wasabeef:recyclerview-animators:2.2.1') {
-        exclude module: 'recyclerview-v7'
-    }
-    compile "com.android.support:appcompat-v7:${rootProject.ext.androidSupportSdkVersion}"
-    compile "com.android.support:recyclerview-v7:${rootProject.ext.androidSupportSdkVersion}"
-    compile 'com.jakewharton:butterknife:7.0.1'
-    compile 'io.reactivex:rxjava:1.0.16'
 }

@@ -1,8 +1,8 @@
-include ':try:AppMarshmallow', ':try:TryOpenGL', ':try:TryConstraintLayout', ':try:FullScreenDemo',
+include ':try:AppMarshmallow', ':try:TryOpenGL', ':try:FullScreenDemo', ':try:FaceDetectDemo',
         ':try:RgbYuvConverter', ':try:ReplaceableResApp', ':try:ReplaceableResLib',
         ':try:VoiceProcessing',
 
-        ':reproduce:KeyboardEventDemo', ':reproduce:NotificationTest',
+        ':reproduce:NotificationTest',
         ':reproduce:RecyclerViewScrollBug', ':reproduce:FlexLayoutTextSizeBug',
         ':reproduce:OnceKillRestoreBug', ':reproduce:MX5Camera2YUV_420_888Bug',
 
