@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity
     NavigationView mNavigationView;
 
     private ActionBarDrawerToggle mBarDrawerToggle;
+    private boolean mFirstResume = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +78,8 @@ public class MainActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
 
-        showTag(R.string.all_star, true);
+        showTag(R.string.all_star, mFirstResume);
+        mFirstResume = false;
     }
 
     private void showTag(@StringRes int tag, boolean firstTime) {
@@ -127,7 +129,6 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();

@@ -40,10 +40,12 @@ import com.yatatsu.autobundle.AutoBundleField;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class StarsFragment extends Fragment {
+public class StarsFragment extends Fragment implements ReposAdapter.Action {
 
     @AutoBundleField
     String mTag;
+    @BindView(R.id.mRvStars)
+    RecyclerView mRvStars;
 
     public StarsFragment() {
         // Required empty public constructor
@@ -62,15 +64,16 @@ public class StarsFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_stars, container, false);
     }
 
-    @BindView(R.id.mRvStars)
-    RecyclerView mRvStars;
-
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
 
         mRvStars.setLayoutManager(new LinearLayoutManager(getContext()));
-        mRvStars.setAdapter(new ReposAdapter(MockRepoProvider.getRepo(mTag)));
+        mRvStars.setAdapter(new ReposAdapter(MockRepoProvider.getRepo(mTag), this));
+    }
+
+    @Override
+    public void seeRepo(TaggedRepo repo) {
     }
 }

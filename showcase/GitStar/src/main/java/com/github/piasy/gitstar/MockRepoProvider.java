@@ -50,20 +50,20 @@ class MockRepoProvider {
                 "Mobile app development framework and SDK using HTML5 and JavaScript. Create "
                         + "beautiful and performant cross-platform mobile apps. Based on Web "
                         + "Components, and provides bindings for Angular 1, 2, React and Vue.js.",
-                "OnsenUI", 3463, "");
+                "OnsenUI", "https://github.com/a-voyager/BluetoothHelper", 3463, "");
         oneType.add(oneRepo);
         allType.add(oneRepo);
 
         oneRepo = TaggedRepo.create("anyproxy",
                 "A fully configurable http/https proxy in NodeJS",
-                "alibaba", 1574, "");
+                "alibaba", "http://www.lintcode.com/en/problem/subsets-ii", 31574, "");
         oneType.add(oneRepo);
         allType.add(oneRepo);
 
         oneRepo = TaggedRepo.create("TapTargetView",
                 "An implementation of tap targets from the Material Design guidelines for feature"
                         + " discovery",
-                "KeepSafe", 1427, "");
+                "KeepSafe", "http://www.jiuzhang.com/solutions/subsets-ii", 1427, "");
         oneType.add(oneRepo);
         allType.add(oneRepo);
 
@@ -73,7 +73,7 @@ class MockRepoProvider {
         oneType = new ArrayList<>();
         oneRepo = TaggedRepo.create("SimplifySpan",
                 "A easy-to-use and powerful Spannable library",
-                "iwgang", 231, oneTag);
+                "iwgang", "", 231, oneTag);
         oneType.add(oneRepo);
         allType.add(oneRepo);
 
@@ -82,13 +82,13 @@ class MockRepoProvider {
                         + "It extends the Drawable class thus can be used with "
                         + "existing/custom/network ImageView classes. Also included is a fluent "
                         + "interface for creating drawables and a customizable ColorGenerator.",
-                "amulyakhare", 1901, oneTag);
+                "amulyakhare", "", 1901, oneTag);
         oneType.add(oneRepo);
         allType.add(oneRepo);
 
         oneRepo = TaggedRepo.create("Shimmer-android",
                 "An Android TextView with a shimmering effect",
-                "RomainPiel", 1499, oneTag);
+                "RomainPiel", "", 1499, oneTag);
         oneType.add(oneRepo);
         allType.add(oneRepo);
 
@@ -98,19 +98,19 @@ class MockRepoProvider {
         oneType = new ArrayList<>();
         oneRepo = TaggedRepo.create("fresco",
                 "An Android library for managing images and the memory they use.",
-                "facebook", 10563, oneTag);
+                "facebook", "", 10563, oneTag);
         oneType.add(oneRepo);
         allType.add(oneRepo);
 
         oneRepo = TaggedRepo.create("ShapedDraweeView",
                 "Fresco custom view with mask shape.",
-                "Piasy", 42, oneTag);
+                "Piasy", "", 42, oneTag);
         oneType.add(oneRepo);
         allType.add(oneRepo);
 
         oneRepo = TaggedRepo.create("Android-Image-Cropper",
                 "Image Cropping Library for Android, optimized for Camera / Gallery.",
-                "ArthurHub", 1491, oneTag);
+                "ArthurHub", "", 1491, oneTag);
         oneType.add(oneRepo);
         allType.add(oneRepo);
 
@@ -120,19 +120,19 @@ class MockRepoProvider {
         oneType = new ArrayList<>();
         oneRepo = TaggedRepo.create("fastlane",
                 "The easiest way to automate building and releasing your iOS and Android apps",
-                "fastlane", 11141, oneTag);
+                "fastlane", "", 11141, oneTag);
         oneType.add(oneRepo);
         allType.add(oneRepo);
 
         oneRepo = TaggedRepo.create("tracklytics",
                 "Annotation based analytic aggregator with aspect oriented programming",
-                "orhanobut", 303, oneTag);
+                "orhanobut", "", 303, oneTag);
         oneType.add(oneRepo);
         allType.add(oneRepo);
 
         oneRepo = TaggedRepo.create("AndroidPerformanceMonitor",
                 "A transparent ui-block detection library for Android. (known as BlockCanary)",
-                "markzhai", 1759, oneTag);
+                "markzhai", "", 1759, oneTag);
         oneType.add(oneRepo);
         allType.add(oneRepo);
 
@@ -142,7 +142,7 @@ class MockRepoProvider {
         oneType = new ArrayList<>();
         oneRepo = TaggedRepo.create("MITM-squid",
                 "sharing some files of MITM-squid attack.",
-                "linvex", 24, oneTag);
+                "linvex", "", 24, oneTag);
         oneType.add(oneRepo);
         allType.add(oneRepo);
 

@@ -9,10 +9,10 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.1'
+        classpath 'com.android.tools.build:gradle:2.2.2'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
         classpath 'com.netflix.nebula:gradle-extra-configurations-plugin:3.0.3'
-        classpath 'com.squareup.sqldelight:gradle-plugin:0.4.4'
+        classpath 'com.squareup.sqldelight:gradle-plugin:0.5.1'
         classpath 'me.tatarka:gradle-retrolambda:3.2.5'
 
         classpath 'org.aspectj:aspectjtools:1.8.9'
@@ -36,8 +36,8 @@ task clean(type: Delete) {
 
 ext {
     androidCompileSdkVersion = 24
-    androidBuildToolsVersion = '24.0.3'
-    androidSupportSdkVersion = '24.2.1'
+    androidBuildToolsVersion = '25.0.0'
+    androidSupportSdkVersion = '25.0.0'
     minSdkVersion = 16
     targetSdkVersion = 24
 

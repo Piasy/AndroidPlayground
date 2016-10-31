@@ -24,6 +24,7 @@
 
 package com.github.piasy.gitstar;
 
+import android.os.Parcelable;
 import com.google.auto.value.AutoValue;
 
 /**
@@ -31,14 +32,21 @@ import com.google.auto.value.AutoValue;
  */
 
 @AutoValue
-abstract class TaggedRepo {
-    abstract String name();
-    abstract String description();
-    abstract String owner();
-    abstract int stargazers_count();
-    abstract String tag();
-
-    static TaggedRepo create(String name, String desc, String owner, int starCount, String tag) {
-        return new AutoValue_TaggedRepo(name, desc, owner, starCount, tag);
+abstract class TaggedRepo implements Parcelable {
+    static TaggedRepo create(String name, String desc, String owner, String htmlUrl, int starCount,
+            String tag) {
+        return new AutoValue_TaggedRepo(name, desc, owner, htmlUrl, starCount, tag);
     }
+
+    abstract String name();
+
+    abstract String description();
+
+    abstract String owner();
+
+    abstract String html_url();
+
+    abstract int stargazers_count();
+
+    abstract String tag();
 }

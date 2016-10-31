@@ -23,7 +23,7 @@
   -->
 
 <resources>
-    <string name="app_name">GitStar</string>
+    <string name="app_name">LintCode</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -36,6 +36,6 @@
     <string name="dev_ops">DevOps</string>
     <string name="hack_mitm">Hack-MITM</string>
 
-    <string name="repo_display_name_formatter" formatted="false">%s/%s</string>
-    <string name="repo_star_formatter" formatted="false">{fa-star} %d</string>
+    <string formatted="false" name="repo_display_name_formatter">%s/%s</string>
+    <string formatted="false" name="repo_star_formatter">{fa-star} %d</string>
 </resources>

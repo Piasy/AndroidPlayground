@@ -2,7 +2,7 @@ include ':try:AppMarshmallow', ':try:TryOpenGL', ':try:FullScreenDemo', ':try:Fa
         ':try:RgbYuvConverter', ':try:ReplaceableResApp', ':try:ReplaceableResLib',
         ':try:VoiceProcessing',
 
-        ':reproduce:NotificationTest',
+        ':reproduce:NotificationTest', ':reproduce:MockitoDexMakerBug',
         ':reproduce:RecyclerViewScrollBug', ':reproduce:FlexLayoutTextSizeBug',
         ':reproduce:OnceKillRestoreBug', ':reproduce:MX5Camera2YUV_420_888Bug',
 
@@ -21,5 +21,6 @@ include ':try:AppMarshmallow', ':try:TryOpenGL', ':try:FullScreenDemo', ':try:Fa
         ':effect:WeChatLuckyMoneyEffect', ':effect:DialogFragmentDemo',
         ':effect:RecyclerViewInsideScrollViewDemo', ':effect:FancyTransitionDemo',
         ':effect:CollapsingAppBarDemo', ':effect:AdvancedFrescoDemo',
+        ':effect:WeChatQrScanner',
 
         ':ReactNativeDemo'

@@ -26,6 +26,7 @@ package com.github.piasy.gitstar;
 
 import android.content.res.Resources;
 import android.support.annotation.StringRes;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -44,9 +45,11 @@ import me.gujun.android.taggroup.TagGroup;
 class ReposAdapter extends RecyclerView.Adapter<ReposAdapter.RepoHolder> {
 
     private final List<TaggedRepo> mRepos;
+    private final Action mAction;
 
-    ReposAdapter(List<TaggedRepo> repos) {
+    ReposAdapter(List<TaggedRepo> repos, Action action) {
         mRepos = repos;
+        mAction = action;
     }
 
     @Override
@@ -57,7 +60,13 @@ class ReposAdapter extends RecyclerView.Adapter<ReposAdapter.RepoHolder> {
 
     @Override
     public void onBindViewHolder(RepoHolder holder, int position) {
-        TaggedRepo repo = mRepos.get(position);
+        final TaggedRepo repo = mRepos.get(position);
+        holder.mRepoCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAction.seeRepo(repo);
+            }
+        });
         holder.mTvName.setText(
                 holder.getString(R.string.repo_display_name_formatter, repo.owner(), repo.name()));
         holder.mTvStar.setText(
@@ -78,6 +87,8 @@ class ReposAdapter extends RecyclerView.Adapter<ReposAdapter.RepoHolder> {
 
     static class RepoHolder extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.mRepoCard)
+        CardView mRepoCard;
         @BindView(R.id.mTvName)
         TextView mTvName;
         @BindView(R.id.mTvStar)
@@ -98,5 +109,9 @@ class ReposAdapter extends RecyclerView.Adapter<ReposAdapter.RepoHolder> {
         String getString(@StringRes int formatter, Object... args) {
             return String.format(mResources.getString(formatter), args);
         }
+    }
+
+    interface Action {
+        void seeRepo(TaggedRepo repo);
     }
 }
