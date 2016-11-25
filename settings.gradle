@@ -5,6 +5,7 @@ include ':try:AppMarshmallow', ':try:TryOpenGL', ':try:FullScreenDemo', ':try:Fa
         ':reproduce:NotificationTest', ':reproduce:MockitoDexMakerBug',
         ':reproduce:RecyclerViewScrollBug', ':reproduce:FlexLayoutTextSizeBug',
         ':reproduce:OnceKillRestoreBug', ':reproduce:MX5Camera2YUV_420_888Bug',
+        ':reproduce:RetroLambdaChaosRepro',
 
         ':perf:RefectAutoGsonPerf', ':perf:ReflectlessAutoGsonPerf', ':perf:LayoutPerfDemo',
         ':perf:BitmapLoadTest', ':perf:MultilayerFragmentPerf', ':perf:InstanceOfPerf',
@@ -21,6 +22,6 @@ include ':try:AppMarshmallow', ':try:TryOpenGL', ':try:FullScreenDemo', ':try:Fa
         ':effect:WeChatLuckyMoneyEffect', ':effect:DialogFragmentDemo',
         ':effect:RecyclerViewInsideScrollViewDemo', ':effect:FancyTransitionDemo',
         ':effect:CollapsingAppBarDemo', ':effect:AdvancedFrescoDemo',
-        ':effect:WeChatQrScanner',
+        ':effect:WeChatQrScanner', ':effect:YLPoster',
 
         ':ReactNativeDemo'

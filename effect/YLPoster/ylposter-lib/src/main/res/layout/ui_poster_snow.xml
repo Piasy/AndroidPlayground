@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.github.mmin18.widget.FlexLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_poster_snow"
+        >
+
+    <ImageView
+            android:id="@+id/mYoloLogo"
+            android:src="@drawable/ic_edit_group_yolo_logo"
+            app:layout_centerX="50%"
+            app:layout_height="15.60%"
+            app:layout_top="5.06%"
+            app:layout_width="88.27%"
+            />
+
+    <EditText
+            android:id="@+id/mEtTitle"
+            android:background="@drawable/dash_line_yolo_yellow"
+            android:gravity="center_vertical"
+            android:shadowColor="@color/black_transparent_20"
+            android:shadowDx="0.5"
+            android:shadowDy="1.5"
+            android:shadowRadius="1.5"
+            android:singleLine="true"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"
+            android:textSize="@dimen/snow_title_text_size"
+            app:layout_height="6.64%"
+            app:layout_left="7.2%"
+            app:layout_top="25.15%"
+            app:layout_width="63.06%"
+            fontPath="fonts/zhanku-Condensed.ttf"
+            tools:ignore="MissingPrefix"
+            tools:text="雪老师"
+            />
+
+    <View
+            android:id="@+id/mTitleEditHint"
+            android:layout_width="49dp"
+            android:layout_height="24dp"
+            android:background="@drawable/ic_poster_edit"
+            app:layout_centerX="mEtTitle.right"
+            app:layout_centerY="mEtTitle.top"
+            />
+
+    <TextView
+            android:id="@+id/mTvYoloId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/snow_yolo_id_text_size"
+            app:layout_left="7.5%"
+            app:layout_top="31.95%"
+            tools:text="YOLO ID:\n 123456"
+            />
+
+    <EditText
+            android:id="@+id/mEtDesc"
+            android:background="@drawable/dash_line_yolo_yellow"
+            android:gravity="left|top"
+            android:hint="@string/poster_default_desc"
+            android:shadowColor="@color/black_transparent_20"
+            android:shadowDx="0.5"
+            android:shadowDy="1.5"
+            android:shadowRadius="1.5"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"
+            android:textSize="@dimen/snow_desc_text_size"
+            app:layout_height="24.9%"
+            app:layout_left="7.2%"
+            app:layout_top="38.76%"
+            app:layout_width="45.32%"
+            fontPath="fonts/zhanku-Condensed.ttf"
+            tools:ignore="MissingPrefix"
+            />
+
+    <View
+            android:id="@+id/mDescEditHint"
+            android:layout_width="49dp"
+            android:layout_height="24dp"
+            android:background="@drawable/ic_poster_edit"
+            app:layout_centerX="mEtDesc.right"
+            app:layout_centerY="mEtDesc.top"
+            />
+
+    <View
+            android:id="@+id/mChangePosterBg"
+            android:layout_width="70dp"
+            android:layout_height="24dp"
+            android:background="@drawable/ic_change_poster_bg"
+            app:layout_right="92.13%"
+            app:layout_top="53.28%"
+            />
+
+    <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/mQrCode"
+            app:actualImageScaleType="centerCrop"
+            app:layout_height="14.94%"
+            app:layout_left="8.53%"
+            app:layout_top="68.63%"
+            app:layout_width="this.height"
+            tools:placeholderImage="@drawable/ic_qr_code"
+            />
+
+    <TextView
+            android:id="@+id/mScanQrCodeHint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/poster_qr_code_scan_tip"
+            android:textColor="@color/white_transparent_75"
+            android:textSize="@dimen/snow_qr_code_scan_text_size"
+            app:layout_centerX="20%"
+            app:layout_top="84.32%"
+            />
+
+    <com.autofit.et.lib.AutoFitEditText
+            android:id="@+id/mEtSlogan"
+            android:background="@drawable/dash_line_yolo_yellow"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center"
+            android:isScrollContainer="false"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:shadowColor="@color/black_transparent_20"
+            android:shadowDx="0.5"
+            android:shadowDy="1.5"
+            android:shadowRadius="1.5"
+            android:singleLine="true"
+            android:text="@string/poster_default_slogan"
+            android:textColor="@android:color/white"
+            android:textSize="60sp"
+            app:layout_bottom="96.35%"
+            app:layout_height="8.38%"
+            app:layout_left="8%"
+            app:layout_right="92%"
+            fontPath="fonts/zhanku-Condensed.ttf"
+            tools:ignore="MissingPrefix"
+            />
+
+    <View
+            android:id="@+id/mSloganEditHint"
+            android:layout_width="49dp"
+            android:layout_height="24dp"
+            android:background="@drawable/ic_poster_edit"
+            app:layout_centerY="mEtSlogan.top"
+            app:layout_right="98%"
+            />
+</com.github.mmin18.widget.FlexLayout>

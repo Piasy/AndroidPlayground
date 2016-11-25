@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.github.mmin18.widget.FlexLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/mPosterContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+    <ImageView
+            android:id="@+id/mYoloLogo1"
+            android:src="@drawable/ic_edit_group_yolo_logo_adhere"
+            app:layout_height="3.73%"
+            app:layout_left="6%"
+            app:layout_top="2.9%"
+            app:layout_width="27.87%"
+            />
+
+    <View
+            android:id="@+id/mChangePosterBg"
+            android:layout_width="70dp"
+            android:layout_height="24dp"
+            android:background="@drawable/ic_change_poster_bg"
+            app:layout_right="96%"
+            app:layout_top="2.9%"
+            />
+
+    <View
+            android:id="@+id/mAdhereBg"
+            android:background="@drawable/bg_poster_adhere"
+            app:layout_bottom="100%"
+            app:layout_height="37.84%"
+            app:layout_width="100%"
+            />
+
+    <com.autofit.et.lib.AutoFitEditText
+            android:id="@+id/mEtSlogan"
+            android:background="@drawable/dash_line_dark_black"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center"
+            android:isScrollContainer="false"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:singleLine="true"
+            android:text="@string/poster_default_slogan"
+            android:textColor="@color/dark_black"
+            android:textSize="60sp"
+            app:layout_height="8.38%"
+            app:layout_left="6%"
+            app:layout_right="94%"
+            app:layout_top="63.75%"
+            fontPath="fonts/zhanku-Condensed.ttf"
+            tools:ignore="MissingPrefix"
+            />
+
+    <View
+            android:id="@+id/mSloganEditHint"
+            android:layout_width="49dp"
+            android:layout_height="24dp"
+            android:background="@drawable/ic_poster_edit"
+            app:layout_centerY="mEtSlogan.top"
+            app:layout_right="98%"
+            />
+
+    <EditText
+            android:id="@+id/mEtTitle"
+            android:background="@drawable/dash_line_dark_black"
+            android:padding="3dp"
+            android:singleLine="true"
+            android:textColor="@color/dark_black"
+            android:textColorHint="@color/dark_black"
+            android:textSize="@dimen/adhere_title_text_size"
+            app:layout_height="5.15%"
+            app:layout_left="6%"
+            app:layout_top="73.5%"
+            app:layout_width="63.07%"
+            fontPath="fonts/zhanku-Condensed.ttf"
+            tools:ignore="MissingPrefix"
+            tools:text="雪老师"
+            />
+
+    <TextView
+            android:id="@+id/mTvYoloId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/dark_black"
+            android:textSize="@dimen/snow_yolo_id_text_size"
+            app:layout_left="7.5%"
+            app:layout_top="79%"
+            tools:text="YOLO ID: 123456"
+            />
+
+    <View
+            android:id="@+id/mTitleEditHint"
+            android:layout_width="49dp"
+            android:layout_height="24dp"
+            android:background="@drawable/ic_poster_edit"
+            app:layout_centerX="mEtTitle.right"
+            app:layout_centerY="mEtTitle.top"
+            />
+
+    <View
+            android:id="@+id/mDescEditHint"
+            android:layout_width="49dp"
+            android:layout_height="24dp"
+            android:background="@drawable/ic_poster_edit"
+            app:layout_centerX="mEtDesc.right"
+            app:layout_centerY="mEtDesc.top"
+            />
+
+    <EditText
+            android:id="@+id/mEtDesc"
+            android:background="@drawable/dash_line_dark_black"
+            android:gravity="left|top"
+            android:hint="@string/poster_default_desc"
+            android:textColor="@color/dark_black"
+            android:textColorHint="@color/dark_black"
+            android:textSize="@dimen/adhere_desc_text_size"
+            app:layout_height="13.36%"
+            app:layout_left="6%"
+            app:layout_top="81.99%"
+            app:layout_width="55.2%"
+            fontPath="fonts/zhanku-Condensed.ttf"
+            tools:ignore="MissingPrefix"
+            />
+
+    <ImageView
+            android:id="@+id/mYoloLogo2"
+            android:src="@drawable/ic_edit_group_yolo_logo_adhere2"
+            app:layout_height="2.32%"
+            app:layout_left="7.07%"
+            app:layout_top="95.68%"
+            app:layout_width="22.8%"
+            />
+
+    <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/mQrCode"
+            app:actualImageScaleType="centerCrop"
+            app:layout_height="14.94%"
+            app:layout_right="96%"
+            app:layout_top="80%"
+            app:layout_width="this.height"
+            tools:placeholderImage="@drawable/ic_qr_code"
+            />
+
+    <TextView
+            android:id="@+id/mScanQrCodeHint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/poster_qr_code_scan_tip"
+            android:textColor="@color/dark_black"
+            android:textSize="@dimen/adhere_qr_code_scan_text_size"
+            app:layout_centerX="85%"
+            app:layout_top="95.68%"
+            />
+</com.github.mmin18.widget.FlexLayout>

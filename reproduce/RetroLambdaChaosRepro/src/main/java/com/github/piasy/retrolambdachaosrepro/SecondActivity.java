@@ -22,30 +22,16 @@
  * SOFTWARE.
  */
 
-apply plugin: 'com.android.application'
+package com.github.piasy.retrolambdachaosrepro;
 
-android {
-    compileSdkVersion rootProject.ext.androidCompileSdkVersion
-    buildToolsVersion rootProject.ext.androidBuildToolsVersion
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 
-    defaultConfig {
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode rootProject.ext.releaseVersionCode
-        versionName rootProject.ext.releaseVersionName
+public class SecondActivity extends AppCompatActivity {
 
-        applicationId "com.github.piasy.wechatqrscanner"
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_second);
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-}
-
-dependencies {
-    compile "com.android.support:appcompat-v7:${rootProject.ext.androidSupportSdkVersion}"
 }
