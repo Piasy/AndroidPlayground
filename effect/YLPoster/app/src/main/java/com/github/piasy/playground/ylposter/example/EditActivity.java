@@ -4,15 +4,16 @@ import android.Manifest;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.github.piasy.playground.ylposter.ChangeBgListener;
+import com.github.piasy.playground.ylposter.PosterState;
 import com.github.piasy.playground.ylposter.YLPosterBase;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import io.reactivex.functions.Consumer;
@@ -38,8 +39,9 @@ public class EditActivity extends AppCompatActivity implements ChangeBgListener 
         mPoster.postDelayed(new Runnable() {
             @Override
             public void run() {
-                mPoster.showInfo("piasy", "Piasy", res2Uri(
-                        R.drawable.we_chat_mp_qrcode));
+                mPoster.showInfo("piasy", "Piasy", res2Uri(R.drawable.we_chat_mp_qrcode),
+                        PosterState.read(getSharedPreferences("poster", MODE_PRIVATE),
+                                MainActivity.DEFAULT_STATE));
             }
         }, 100);
     }
@@ -59,7 +61,7 @@ public class EditActivity extends AppCompatActivity implements ChangeBgListener 
     }
 
     private void doSave() {
-        mPoster.startSave();
+        mPoster.startSave(getSharedPreferences("poster", MODE_PRIVATE));
 
         mPoster.setDrawingCacheEnabled(true);
         mPoster.buildDrawingCache(true);

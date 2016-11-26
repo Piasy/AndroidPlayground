@@ -23,6 +23,11 @@ android {
 dependencies {
     compile "com.jakewharton:butterknife:${rootProject.ext.butterKnifeVersion}"
     annotationProcessor "com.jakewharton:butterknife-compiler:${rootProject.ext.butterKnifeVersion}"
+
+    annotationProcessor "com.google.auto.value:auto-value:${rootProject.ext.autoValueVersion}"
+    provided "com.google.auto.value:auto-value:${rootProject.ext.autoValueVersion}"
+    annotationProcessor "com.ryanharter.auto.value:auto-value-parcel:$rootProject.ext.autoValueParcelVersion"
+
     compile 'uk.co.chrisjenx:calligraphy:2.2.0'
     compile 'com.github.ViksaaSkool:AutoFitEditText:53238e2d29'
     compile 'com.github.mmin18:flexlayout:1.2.4'

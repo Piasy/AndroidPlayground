@@ -34,7 +34,7 @@ public class DisplayActivity extends AppCompatActivity {
             @Override
             public void run() {
                 mPoster.showInfo("piasy", "Piasy", res2Uri(
-                        R.drawable.we_chat_mp_qrcode));
+                        R.drawable.we_chat_mp_qrcode), MainActivity.DEFAULT_STATE);
                 mPoster.showBg(MainActivity.sIsSnow ? MainActivity.POSTER_URI
                         : MainActivity.POSTER_URI_ADHERE);
             }

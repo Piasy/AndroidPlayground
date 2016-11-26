@@ -6,13 +6,21 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import com.github.piasy.playground.ylposter.PosterState;
 
 public class MainActivity extends AppCompatActivity {
 
-    static boolean sIsSnow = false;
-    static final Uri URI = Uri.parse("http://192.168.1.113:8000/WechatIMG18.jpg");
+    static final Uri URI = Uri.parse("http://192.168.25.62:8000/WechatIMG18.jpg");
     static final Uri POSTER_URI = Uri.parse("http://192.168.1.113:8000/5.jpg");
     static final Uri POSTER_URI_ADHERE = Uri.parse("http://192.168.1.113:8000/6.jpg");
+    static final PosterState DEFAULT_STATE = PosterState.builder()
+            .title("Piasy")
+            .desc("")
+            .slogan("优秀是一种习惯")
+            .bg(URI.toString())
+            .build();
+
+    static boolean sIsSnow = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

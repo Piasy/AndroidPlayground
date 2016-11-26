@@ -1,6 +1,7 @@
 package com.github.piasy.playground.ylposter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.net.Uri;
@@ -20,7 +21,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import butterknife.OnClick;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.github.piasy.biv.view.BigImageView;
 
@@ -41,6 +41,7 @@ public abstract class YLPosterBase extends FrameLayout {
 
     private float mRatio;
     private ChangeBgListener mChangeBgListener;
+    private Uri mCurrentBg;
 
     private BigImageView mPosterEditBg;
     private SimpleDraweeView mPosterViewBg;
@@ -118,12 +119,22 @@ public abstract class YLPosterBase extends FrameLayout {
         mDescEditHint = findById(this, R.id.mDescEditHint);
 
         mChangePosterBg = findById(this, R.id.mChangePosterBg);
+        mChangePosterBg.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mChangeBgListener != null) {
+                    mChangeBgListener.changeBg();
+                }
+            }
+        });
 
         mQrCode = findById(this, R.id.mQrCode);
         mScanQrCodeHint = findById(this, R.id.mScanQrCodeHint);
 
         mEtSlogan = findById(this, R.id.mEtSlogan);
-        mEtSlogan.setFilters(new InputFilter[] { new InputFilter.LengthFilter(12) });
+        mEtSlogan.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(12)
+        });
         mSloganEditHint = findById(this, R.id.mSloganEditHint);
     }
 
@@ -145,14 +156,8 @@ public abstract class YLPosterBase extends FrameLayout {
         mChangeBgListener = changeBgListener;
     }
 
-    @OnClick(R2.id.mChangePosterBg)
-    void changeBg() {
-        if (mChangeBgListener != null) {
-            mChangeBgListener.changeBg();
-        }
-    }
-
     public void showBg(Uri uri) {
+        mCurrentBg = uri;
         if (mPosterEditBg != null) {
             mPosterEditBg.showImage(uri);
         } else if (mPosterViewBg != null) {
@@ -160,7 +165,7 @@ public abstract class YLPosterBase extends FrameLayout {
         }
     }
 
-    public void startSave() {
+    public void startSave(SharedPreferences preferences) {
         switch (mMode) {
             case MODE_PREVIEW:
                 mTvYoloId.setVisibility(GONE);
@@ -176,6 +181,16 @@ public abstract class YLPosterBase extends FrameLayout {
             default:
                 break;
         }
+        currentState().save(preferences);
+    }
+
+    private PosterState currentState() {
+        return PosterState.builder()
+                .title(mEtTitle.getText().toString())
+                .desc(mEtDesc.getText().toString())
+                .slogan(mEtSlogan.getText().toString())
+                .bg(mMode == MODE_EDIT ? mCurrentBg.toString() : "")
+                .build();
     }
 
     private void hideEditable() {
@@ -238,9 +253,7 @@ public abstract class YLPosterBase extends FrameLayout {
         adjustTextSize(mScanQrCodeHint, qrCodeScanHintTextSize());
     }
 
-    public void showInfo(String yoloId, String name, Uri qrCode) {
-        mEtTitle.setHint(name);
-
+    public void showInfo(String yoloId, String name, Uri qrCode, PosterState prevState) {
         String text;
         if (yoloId.length() > MAX_YOLO_ID_SHOW_LENGTH) {
             text = yoloId.substring(0, MAX_YOLO_ID_SHOW_LENGTH) + "…";
@@ -250,6 +263,22 @@ public abstract class YLPosterBase extends FrameLayout {
         mTvYoloId.setText(String.format(getResources().getString(yoloIdFormatter()), text));
 
         mQrCode.setImageURI(qrCode);
+
+        mEtTitle.setText(prevState.title());
+        mEtTitle.setHint(name);
+        mEtDesc.setText(prevState.desc());
+        mEtDesc.setHint(R.string.poster_default_desc);
+        if (TextUtils.isEmpty(prevState.slogan())) {
+            mEtSlogan.setText(R.string.poster_default_slogan);
+        } else {
+            mEtSlogan.setText(prevState.slogan());
+        }
+
+        if (mPosterEditBg != null) {
+            mPosterEditBg.showImage(Uri.parse(prevState.bg()));
+        } else if (mPosterViewBg != null) {
+            mPosterViewBg.setImageURI(Uri.parse(prevState.bg()));
+        }
     }
 
     private void adjustTextSize(TextView textView, @DimenRes int desired) {
