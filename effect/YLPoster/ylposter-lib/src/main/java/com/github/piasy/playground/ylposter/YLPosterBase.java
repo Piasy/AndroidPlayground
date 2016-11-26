@@ -10,6 +10,7 @@ import android.support.annotation.CallSuper;
 import android.support.annotation.DimenRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -122,6 +123,7 @@ public abstract class YLPosterBase extends FrameLayout {
         mScanQrCodeHint = findById(this, R.id.mScanQrCodeHint);
 
         mEtSlogan = findById(this, R.id.mEtSlogan);
+        mEtSlogan.setFilters(new InputFilter[] { new InputFilter.LengthFilter(12) });
         mSloganEditHint = findById(this, R.id.mSloganEditHint);
     }
 
