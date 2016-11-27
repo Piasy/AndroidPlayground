@@ -11,6 +11,9 @@
 
     <dimen name="poster_width">300dp</dimen>
     <dimen name="poster_height">482dp</dimen>
+    <dimen name="poster_item_margin">10dp</dimen>
+    <dimen name="poster_pager_margin_top">72dp</dimen>
+    <dimen name="poster_pager_margin_bottom">93dp</dimen>
 
     <dimen name="snow_title_text_size">40sp</dimen>
     <dimen name="snow_yolo_id_text_size">12sp</dimen>

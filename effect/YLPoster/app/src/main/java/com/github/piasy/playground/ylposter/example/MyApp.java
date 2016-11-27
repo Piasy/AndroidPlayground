@@ -1,6 +1,8 @@
 package com.github.piasy.playground.ylposter.example;
 
 import android.app.Application;
+import android.graphics.Bitmap;
+import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.facebook.stetho.Stetho;
 import com.github.piasy.biv.BigImageViewer;
 import com.github.piasy.biv.loader.fresco.FrescoImageLoader;
@@ -20,6 +22,10 @@ public class MyApp extends Application {
                         Stetho.defaultInspectorModulesProvider(getApplicationContext()))
                 .build());
 
-        BigImageViewer.initialize(FrescoImageLoader.with(getApplicationContext()));
+        ImagePipelineConfig config = ImagePipelineConfig.newBuilder(getApplicationContext())
+                .setDownsampleEnabled(true)
+                .setBitmapsConfig(Bitmap.Config.RGB_565)
+                .build();
+        BigImageViewer.initialize(FrescoImageLoader.with(getApplicationContext(), config));
     }
 }

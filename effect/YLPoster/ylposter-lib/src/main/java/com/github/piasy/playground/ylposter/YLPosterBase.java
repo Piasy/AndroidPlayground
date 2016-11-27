@@ -16,12 +16,19 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.controller.AbstractDraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.common.ResizeOptions;
+import com.facebook.imagepipeline.common.RotationOptions;
+import com.facebook.imagepipeline.request.ImageRequest;
+import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.github.piasy.biv.view.BigImageView;
 
 import static butterknife.ButterKnife.findById;
@@ -36,8 +43,11 @@ public abstract class YLPosterBase extends FrameLayout {
     private static final int MODE_DISPLAY = 0;
     private static final int MODE_PREVIEW = 1;
     private static final int MODE_EDIT = 2;
+
     private final Resources mResources;
     private final int mMode;
+    private final int mDesiredWidth;
+    private final int mDesiredHeight;
 
     private float mRatio;
     private ChangeBgListener mChangeBgListener;
@@ -92,6 +102,8 @@ public abstract class YLPosterBase extends FrameLayout {
         LayoutInflater.from(context).inflate(content(), this, true);
         bindView();
         mResources = getResources();
+        mDesiredWidth = mResources.getDimensionPixelSize(R.dimen.poster_width);
+        mDesiredHeight = mResources.getDimensionPixelSize(R.dimen.poster_height);
 
         initView();
 
@@ -103,6 +115,19 @@ public abstract class YLPosterBase extends FrameLayout {
             }
         }, 50);
         setVisibility(INVISIBLE);
+    }
+
+    private static void loadWithSize(SimpleDraweeView draweeView, Uri uri, int width, int height) {
+        ImageRequest request = ImageRequestBuilder.newBuilderWithSource(uri)
+                .setResizeOptions(new ResizeOptions(width, height))
+                .setProgressiveRenderingEnabled(true)
+                .setRotationOptions(RotationOptions.autoRotate())
+                .build();
+        AbstractDraweeController controller = Fresco.newDraweeControllerBuilder()
+                .setImageRequest(request)
+                .setAutoPlayAnimations(true)
+                .build();
+        draweeView.setController(controller);
     }
 
     @CallSuper
@@ -152,6 +177,11 @@ public abstract class YLPosterBase extends FrameLayout {
         }
     }
 
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        return mMode != MODE_EDIT;
+    }
+
     public void setChangeBgListener(ChangeBgListener changeBgListener) {
         mChangeBgListener = changeBgListener;
     }
@@ -161,7 +191,7 @@ public abstract class YLPosterBase extends FrameLayout {
         if (mPosterEditBg != null) {
             mPosterEditBg.showImage(uri);
         } else if (mPosterViewBg != null) {
-            mPosterViewBg.setImageURI(uri);
+            loadWithSize(mPosterViewBg, uri, mDesiredWidth, mDesiredHeight);
         }
     }
 
@@ -189,7 +219,7 @@ public abstract class YLPosterBase extends FrameLayout {
                 .title(mEtTitle.getText().toString())
                 .desc(mEtDesc.getText().toString())
                 .slogan(mEtSlogan.getText().toString())
-                .bg(mMode == MODE_EDIT ? mCurrentBg.toString() : "")
+                .bg(mCurrentBg != null ? mCurrentBg.toString() : "")
                 .build();
     }
 
@@ -198,15 +228,19 @@ public abstract class YLPosterBase extends FrameLayout {
         mDescEditHint.setVisibility(View.GONE);
         mChangePosterBg.setVisibility(View.GONE);
         mSloganEditHint.setVisibility(View.GONE);
+
         mEtTitle.setBackground(null);
         mEtTitle.setCursorVisible(false);
         mEtTitle.setEnabled(false);
+
         mEtDesc.setBackground(null);
         mEtDesc.setCursorVisible(false);
         mEtDesc.setEnabled(false);
+
         mEtSlogan.setBackground(null);
         mEtSlogan.setCursorVisible(false);
         mEtSlogan.setEnabled(false);
+
         if (TextUtils.isEmpty(mEtDesc.getText())) {
             mEtDesc.setVisibility(View.GONE);
         }
@@ -231,11 +265,9 @@ public abstract class YLPosterBase extends FrameLayout {
     private void adjustSize() {
         int desiredWidth = getWidth();
         int desiredHeight = getHeight();
-        int width = mResources.getDimensionPixelSize(R.dimen.poster_width);
-        int height = mResources.getDimensionPixelSize(R.dimen.poster_height);
-        float ratioW = (float) desiredWidth / width;
-        float ratioH = (float) desiredHeight / height;
-        mRatio = (float) width / height;
+        float ratioW = (float) desiredWidth / mDesiredWidth;
+        float ratioH = (float) desiredHeight / mDesiredHeight;
+        mRatio = (float) mDesiredWidth / mDesiredHeight;
 
         ViewGroup.LayoutParams params = getLayoutParams();
         if (ratioW > ratioH) {
@@ -274,10 +306,8 @@ public abstract class YLPosterBase extends FrameLayout {
             mEtSlogan.setText(prevState.slogan());
         }
 
-        if (mPosterEditBg != null) {
-            mPosterEditBg.showImage(Uri.parse(prevState.bg()));
-        } else if (mPosterViewBg != null) {
-            mPosterViewBg.setImageURI(Uri.parse(prevState.bg()));
+        if (!TextUtils.isEmpty(prevState.bg())) {
+            showBg(Uri.parse(prevState.bg()));
         }
     }
 

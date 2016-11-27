@@ -30,16 +30,16 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
+    @OnClick(R2.id.mPreview)
+    public void snowPreview() {
+        sIsSnow = true;
+        startActivity(new Intent(this, PreviewActivity.class));
+    }
+
     @OnClick(R2.id.mSnowEdit)
     public void snowEdit() {
         sIsSnow = true;
         startActivity(new Intent(this, EditActivity.class));
-    }
-
-    @OnClick(R2.id.mSnowPreview)
-    public void snowPreview() {
-        sIsSnow = true;
-        startActivity(new Intent(this, PreviewActivity.class));
     }
 
     @OnClick(R2.id.mSnowDisplay)
@@ -52,12 +52,6 @@ public class MainActivity extends AppCompatActivity {
     public void adhereEdit() {
         sIsSnow = false;
         startActivity(new Intent(this, EditActivity.class));
-    }
-
-    @OnClick(R2.id.mAdherePreview)
-    public void adherePreview() {
-        sIsSnow = false;
-        startActivity(new Intent(this, PreviewActivity.class));
     }
 
     @OnClick(R2.id.mAdhereDisplay)
