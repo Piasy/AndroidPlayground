@@ -2,10 +2,9 @@
 <com.facebook.drawee.view.SimpleDraweeView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/mPosterViewBg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:actualImageScaleType="centerCrop"
-        tools:placeholderImage="@drawable/ic_qr_code"
+        app:roundedCornerRadius="@dimen/poster_round_corner_radius"
         />

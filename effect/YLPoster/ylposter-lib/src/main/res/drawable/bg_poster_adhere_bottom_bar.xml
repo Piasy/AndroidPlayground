@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
-        android:shape="rectangle">
-    <solid android:color="#FFFFE575"/>
+        android:shape="rectangle"
+        >
+    <solid android:color="@color/yolo_yellow"/>
     <corners
             android:bottomLeftRadius="@dimen/poster_round_corner_radius"
             android:bottomRightRadius="@dimen/poster_round_corner_radius"

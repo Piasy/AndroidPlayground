@@ -6,6 +6,7 @@
         android:id="@+id/mPosterContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/bg_poster_adhere"
         >
 
     <ImageView
@@ -28,7 +29,7 @@
 
     <View
             android:id="@+id/mAdhereBg"
-            android:background="@drawable/bg_poster_adhere"
+            android:background="@drawable/bg_poster_adhere_bottom_bar"
             app:layout_bottom="100%"
             app:layout_height="37.84%"
             app:layout_width="100%"
@@ -44,7 +45,6 @@
             android:paddingLeft="3dp"
             android:paddingRight="3dp"
             android:singleLine="true"
-            tools:text="@string/poster_default_slogan"
             android:textColor="@color/dark_black"
             android:textSize="60sp"
             app:layout_height="8.38%"
@@ -53,6 +53,7 @@
             app:layout_top="63.75%"
             fontPath="fonts/zhanku-Condensed.ttf"
             tools:ignore="MissingPrefix"
+            tools:text="@string/poster_default_slogan"
             />
 
     <View
@@ -114,7 +115,6 @@
             android:id="@+id/mEtDesc"
             android:background="@drawable/dash_line_dark_black"
             android:gravity="left|top"
-            tools:hint="@string/poster_default_desc"
             android:textColor="@color/dark_black"
             android:textColorHint="@color/dark_black"
             android:textSize="@dimen/adhere_desc_text_size"
@@ -123,6 +123,7 @@
             app:layout_top="81.99%"
             app:layout_width="55.2%"
             fontPath="fonts/zhanku-Condensed.ttf"
+            tools:hint="@string/poster_default_desc"
             tools:ignore="MissingPrefix"
             />
 

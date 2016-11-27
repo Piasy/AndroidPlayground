@@ -14,6 +14,7 @@
     <dimen name="poster_item_margin">10dp</dimen>
     <dimen name="poster_pager_margin_top">72dp</dimen>
     <dimen name="poster_pager_margin_bottom">93dp</dimen>
+    <dimen name="poster_round_corner_radius">6dp</dimen>
 
     <dimen name="snow_title_text_size">40sp</dimen>
     <dimen name="snow_yolo_id_text_size">12sp</dimen>
