@@ -117,7 +117,7 @@ public abstract class YLPosterBase extends FrameLayout {
         setVisibility(INVISIBLE);
     }
 
-    private static void loadWithSize(SimpleDraweeView draweeView, Uri uri, int width, int height) {
+    static void loadWithSize(SimpleDraweeView draweeView, Uri uri, int width, int height) {
         ImageRequest request = ImageRequestBuilder.newBuilderWithSource(uri)
                 .setResizeOptions(new ResizeOptions(width, height))
                 .setProgressiveRenderingEnabled(true)

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,8 +9,7 @@
         android:paddingRight="12.5dp"
         >
 
-    <com.github.piasy.playground.ylposter.YLPosterSnow
-            android:id="@+id/mPoster"
+    <com.github.piasy.playground.ylposter.YLPosterAdhere
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:mode="preview"

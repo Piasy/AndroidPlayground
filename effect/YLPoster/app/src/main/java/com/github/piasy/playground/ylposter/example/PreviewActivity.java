@@ -17,7 +17,10 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.github.piasy.playground.ylposter.PosterAdapter;
 import com.github.piasy.playground.ylposter.PosterState;
+import com.github.piasy.playground.ylposter.YLDefaultPoster;
+import com.github.piasy.playground.ylposter.YLPosterAdhere;
 import com.github.piasy.playground.ylposter.YLPosterBase;
+import com.github.piasy.playground.ylposter.YLPosterSnow;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import io.reactivex.functions.Consumer;
 import java.util.ArrayList;
@@ -27,10 +30,10 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class PreviewActivity extends AppCompatActivity {
 
     @BindView(R2.id.mViewPager)
-    ViewPager mViewPager;
+    ViewPager mPosterTemplates;
 
     private List<ViewGroup> mPosters = new ArrayList<>();
-    private int mSelectedPos;
+    private int mCurrentPoster;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,61 +42,53 @@ public class PreviewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_preview);
         ButterKnife.bind(this);
 
-        mViewPager.postDelayed(new Runnable() {
+        mPosterTemplates.postDelayed(new Runnable() {
             @Override
             public void run() {
-                fillViewPager();
+                populatePosters();
             }
         }, 100);
     }
 
-    /**
-     * 填充ViewPager
-     */
-    private void fillViewPager() {
-        ViewGroup posterContainer = (ViewGroup) LayoutInflater
-                .from(this)
-                .inflate(R.layout.preview_poster_snow, mViewPager, false)
+    private void populatePosters() {
+        String yoloId = "piasy";
+        String name = "Piasy";
+        String groupName = "Rxy weekly";
+        Uri groupAvatar = Uri.parse(
+                "http://yolo-debug.oss-cn-beijing.aliyuncs"
+                + ".com/group_headimgs/5e08e9ac-67b2-42ea-a1cc-8b90d533c660.png");
+        Uri mGroupQrCode = res2Uri(R.drawable.we_chat_mp_qrcode);
+        PosterState prevState = PosterState.read(getSharedPreferences("poster", MODE_PRIVATE),
+                MainActivity.DEFAULT_STATE);
+        Context context = this;
+
+        ViewGroup defaultPosterContainer = (ViewGroup) LayoutInflater
+                .from(context)
+                .inflate(R.layout.ui_group_poster_preview_item_default, mPosterTemplates, false)
                 .findViewById(R.id.mPosterContainer);
-        YLPosterBase poster = (YLPosterBase) posterContainer.getChildAt(0);
-        poster.showInfo("piasy", "Piasy", res2Uri(R.drawable.we_chat_mp_qrcode),
-                PosterState.read(getSharedPreferences("poster", MODE_PRIVATE),
-                        MainActivity.DEFAULT_STATE));
-        mPosters.add(posterContainer);
+        YLDefaultPoster defaultPoster = (YLDefaultPoster) defaultPosterContainer.getChildAt(0);
+        defaultPoster.showInfo(groupName, groupAvatar, mGroupQrCode);
+        mPosters.add(defaultPosterContainer);
 
-        posterContainer = (ViewGroup) LayoutInflater
-                .from(this)
-                .inflate(R.layout.preview_poster_adhere, mViewPager, false)
+        ViewGroup snowContainer = (ViewGroup) LayoutInflater
+                .from(context)
+                .inflate(R.layout.ui_group_poster_preview_item_snow, mPosterTemplates, false)
                 .findViewById(R.id.mPosterContainer);
-        poster = (YLPosterBase) posterContainer.getChildAt(0);
-        poster.showInfo("piasy", "Piasy", res2Uri(R.drawable.we_chat_mp_qrcode),
-                PosterState.read(getSharedPreferences("poster", MODE_PRIVATE),
-                        MainActivity.DEFAULT_STATE));
-        mPosters.add(posterContainer);
+        YLPosterSnow snow = (YLPosterSnow) snowContainer.getChildAt(0);
+        snow.showInfo(yoloId, name, mGroupQrCode, prevState);
+        mPosters.add(snowContainer);
 
-        posterContainer = (ViewGroup) LayoutInflater
-                .from(this)
-                .inflate(R.layout.preview_poster_snow, mViewPager, false)
+        ViewGroup adhereContainer = (ViewGroup) LayoutInflater
+                .from(context)
+                .inflate(R.layout.ui_group_poster_preview_item_adhere, mPosterTemplates, false)
                 .findViewById(R.id.mPosterContainer);
-        poster = (YLPosterBase) posterContainer.getChildAt(0);
-        poster.showInfo("piasy", "Piasy", res2Uri(R.drawable.we_chat_mp_qrcode),
-                PosterState.read(getSharedPreferences("poster", MODE_PRIVATE),
-                        MainActivity.DEFAULT_STATE));
-        mPosters.add(posterContainer);
+        YLPosterAdhere adhere = (YLPosterAdhere) adhereContainer.getChildAt(0);
+        adhere.showInfo(yoloId, name, mGroupQrCode, prevState);
+        mPosters.add(adhereContainer);
 
-        posterContainer = (ViewGroup) LayoutInflater
-                .from(this)
-                .inflate(R.layout.preview_poster_adhere, mViewPager, false)
-                .findViewById(R.id.mPosterContainer);
-        poster = (YLPosterBase) posterContainer.getChildAt(0);
-        poster.showInfo("piasy", "Piasy", res2Uri(R.drawable.we_chat_mp_qrcode),
-                PosterState.read(getSharedPreferences("poster", MODE_PRIVATE),
-                        MainActivity.DEFAULT_STATE));
-        mPosters.add(posterContainer);
+        mPosterTemplates.setAdapter(new PosterAdapter(mPosters));
 
-        mViewPager.setAdapter(new PosterAdapter(mPosters));
-
-        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        mPosterTemplates.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset,
                     int positionOffsetPixels) {
@@ -101,15 +96,14 @@ public class PreviewActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-                mSelectedPos = position;
+                mCurrentPoster = position;
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
-
             }
         });
-        mViewPager.setCurrentItem(1);
+        mPosterTemplates.setCurrentItem(1);
     }
 
     @OnClick(R2.id.mSave)
@@ -127,7 +121,7 @@ public class PreviewActivity extends AppCompatActivity {
     }
 
     private void doSave() {
-        YLPosterBase poster = (YLPosterBase) mPosters.get(mSelectedPos).getChildAt(0);
+        YLPosterBase poster = (YLPosterBase) mPosters.get(mCurrentPoster).getChildAt(0);
         poster.startSave(getSharedPreferences("poster", MODE_PRIVATE));
 
         poster.setDrawingCacheEnabled(true);

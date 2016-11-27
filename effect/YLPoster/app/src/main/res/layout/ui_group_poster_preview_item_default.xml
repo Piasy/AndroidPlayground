@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/mPosterContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="12.5dp"
+        android:paddingRight="12.5dp"
+        >
+
+    <com.github.piasy.playground.ylposter.YLDefaultPoster
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+</FrameLayout>

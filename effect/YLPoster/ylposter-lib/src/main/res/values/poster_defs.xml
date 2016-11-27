@@ -27,6 +27,7 @@
 
 
     <string name="poster_qr_code_scan_tip">扫码加入直播群</string>
+    <string name="group_qr_scan_tip">保存图片后，用YOLO扫二维码即可入群</string>
     <string name="poster_default_desc">介绍一下本群或群主，吸引更多人加入</string>
     <string name="poster_default_slogan">优秀是一种习惯</string>
     <string formatted="false" name="poster_yolo_id_snow_formatter">YOLO ID:\n%s</string>
