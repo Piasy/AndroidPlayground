@@ -30,7 +30,7 @@
             android:textColorHint="@android:color/white"
             android:textSize="@dimen/snow_title_text_size"
             app:layout_height="6.64%"
-            app:layout_left="7.2%"
+            app:layout_left="8%"
             app:layout_top="25.15%"
             app:layout_width="63.06%"
             fontPath="fonts/zhanku-Condensed.ttf"
@@ -51,9 +51,13 @@
             android:id="@+id/mTvYoloId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:shadowColor="@color/black_transparent_20"
+            android:shadowDx="0.5"
+            android:shadowDy="1.5"
+            android:shadowRadius="1.5"
             android:textColor="@android:color/white"
             android:textSize="@dimen/snow_yolo_id_text_size"
-            app:layout_left="7.5%"
+            app:layout_left="8%"
             app:layout_top="31.95%"
             tools:text="YOLO ID:\n 123456"
             />
@@ -62,7 +66,6 @@
             android:id="@+id/mEtDesc"
             android:background="@drawable/dash_line_yolo_yellow"
             android:gravity="left|top"
-            tools:hint="@string/poster_default_desc"
             android:shadowColor="@color/black_transparent_20"
             android:shadowDx="0.5"
             android:shadowDy="1.5"
@@ -71,10 +74,11 @@
             android:textColorHint="@android:color/white"
             android:textSize="@dimen/snow_desc_text_size"
             app:layout_height="24.9%"
-            app:layout_left="7.2%"
+            app:layout_left="8%"
             app:layout_top="38.76%"
             app:layout_width="45.32%"
             fontPath="fonts/zhanku-Condensed.ttf"
+            tools:hint="@string/poster_default_desc"
             tools:ignore="MissingPrefix"
             />
 
@@ -103,13 +107,17 @@
             app:layout_left="8.53%"
             app:layout_top="68.63%"
             app:layout_width="this.height"
-            tools:placeholderImage="@drawable/ic_qr_code"
+            app:overlayImage="@drawable/qr_code_overlay"
             />
 
     <TextView
             android:id="@+id/mScanQrCodeHint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:shadowColor="@color/black_transparent_20"
+            android:shadowDx="0.5"
+            android:shadowDy="1.5"
+            android:shadowRadius="1.5"
             android:text="@string/poster_qr_code_scan_tip"
             android:textColor="@color/white_transparent_75"
             android:textSize="@dimen/snow_qr_code_scan_text_size"
@@ -122,7 +130,7 @@
             android:background="@drawable/dash_line_yolo_yellow"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:isScrollContainer="false"
             android:paddingLeft="3dp"
             android:paddingRight="3dp"
@@ -131,7 +139,6 @@
             android:shadowDy="1.5"
             android:shadowRadius="1.5"
             android:singleLine="true"
-            tools:text="@string/poster_default_slogan"
             android:textColor="@android:color/white"
             android:textSize="60sp"
             app:layout_bottom="96.35%"
@@ -140,6 +147,7 @@
             app:layout_right="92%"
             fontPath="fonts/zhanku-Condensed.ttf"
             tools:ignore="MissingPrefix"
+            tools:text="@string/poster_default_slogan"
             />
 
     <View

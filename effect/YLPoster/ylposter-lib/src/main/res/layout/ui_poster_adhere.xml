@@ -40,10 +40,8 @@
             android:background="@drawable/dash_line_dark_black"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:isScrollContainer="false"
-            android:paddingLeft="3dp"
-            android:paddingRight="3dp"
             android:singleLine="true"
             android:textColor="@color/dark_black"
             android:textSize="60sp"
@@ -75,7 +73,7 @@
             android:textSize="@dimen/adhere_title_text_size"
             app:layout_height="5.15%"
             app:layout_left="6%"
-            app:layout_top="73.5%"
+            app:layout_top="72.5%"
             app:layout_width="63.07%"
             fontPath="fonts/zhanku-Condensed.ttf"
             tools:ignore="MissingPrefix"
@@ -88,8 +86,8 @@
             android:layout_height="wrap_content"
             android:textColor="@color/dark_black"
             android:textSize="@dimen/snow_yolo_id_text_size"
-            app:layout_left="7.5%"
-            app:layout_top="79%"
+            app:layout_left="6.8%"
+            app:layout_top="77.5%"
             tools:text="YOLO ID: 123456"
             />
 
@@ -120,18 +118,16 @@
             android:textSize="@dimen/adhere_desc_text_size"
             app:layout_height="13.36%"
             app:layout_left="6%"
-            app:layout_top="81.99%"
+            app:layout_top="80.99%"
             app:layout_width="55.2%"
-            fontPath="fonts/zhanku-Condensed.ttf"
             tools:hint="@string/poster_default_desc"
-            tools:ignore="MissingPrefix"
             />
 
     <ImageView
             android:id="@+id/mYoloLogo2"
             android:src="@drawable/ic_edit_group_yolo_logo_adhere2"
             app:layout_height="2.32%"
-            app:layout_left="7.07%"
+            app:layout_left="6%"
             app:layout_top="95.68%"
             app:layout_width="22.8%"
             />
@@ -143,7 +139,7 @@
             app:layout_right="96%"
             app:layout_top="80%"
             app:layout_width="this.height"
-            tools:placeholderImage="@drawable/ic_qr_code"
+            app:overlayImage="@drawable/qr_code_overlay"
             />
 
     <TextView
@@ -153,7 +149,7 @@
             android:text="@string/poster_qr_code_scan_tip"
             android:textColor="@color/dark_black"
             android:textSize="@dimen/adhere_qr_code_scan_text_size"
-            app:layout_centerX="85%"
+            app:layout_centerX="84%"
             app:layout_top="95.68%"
             />
 </com.github.mmin18.widget.FlexLayout>

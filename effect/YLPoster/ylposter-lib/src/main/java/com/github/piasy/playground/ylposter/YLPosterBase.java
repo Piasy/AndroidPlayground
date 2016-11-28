@@ -30,6 +30,7 @@ import com.facebook.imagepipeline.common.RotationOptions;
 import com.facebook.imagepipeline.request.ImageRequest;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.github.piasy.biv.view.BigImageView;
+import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil;
 
 import static butterknife.ButterKnife.findById;
 
@@ -173,6 +174,14 @@ public abstract class YLPosterBase extends FrameLayout {
                 break;
             case MODE_EDIT:
             default:
+                mPosterEditBg.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        UIUtil.hideKeyboard(getContext(), mEtTitle);
+                        UIUtil.hideKeyboard(getContext(), mEtDesc);
+                        UIUtil.hideKeyboard(getContext(), mEtSlogan);
+                    }
+                });
                 break;
         }
     }
