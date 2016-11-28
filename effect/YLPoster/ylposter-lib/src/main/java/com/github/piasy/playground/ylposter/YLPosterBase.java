@@ -68,6 +68,7 @@ public abstract class YLPosterBase extends FrameLayout {
     private View mChangePosterBg;
 
     private SimpleDraweeView mQrCode;
+    private View mQrCodeBorder;
     private TextView mScanQrCodeHint;
 
     private EditText mEtSlogan;
@@ -155,6 +156,7 @@ public abstract class YLPosterBase extends FrameLayout {
         });
 
         mQrCode = findById(this, R.id.mQrCode);
+        mQrCodeBorder = findById(this, R.id.mQrCodeBorder);
         mScanQrCodeHint = findById(this, R.id.mScanQrCodeHint);
 
         mEtSlogan = findById(this, R.id.mEtSlogan);
@@ -209,12 +211,14 @@ public abstract class YLPosterBase extends FrameLayout {
             case MODE_PREVIEW:
                 mTvYoloId.setVisibility(GONE);
                 mQrCode.setVisibility(GONE);
+                mQrCodeBorder.setVisibility(GONE);
                 break;
             case MODE_EDIT:
                 hideEditable();
 
                 mTvYoloId.setVisibility(GONE);
                 mQrCode.setVisibility(GONE);
+                mQrCodeBorder.setVisibility(GONE);
                 break;
             case MODE_DISPLAY:
             default:

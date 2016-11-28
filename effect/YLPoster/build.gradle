@@ -37,6 +37,6 @@ ext {
     artifactName = 'YLPoster'
     artifactDescription = 'Poster for YOLO group.'
     artifactLabels = ['poster']
-    releaseVersionCode = 11
-    releaseVersionName = '1.1.3'
+    releaseVersionCode = 12
+    releaseVersionName = '1.1.4'
 }

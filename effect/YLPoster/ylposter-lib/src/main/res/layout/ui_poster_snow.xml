@@ -107,7 +107,14 @@
             app:layout_left="8.53%"
             app:layout_top="68.63%"
             app:layout_width="this.height"
-            app:overlayImage="@drawable/qr_code_overlay"
+            />
+    <View
+            android:id="@+id/mQrCodeBorder"
+            android:background="@drawable/qr_code_overlay"
+            app:layout_centerX="prev.centerX"
+            app:layout_centerY="prev.centerY"
+            app:layout_height="prev.height + 4dp"
+            app:layout_width="prev.width + 4dp"
             />
 
     <TextView
