@@ -2,11 +2,8 @@ package com.github.piasy.playground.ylposter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.net.Uri;
-import android.os.Handler;
-import android.os.Looper;
 import android.support.annotation.CallSuper;
 import android.support.annotation.DimenRes;
 import android.support.annotation.LayoutRes;
@@ -18,9 +15,7 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.controller.AbstractDraweeController;
@@ -38,17 +33,14 @@ import static butterknife.ButterKnife.findById;
  * Created by Piasy{github.com/Piasy} on 24/11/2016.
  */
 
-public abstract class YLPosterBase extends FrameLayout {
+public abstract class YLPosterBase extends YLPoster {
 
     private static final int MAX_YOLO_ID_SHOW_LENGTH = 20;
     private static final int MODE_DISPLAY = 0;
     private static final int MODE_PREVIEW = 1;
     private static final int MODE_EDIT = 2;
 
-    private final Resources mResources;
     private final int mMode;
-    private final int mDesiredWidth;
-    private final int mDesiredHeight;
 
     private ChangeBgListener mChangeBgListener;
     private Uri mCurrentBg;
@@ -101,21 +93,9 @@ public abstract class YLPosterBase extends FrameLayout {
         }
 
         LayoutInflater.from(context).inflate(content(), this, true);
+
         bindView();
-        mResources = getResources();
-        mDesiredWidth = mResources.getDimensionPixelSize(R.dimen.poster_width);
-        mDesiredHeight = mResources.getDimensionPixelSize(R.dimen.poster_height);
-
         initView();
-
-        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                adjustSize();
-                setVisibility(VISIBLE);
-            }
-        }, 50);
-        setVisibility(INVISIBLE);
     }
 
     static void loadWithSize(SimpleDraweeView draweeView, Uri uri, int width, int height) {
@@ -274,30 +254,19 @@ public abstract class YLPosterBase extends FrameLayout {
         mScanQrCodeHint.setVisibility(View.GONE);
     }
 
-    private void adjustSize() {
-        int width = getWidth();
-        int height = getHeight();
-        float ratioW = (float) width / mDesiredWidth;
-        float ratioH = (float) height / mDesiredHeight;
-        float ratio = (float) mDesiredWidth / mDesiredHeight;
-
-        float scale;
-        ViewGroup.LayoutParams params = getLayoutParams();
-        if (ratioW > ratioH) {
-            params.width = (int) (height * ratio);
-            params.height = height;
-            scale = (float) height / mDesiredHeight;
-        } else {
-            params.width = width;
-            params.height = (int) (width / ratio);
-            scale = (float) width / mDesiredWidth;
+    @Override
+    protected float adjustSize() {
+        float scale = super.adjustSize();
+        if (scale <= 0) {
+            return scale;
         }
-        setLayoutParams(params);
 
         adjustTextSize(mEtTitle, titleTextSize(), scale);
         adjustTextSize(mTvYoloId, yoloIdTextSize(), scale);
         adjustTextSize(mEtDesc, descTextSize(), scale);
         adjustTextSize(mScanQrCodeHint, qrCodeScanHintTextSize(), scale);
+
+        return scale;
     }
 
     public void showInfo(String yoloId, String name, Uri qrCode, PosterState prevState) {
@@ -327,7 +296,8 @@ public abstract class YLPosterBase extends FrameLayout {
     }
 
     private void adjustTextSize(TextView textView, @DimenRes int desired, float scale) {
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, mResources.getDimension(desired) * scale);
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_PX,
+                getResources().getDimension(desired) * scale);
     }
 
     @LayoutRes
