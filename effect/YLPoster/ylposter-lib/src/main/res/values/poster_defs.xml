@@ -17,14 +17,14 @@
     <dimen name="poster_round_corner_radius">6dp</dimen>
 
     <dimen name="snow_title_text_size">40sp</dimen>
-    <dimen name="snow_yolo_id_text_size">24sp</dimen>
-    <dimen name="snow_desc_text_size">40sp</dimen>
-    <dimen name="snow_qr_code_scan_text_size">20sp</dimen>
+    <dimen name="snow_yolo_id_text_size">12sp</dimen>
+    <dimen name="snow_desc_text_size">20sp</dimen>
+    <dimen name="snow_qr_code_scan_text_size">10sp</dimen>
 
-    <dimen name="adhere_title_text_size">31sp</dimen>
-    <dimen name="adhere_yolo_id_text_size">20sp</dimen>
-    <dimen name="adhere_desc_text_size">22sp</dimen>
-    <dimen name="adhere_qr_code_scan_text_size">20sp</dimen>
+    <dimen name="adhere_title_text_size">24sp</dimen>
+    <dimen name="adhere_yolo_id_text_size">10sp</dimen>
+    <dimen name="adhere_desc_text_size">11sp</dimen>
+    <dimen name="adhere_qr_code_scan_text_size">10sp</dimen>
 
 
     <string name="poster_qr_code_scan_tip">扫码加入直播群</string>

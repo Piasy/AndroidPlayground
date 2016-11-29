@@ -50,7 +50,6 @@ public abstract class YLPosterBase extends FrameLayout {
     private final int mDesiredWidth;
     private final int mDesiredHeight;
 
-    private float mRatio;
     private ChangeBgListener mChangeBgListener;
     private Uri mCurrentBg;
 
@@ -276,26 +275,29 @@ public abstract class YLPosterBase extends FrameLayout {
     }
 
     private void adjustSize() {
-        int desiredWidth = getWidth();
-        int desiredHeight = getHeight();
-        float ratioW = (float) desiredWidth / mDesiredWidth;
-        float ratioH = (float) desiredHeight / mDesiredHeight;
-        mRatio = (float) mDesiredWidth / mDesiredHeight;
+        int width = getWidth();
+        int height = getHeight();
+        float ratioW = (float) width / mDesiredWidth;
+        float ratioH = (float) height / mDesiredHeight;
+        float ratio = (float) mDesiredWidth / mDesiredHeight;
 
+        float scale;
         ViewGroup.LayoutParams params = getLayoutParams();
         if (ratioW > ratioH) {
-            params.width = (int) (desiredHeight * mRatio);
-            params.height = desiredHeight;
+            params.width = (int) (height * ratio);
+            params.height = height;
+            scale = (float) height / mDesiredHeight;
         } else {
-            params.width = desiredWidth;
-            params.height = (int) (desiredWidth / mRatio);
+            params.width = width;
+            params.height = (int) (width / ratio);
+            scale = (float) width / mDesiredWidth;
         }
         setLayoutParams(params);
 
-        adjustTextSize(mEtTitle, titleTextSize());
-        adjustTextSize(mTvYoloId, yoloIdTextSize());
-        adjustTextSize(mEtDesc, descTextSize());
-        adjustTextSize(mScanQrCodeHint, qrCodeScanHintTextSize());
+        adjustTextSize(mEtTitle, titleTextSize(), scale);
+        adjustTextSize(mTvYoloId, yoloIdTextSize(), scale);
+        adjustTextSize(mEtDesc, descTextSize(), scale);
+        adjustTextSize(mScanQrCodeHint, qrCodeScanHintTextSize(), scale);
     }
 
     public void showInfo(String yoloId, String name, Uri qrCode, PosterState prevState) {
@@ -324,8 +326,8 @@ public abstract class YLPosterBase extends FrameLayout {
         }
     }
 
-    private void adjustTextSize(TextView textView, @DimenRes int desired) {
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, mResources.getDimension(desired) * mRatio);
+    private void adjustTextSize(TextView textView, @DimenRes int desired, float scale) {
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, mResources.getDimension(desired) * scale);
     }
 
     @LayoutRes

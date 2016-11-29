@@ -57,7 +57,7 @@
             android:shadowRadius="1.5"
             android:textColor="@android:color/white"
             android:textSize="@dimen/snow_yolo_id_text_size"
-            app:layout_left="8%"
+            app:layout_left="8.5%"
             app:layout_top="31.95%"
             tools:text="YOLO ID:\n 123456"
             />
@@ -113,7 +113,7 @@
             android:id="@+id/mQrCode"
             app:actualImageScaleType="centerCrop"
             app:layout_height="14.94%"
-            app:layout_left="8.53%"
+            app:layout_left="9%"
             app:layout_top="68.63%"
             app:layout_width="this.height"
             />
@@ -130,7 +130,7 @@
             android:textColor="@color/white_transparent_75"
             android:textSize="@dimen/snow_qr_code_scan_text_size"
             app:layout_centerX="20%"
-            app:layout_top="84.32%"
+            app:layout_top="85%"
             />
 
     <com.autofit.et.lib.AutoFitEditText
