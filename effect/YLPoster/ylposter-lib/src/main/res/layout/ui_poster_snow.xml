@@ -100,18 +100,11 @@
             app:layout_top="53.28%"
             />
 
-    <View
-            android:id="@+id/mQrCodeBorder"
-            android:background="@drawable/qr_code_overlay"
-            app:layout_centerX="next.centerX"
-            app:layout_centerY="next.centerY"
-            app:layout_height="next.height + 10dp"
-            app:layout_width="next.width + 10dp"
-            />
+    <include layout="@layout/ui_qr_code_border"/>
 
     <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/mQrCode"
-            app:actualImageScaleType="centerCrop"
+            app:actualImageScaleType="fitXY"
             app:layout_height="14.94%"
             app:layout_left="9%"
             app:layout_top="68.63%"
