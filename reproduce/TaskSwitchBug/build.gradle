@@ -1,0 +1,22 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+apply from: '../../config.gradle'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        apply from: '../../config.gradle'
+
+        classpath "com.android.tools.build:gradle:$gradleAndroidVersion"
+        classpath "com.jakewharton:butterknife-gradle-plugin:$butterKnifeVersion"
+
+        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:$androidBintrayVersion"
+        classpath "com.github.dcendents:android-maven-gradle-plugin:$androidMavenVersion"
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
