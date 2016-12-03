@@ -31,7 +31,7 @@ dependencies {
     compile 'uk.co.chrisjenx:calligraphy:2.2.0'
     compile 'com.github.ViksaaSkool:AutoFitEditText:53238e2d29'
     compile 'com.github.mmin18:flexlayout:1.2.4'
-    compile 'com.github.piasy:BigImageViewer:1.2.0'
-    compile 'com.github.piasy:FrescoImageLoader:1.2.0'
+    compile 'com.github.piasy:BigImageViewer:1.2.3'
+    compile 'com.github.piasy:FrescoImageLoader:1.2.3'
     compile 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:2.0.0'
 }

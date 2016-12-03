@@ -7,10 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.github.piasy.playground.ylposter.PosterState;
+import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
 
-    static final Uri URI = Uri.parse("http://192.168.25.62:8000/WechatIMG18.jpg");
+    static final Uri URI = Uri.fromFile(new File("/sdcard/DCIM/WechatIMG1200.jpeg"));
     static final Uri POSTER_URI = Uri.parse("http://192.168.1.113:8000/5.jpg");
     static final Uri POSTER_URI_ADHERE = Uri.parse("http://192.168.1.113:8000/6.jpg");
     static final PosterState DEFAULT_STATE = PosterState.builder()
