@@ -22,48 +22,51 @@
   ~ SOFTWARE.
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:background="@android:color/transparent"
-              tools:context="com.github.piasy.multiplefragmentlayerdemo.OverlayFragment"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:orientation="vertical"
+        tools:context="com.github.piasy.multiplefragmentlayerdemo.OverlayFragment"
         >
 
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="140dp"
             android:text="@string/hello_blank_fragment"
-            android:textSize="30sp"
             android:textColor="@android:color/white"
+            android:textSize="30sp"
             />
 
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="80dp"
             android:text="@string/hello_blank_fragment"
-            android:textSize="30sp"
             android:textColor="@android:color/white"
+            android:textSize="30sp"
             />
 
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="20dp"
             android:text="@string/hello_blank_fragment"
-            android:textSize="30sp"
             android:textColor="@android:color/white"
+            android:textSize="30sp"
             />
 
     <Button
             android:id="@+id/mBtnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_gravity="bottom"
             android:text="click"
             android:textColor="@android:color/white"
             />
-</LinearLayout>
+</FrameLayout>

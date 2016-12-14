@@ -34,11 +34,11 @@ allprojects {
 }
 
 ext {
-   androidCompileSdkVersion = 24
-   androidBuildToolsVersion = '25.0.0'
+   androidCompileSdkVersion = 25
+   androidBuildToolsVersion = '25.0.2'
    androidSupportSdkVersion = '25.0.1'
    minSdkVersion = 16
-   targetSdkVersion = 24
+   targetSdkVersion = 25
 
    releaseVersionCode = 1
    releaseVersionName = '1.0.0'

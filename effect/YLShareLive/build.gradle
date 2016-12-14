@@ -1,0 +1,37 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+apply from: '../../config.gradle'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        apply from: '../../config.gradle'
+
+        classpath "com.android.tools.build:gradle:$gradleAndroidVersion"
+
+        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:$androidBintrayVersion"
+        classpath "com.github.dcendents:android-maven-gradle-plugin:$androidMavenVersion"
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext {
+    userName = 'Piasy'
+    developer = [id   : 'piasy',
+                 name : 'piasy',
+                 email: 'xz4215@gmail.com']
+    license = [id  : 'MIT',
+               name: 'The MIT License (MIT)',
+               url : 'http://opensource.org/licenses/MIT']
+    groupName = 'com.github.piasy'
+    artifactName = 'YLShareLive'
+    artifactDescription = 'Share Live for YOLO.'
+    artifactLabels = ['share']
+    releaseVersionCode = 1
+    releaseVersionName = '1.0.0'
+}

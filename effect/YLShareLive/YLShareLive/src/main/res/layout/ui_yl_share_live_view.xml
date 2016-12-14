@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/yl_share_live_view_default_height"
+        android:background="@drawable/bg_yl_share_live_view"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        >
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/yl_share_live_view_padding"
+            android:text="@string/yl_share_live_view_label"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            />
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            >
+        <RadioButton
+                android:id="@+id/mSelectedPlatform"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/yl_share_live_view_padding"
+                android:button="@null"
+                android:enabled="false"
+                android:visibility="gone"
+                tools:background="@drawable/bg_yl_share_live_view_platform_we_chat_checked"
+                tools:visibility="visible"
+                />
+
+        <RadioGroup
+                android:id="@+id/mPlatforms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/yl_share_live_view_padding"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                tools:visibility="visible"
+                >
+
+            <RadioButton
+                    android:id="@+id/mPlatformWeChat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/yl_share_live_view_platforms_margin_between"
+                    android:background="@drawable/bg_yl_share_live_view_platform_we_chat_selector"
+                    android:button="@null"
+                    />
+
+            <RadioButton
+                    android:id="@+id/mPlatformWeChatMoments"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/yl_share_live_view_platforms_margin_between"
+                    android:background="@drawable/bg_yl_share_live_view_platform_we_chat_moments_selector"
+                    android:button="@null"
+                    />
+
+            <RadioButton
+                    android:id="@+id/mPlatformWeibo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/yl_share_live_view_platforms_margin_between"
+                    android:background="@drawable/bg_yl_share_live_view_platform_weibo_selector"
+                    android:button="@null"
+                    />
+
+            <RadioButton
+                    android:id="@+id/mPlatformQQ"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/yl_share_live_view_platforms_margin_between"
+                    android:background="@drawable/bg_yl_share_live_view_platform_qq_selector"
+                    android:button="@null"
+                    />
+
+            <RadioButton
+                    android:id="@+id/mPlatformQzone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_yl_share_live_view_platform_qzone_selector"
+                    android:button="@null"
+                    />
+        </RadioGroup>
+
+        <ImageButton
+                android:id="@+id/mIndicator"
+                android:layout_width="@dimen/yl_share_live_view_indicator_width"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:src="@drawable/ic_yl_share_live_view_arrow_right"
+                />
+    </LinearLayout>
+</merge>
