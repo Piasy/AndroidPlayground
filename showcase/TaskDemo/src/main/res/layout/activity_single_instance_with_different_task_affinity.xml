@@ -28,6 +28,13 @@
             />
 
     <Button
+            android:id="@+id/mSingleTaskWithoutTaskAff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="mSingleTaskWithoutTaskAff"
+            />
+
+    <Button
             android:id="@+id/mSingleTaskWithDiffTaskAff"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

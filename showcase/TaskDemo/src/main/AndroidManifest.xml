@@ -89,18 +89,18 @@
         </activity>
         <activity
                 android:name=".launch_mode.SingleInstanceWithoutTaskAffinity"
-                android:launchMode="singleTask"
+                android:launchMode="singleInstance"
                 >
         </activity>
         <activity
                 android:name=".launch_mode.SingleInstanceWithSameTaskAffinity"
-                android:launchMode="singleTask"
+                android:launchMode="singleInstance"
                 android:taskAffinity="com.github.piasy.taskdemo"
                 >
         </activity>
         <activity
                 android:name=".launch_mode.SingleInstanceWithDifferentTaskAffinity"
-                android:launchMode="singleTask"
+                android:launchMode="singleInstance"
                 android:taskAffinity="com.github.piasy.taskdemo.another"
                 >
         </activity>

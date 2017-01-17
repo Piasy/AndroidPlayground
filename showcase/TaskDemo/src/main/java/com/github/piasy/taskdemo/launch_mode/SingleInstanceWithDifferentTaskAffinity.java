@@ -33,6 +33,14 @@ public class SingleInstanceWithDifferentTaskAffinity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.mSingleTaskWithoutTaskAff).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SingleInstanceWithDifferentTaskAffinity.this,
+                        SingleTaskWithoutTaskAffinity.class));
+            }
+        });
+
         findViewById(R.id.mSingleTaskWithDiffTaskAff).setOnClickListener(
                 new View.OnClickListener() {
                     @Override
