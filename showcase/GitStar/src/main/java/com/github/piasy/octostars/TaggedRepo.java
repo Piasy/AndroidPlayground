@@ -22,20 +22,31 @@
  * SOFTWARE.
  */
 
-package com.github.piasy.gitstar;
+package com.github.piasy.octostars;
 
-import com.github.piasy.yamvp.dagger2.ActivityScope;
-import com.github.piasy.yamvp.rx.YaRxPresenter;
-import javax.inject.Inject;
+import android.os.Parcelable;
+import com.google.auto.value.AutoValue;
 
 /**
- * Created by Piasy{github.com/Piasy} on 20/09/2016.
+ * Created by Piasy{github.com/Piasy} on 22/09/2016.
  */
 
-@ActivityScope
-public class StarsPresenter extends YaRxPresenter<StarsView> {
-    @Inject
-    StarsPresenter() {
-        super();
+@AutoValue
+abstract class TaggedRepo implements Parcelable {
+    static TaggedRepo create(String name, String desc, String owner, String htmlUrl, int starCount,
+            String tag) {
+        return new AutoValue_TaggedRepo(name, desc, owner, htmlUrl, starCount, tag);
     }
+
+    abstract String name();
+
+    abstract String description();
+
+    abstract String owner();
+
+    abstract String html_url();
+
+    abstract int stargazers_count();
+
+    abstract String tag();
 }

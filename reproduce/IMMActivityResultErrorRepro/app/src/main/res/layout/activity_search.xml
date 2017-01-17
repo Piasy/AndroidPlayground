@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+    <com.github.piasy.handywidgets.centertitlesidebuttonbar.CenterTitleSideButtonBar
+            android:id="@+id/mTitleBar"
+            style="@style/LeftBackSearchTitleBar"
+            app:closeSearchViewText="cancel"
+            app:closeSearchViewId="@+id/mCloseSearchViewButton"
+            app:hasRightButton="false"
+            app:hasLeftButton="false"
+            app:rightButtonClickToSearch="false"
+            app:searchViewDefaultShown="true"
+            />
+
+    <Button
+            android:id="@+id/mBtnSendResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="send result"
+            />
+
+    <Button
+            android:id="@+id/mBtnSendResult2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="hide search and send result"
+            />
+</LinearLayout>

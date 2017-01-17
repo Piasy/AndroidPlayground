@@ -25,45 +25,154 @@
 package com.github.piasy.taskdemo;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import com.github.piasy.taskdemo.launch_mode.SimpleActivity;
+import com.github.piasy.taskdemo.launch_mode.SimpleWithDifferentTaskAffinity;
+import com.github.piasy.taskdemo.launch_mode.SingleInstanceWithDifferentTaskAffinity;
+import com.github.piasy.taskdemo.launch_mode.SingleInstanceWithSameTaskAffinity;
+import com.github.piasy.taskdemo.launch_mode.SingleInstanceWithoutTaskAffinity;
+import com.github.piasy.taskdemo.launch_mode.SingleTaskWithDifferentTaskAffinity;
+import com.github.piasy.taskdemo.launch_mode.SingleTaskWithDifferentTaskAffinity2;
+import com.github.piasy.taskdemo.launch_mode.SingleTaskWithSameTaskAffinity;
+import com.github.piasy.taskdemo.launch_mode.SingleTaskWithoutTaskAffinity;
+import com.github.piasy.taskdemo.launch_mode.SingleTop;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Log.d("TaskDemo", "Main onCreate");
+
         setContentView(R.layout.activity_main);
 
-        findViewById(R.id.mSimple).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.mSingleTop).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, SimpleActivity.class));
+                startActivity(new Intent(MainActivity.this, SingleTop.class));
             }
         });
 
-        findViewById(R.id.mSingleTask).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.mSingleTask1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, SingleTaskFirstActivity.class));
+                startActivity(new Intent(MainActivity.this, SingleTaskWithoutTaskAffinity.class));
             }
         });
 
         findViewById(R.id.mSingleTask2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, SingleTaskSecondActivity.class));
+                startActivity(new Intent(MainActivity.this, SingleTaskWithSameTaskAffinity.class));
             }
         });
 
-        findViewById(R.id.mNav).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.mSingleTask3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, NotifyActivity.class);
-                NotificationUtil.fireNotification(
-                        intent, MainActivity.this);
+                startActivity(
+                        new Intent(MainActivity.this, SingleTaskWithDifferentTaskAffinity.class));
             }
         });
+
+        findViewById(R.id.mSingleTask4).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(
+                        new Intent(MainActivity.this, SingleTaskWithDifferentTaskAffinity2.class));
+            }
+        });
+
+        findViewById(R.id.mSingleInstance1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(
+                        new Intent(MainActivity.this, SingleInstanceWithoutTaskAffinity.class));
+            }
+        });
+
+        findViewById(R.id.mSingleInstance2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(
+                        new Intent(MainActivity.this, SingleInstanceWithSameTaskAffinity.class));
+            }
+        });
+
+        findViewById(R.id.mSingleInstance3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(
+                        new Intent(MainActivity.this,
+                                SingleInstanceWithDifferentTaskAffinity.class));
+            }
+        });
+
+        findViewById(R.id.mFlagNewTask).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SimpleActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
+
+        findViewById(R.id.mFlagNewTask2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,
+                        SimpleWithDifferentTaskAffinity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
+
+        findViewById(R.id.mFlagNewTask3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SimpleActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        Log.d("TaskDemo", "Main onStart");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        Log.d("TaskDemo", "Main onStop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        Log.d("TaskDemo", "Main onDestroy");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        Log.d("TaskDemo", "Main onPause");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Log.d("TaskDemo", "Main onResume");
     }
 }

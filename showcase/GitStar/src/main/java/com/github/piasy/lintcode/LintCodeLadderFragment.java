@@ -34,7 +34,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import com.github.piasy.gitstar.R;
+import com.github.piasy.octostars.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.yatatsu.autobundle.AutoBundle;

@@ -22,8 +22,10 @@
  * SOFTWARE.
  */
 
-package com.github.piasy.gitstar;
+package com.github.piasy.octostars;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
@@ -34,17 +36,31 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.github.piasy.oauth3.github.GitHubOAuth;
+import com.github.piasy.oauth3.github.model.GitHubUser;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.GithubAuthProvider;
 import com.joanzapata.iconify.Iconify;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
+import onactivityresult.ActivityResult;
+import onactivityresult.Extra;
+import onactivityresult.ExtraInt;
+import onactivityresult.ExtraString;
+import onactivityresult.OnActivityResult;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private static final String TAG = "MainActivity";
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawer;
     @BindView(R.id.toolbar)
@@ -75,11 +91,9 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-
-        showTag(R.string.all_star, mFirstResume);
-        mFirstResume = false;
+    protected void onDestroy() {
+        super.onDestroy();
+        mDrawer.removeDrawerListener(mBarDrawerToggle);
     }
 
     private void showTag(@StringRes int tag, boolean firstTime) {
@@ -98,18 +112,20 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mDrawer.removeDrawerListener(mBarDrawerToggle);
-    }
-
-    @Override
     public void onBackPressed() {
         if (mDrawer.isDrawerOpen(GravityCompat.START)) {
             mDrawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        showTag(R.string.all_star, mFirstResume);
+        mFirstResume = false;
     }
 
     @Override
@@ -132,7 +148,14 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-
+        GitHubOAuth.builder()
+                .clientId("495694ab0630486abd12")
+                .clientSecret("fde926253fce16bdb848fbf2bbb19111ab2770c8")
+                .scope("public_repo")
+                .redirectUrl("http://localhost/android_callback")
+                .debug(true)
+                .build()
+                .authorize(this);
         if (id == R.id.all_star) {
             showTag(R.string.all_star, false);
         } else if (id == R.id.untagged_star) {
@@ -149,5 +172,25 @@ public class MainActivity extends AppCompatActivity
 
         mDrawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Log.d(TAG, "onActivityResult " + requestCode + ", " + resultCode + ", " + data);
+        ActivityResult.onResult(requestCode, resultCode, data).into(this);
+    }
+
+    @OnActivityResult(requestCode = GitHubOAuth.OAUTH_REQ, resultCodes = Activity.RESULT_OK)
+    public void onAuthSuccess(@ExtraString(name = GitHubOAuth.RESULT_KEY_TOKEN) String token,
+            @Extra(name = GitHubOAuth.RESULT_KEY_USER) GitHubUser user) {
+        Log.d(TAG, "onSuccess " + token + ", " + user);
+    }
+
+    @OnActivityResult(requestCode = GitHubOAuth.OAUTH_REQ, resultCodes = Activity.RESULT_CANCELED)
+    public void onAuthFail(@ExtraInt(name = GitHubOAuth.RESULT_KEY_ERROR_CODE) int errorCode
+            , @ExtraString(name = GitHubOAuth.RESULT_KEY_ERROR) String error) {
+        Log.d(TAG, "onFail " + errorCode + ", " + error);
     }
 }

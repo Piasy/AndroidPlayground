@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.github.piasy.gitstar;
+package com.github.piasy.octostars;
 
 import android.content.res.Resources;
 import android.support.annotation.StringRes;

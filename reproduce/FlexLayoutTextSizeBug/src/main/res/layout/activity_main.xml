@@ -1,20 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.github.mmin18.widget.FlexLayout
+<LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
         >
 
-    <TextView
-            app:layout_width="min(wrap_content, 100% - 55dp)"
-            android:layout_height="wrap_content"
-            android:text="Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! End"
-            />
-    <ImageView
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            app:layout_right="100%"
-            android:src="@mipmap/ic_launcher"
-            />
-</com.github.mmin18.widget.FlexLayout>
+    <com.github.mmin18.widget.FlexLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            >
+
+        <TextView
+                app:layout_width="min(wrap_content, 100% - 55dp)"
+                android:layout_height="wrap_content"
+                android:text="Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! End"
+                />
+
+        <ImageView
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                app:layout_right="100%"
+                android:src="@mipmap/ic_launcher"
+                />
+    </com.github.mmin18.widget.FlexLayout>
+
+    <com.github.mmin18.widget.FlexLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            >
+
+        <TextView
+                android:id="@+id/mTv2"
+                app:layout_width="min(wrap_content, 100% - 30dp)"
+                android:layout_height="wrap_content"
+                app:layout_left="15dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="@drawable/bg_live_conv_name_holder"
+                tools:text="Hello World! End"
+                android:singleLine="true"
+                android:visibility="gone"
+                tools:visibility="visible"
+                />
+    </com.github.mmin18.widget.FlexLayout>
+
+</LinearLayout>

@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.github.piasy.gitstar;
+package com.github.piasy.octostars;
 
 import android.support.v4.util.ArrayMap;
 import java.util.ArrayList;

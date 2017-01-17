@@ -31,19 +31,13 @@
               android:paddingTop="@dimen/activity_vertical_margin"
               android:paddingBottom="@dimen/activity_vertical_margin"
               android:orientation="vertical"
-              tools:context="com.github.piasy.taskdemo.SimpleActivity"
+              tools:context="com.github.piasy.taskdemo.launch_mode.SimpleActivity"
         >
-
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Simple Activity"
-            />
 
     <Button
             android:id="@+id/mButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="launch SingleTaskSecondActivity"
+            android:text="launch SingleInstanceWithDifferentTaskAffinity"
             />
 </LinearLayout>

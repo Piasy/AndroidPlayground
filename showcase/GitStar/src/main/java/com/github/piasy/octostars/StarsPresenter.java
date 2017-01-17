@@ -22,13 +22,20 @@
  * SOFTWARE.
  */
 
-package com.github.piasy.gitstar;
+package com.github.piasy.octostars;
 
-import com.github.piasy.yamvp.YaView;
+import com.github.piasy.yamvp.dagger2.ActivityScope;
+import com.github.piasy.yamvp.rx.YaRxPresenter;
+import javax.inject.Inject;
 
 /**
  * Created by Piasy{github.com/Piasy} on 20/09/2016.
  */
 
-interface StarsView extends YaView {
+@ActivityScope
+public class StarsPresenter extends YaRxPresenter<StarsView> {
+    @Inject
+    StarsPresenter() {
+        super();
+    }
 }

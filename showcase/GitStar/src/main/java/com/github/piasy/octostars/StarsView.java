@@ -22,18 +22,13 @@
  * SOFTWARE.
  */
 
-package com.github.piasy.gitstar;
+package com.github.piasy.octostars;
 
-import com.github.piasy.yamvp.dagger2.ActivityScope;
-import com.github.piasy.yamvp.dagger2.BaseComponent;
-import dagger.Component;
+import com.github.piasy.yamvp.YaView;
 
 /**
- * Created by Piasy{github.com/Piasy} on 15/9/19.
- *
- * Di appComponent for splash.
+ * Created by Piasy{github.com/Piasy} on 20/09/2016.
  */
-@ActivityScope
-@Component
-public interface MainComponent extends BaseComponent<StarsView, StarsPresenter> {
+
+interface StarsView extends YaView {
 }

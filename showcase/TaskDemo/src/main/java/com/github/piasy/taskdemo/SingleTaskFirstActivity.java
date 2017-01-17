@@ -29,6 +29,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import com.github.piasy.taskdemo.launch_mode.SimpleActivity;
 
 public class SingleTaskFirstActivity extends AppCompatActivity {
 

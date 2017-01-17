@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<?xml version="1.0" encoding="utf-8"?>
+<!--
   ~ The MIT License (MIT)
   ~
   ~ Copyright (c) 2016 Piasy
@@ -53,11 +54,61 @@
                 android:launchMode="singleTask"
                 android:taskAffinity="com.github.piasy.taskdemo.first"
                 />
-        <activity android:name=".SimpleActivity"/>
+        <activity android:name=".launch_mode.SimpleActivity"/>
         <activity
                 android:name=".SingleTaskSecondActivity"
                 android:launchMode="singleTask"
                 />
+        <activity
+                android:name=".launch_mode.SingleTop"
+                android:launchMode="singleTop"
+                >
+        </activity>
+        <activity
+                android:name=".launch_mode.SingleTaskWithoutTaskAffinity"
+                android:launchMode="singleTask"
+                >
+        </activity>
+        <activity
+                android:name=".launch_mode.SingleTaskWithSameTaskAffinity"
+                android:launchMode="singleTask"
+                android:taskAffinity="com.github.piasy.taskdemo"
+                >
+        </activity>
+        <activity
+                android:name=".launch_mode.SingleTaskWithDifferentTaskAffinity"
+                android:launchMode="singleTask"
+                android:taskAffinity="com.github.piasy.taskdemo.different"
+                >
+        </activity>
+        <activity
+                android:name=".launch_mode.SingleTaskWithDifferentTaskAffinity2"
+                android:launchMode="singleTask"
+                android:taskAffinity="com.github.piasy.taskdemo.different"
+                >
+        </activity>
+        <activity
+                android:name=".launch_mode.SingleInstanceWithoutTaskAffinity"
+                android:launchMode="singleTask"
+                >
+        </activity>
+        <activity
+                android:name=".launch_mode.SingleInstanceWithSameTaskAffinity"
+                android:launchMode="singleTask"
+                android:taskAffinity="com.github.piasy.taskdemo"
+                >
+        </activity>
+        <activity
+                android:name=".launch_mode.SingleInstanceWithDifferentTaskAffinity"
+                android:launchMode="singleTask"
+                android:taskAffinity="com.github.piasy.taskdemo.another"
+                >
+        </activity>
+        <activity
+                android:name=".launch_mode.SimpleWithDifferentTaskAffinity"
+                android:taskAffinity="com.github.piasy.taskdemo.that"
+                >
+        </activity>
     </application>
 
 </manifest>

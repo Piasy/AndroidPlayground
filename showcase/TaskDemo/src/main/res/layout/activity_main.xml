@@ -23,39 +23,91 @@
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:paddingLeft="@dimen/activity_horizontal_margin"
-              android:paddingRight="@dimen/activity_horizontal_margin"
-              android:paddingTop="@dimen/activity_vertical_margin"
-              android:paddingBottom="@dimen/activity_vertical_margin"
-              android:orientation="vertical"
-              tools:context="com.github.piasy.taskdemo.MainActivity"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="com.github.piasy.taskdemo.MainActivity"
         >
 
     <Button
-            android:id="@+id/mSimple"
+            android:id="@+id/mSingleTop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Simple"
+            android:text="SingleTop"
             />
+
     <Button
-            android:id="@+id/mSingleTask"
+            android:id="@+id/mSingleTask1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Single task"
+            android:text="Single task 1"
             />
+
     <Button
             android:id="@+id/mSingleTask2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Single task second"
+            android:text="Single task 2"
             />
+
     <Button
-            android:id="@+id/mNav"
+            android:id="@+id/mSingleTask3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nav"
+            android:text="Single task 3"
+            />
+
+    <Button
+            android:id="@+id/mSingleTask4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Single task 4"
+            />
+
+    <Button
+            android:id="@+id/mSingleInstance1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Single instance 1"
+            />
+
+    <Button
+            android:id="@+id/mSingleInstance2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Single instance 2"
+            />
+
+    <Button
+            android:id="@+id/mSingleInstance3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Single instance 3"
+            />
+
+    <Button
+            android:id="@+id/mFlagNewTask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="flag new task without aff"
+            />
+
+    <Button
+            android:id="@+id/mFlagNewTask2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="flag new task with diff aff"
+            />
+
+    <Button
+            android:id="@+id/mFlagNewTask3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="flag new task multi without aff"
             />
 </LinearLayout>

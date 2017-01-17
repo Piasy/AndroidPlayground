@@ -22,40 +22,73 @@
  * SOFTWARE.
  */
 
-package com.github.piasy.taskdemo;
+package com.github.piasy.taskdemo.launch_mode;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import com.github.piasy.taskdemo.R;
 
 public class SimpleActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        Log.d("TaskDemo", "SimpleActivity onCreate");
+        
         setContentView(R.layout.activity_simple);
-        Log.d("TaskDemo", "SimpleActivity::onCreate");
 
         findViewById(R.id.mButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SimpleActivity.this, SingleTaskSecondActivity.class));
+                startActivity(new Intent(SimpleActivity.this,
+                        SingleInstanceWithDifferentTaskAffinity.class));
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        Log.d("TaskDemo", "SimpleActivity onStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Log.d("TaskDemo", "SimpleActivity onResume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        Log.d("TaskDemo", "SimpleActivity onPause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        Log.d("TaskDemo", "SimpleActivity onStop");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
 
-        Log.d("TaskDemo", "SimpleActivity::onDestroy");
+        Log.d("TaskDemo", "SimpleActivity onDestroy");
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        Log.d("TaskDemo", "SimpleActivity::onNewIntent");
+
+        Log.d("TaskDemo", "SimpleActivity onNewIntent");
     }
 }

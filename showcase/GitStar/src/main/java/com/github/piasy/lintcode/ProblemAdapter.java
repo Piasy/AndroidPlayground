@@ -32,7 +32,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import com.github.piasy.gitstar.R;
+import com.github.piasy.octostars.R;
 import java.util.List;
 
 /**

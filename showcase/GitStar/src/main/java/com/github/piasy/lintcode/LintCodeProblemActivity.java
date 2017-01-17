@@ -36,7 +36,7 @@ import android.webkit.WebViewClient;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.github.piasy.gitstar.R;
+import com.github.piasy.octostars.R;
 import com.stfalcon.frescoimageviewer.ImageViewer;
 import com.yatatsu.autobundle.AutoBundle;
 import com.yatatsu.autobundle.AutoBundleField;

@@ -17,13 +17,22 @@ buildscript {
 
         classpath 'org.aspectj:aspectjtools:1.8.9'
 
+        classpath 'com.google.gms:google-services:3.0.0'
+
     }
 }
 
 allprojects {
     repositories {
         jcenter()
-        maven { url "https://jitpack.io" }
+        mavenCentral()
+        mavenLocal()
+        maven {
+            url "https://jitpack.io"
+        }
+        maven {
+            url "https://clojars.org/repo/"
+        }
         maven {
             url  "http://dl.bintray.com/piasy/maven"
         }
