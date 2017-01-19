@@ -1,6 +1,5 @@
 include ':try:AppMarshmallow', ':try:TryOpenGL', ':try:FullScreenDemo', ':try:FaceDetectDemo',
-        ':try:RgbYuvConverter', ':try:ReplaceableResApp', ':try:ReplaceableResLib',
-        ':try:VoiceProcessing',
+        ':try:ReplaceableResApp', ':try:ReplaceableResLib',
 
         ':reproduce:NotificationTest', ':reproduce:MockitoDexMakerBug',
         ':reproduce:RecyclerViewScrollBug', ':reproduce:FlexLayoutTextSizeBug',
@@ -13,15 +12,13 @@ include ':try:AppMarshmallow', ':try:TryOpenGL', ':try:FullScreenDemo', ':try:Fa
         ':aop:AOPDemo', ':aop:AOPDemoLib',
 
         ':showcase:Dagger2ScopeInstanceDemo', ':showcase:TaskDemo',
-        ':showcase:OrientationDemo', ':showcase:PerfectAndroidModel',
-        ':showcase:GitStar',
+        ':showcase:OrientationDemo',
 
         ':effect:RecyclerViewAdvancedDemo', ':effect:ImageInlineTextDemo',
         ':effect:GuestureDetectorDemo', ':effect:MultipleFragmentLayerDemo',
         ':effect:AdvancedTextDemo', ':effect:BonusAnimationDemo', ':effect:FragmentAddOrderingDemo',
         ':effect:WeChatLuckyMoneyEffect', ':effect:DialogFragmentDemo',
         ':effect:RecyclerViewInsideScrollViewDemo', ':effect:FancyTransitionDemo',
-        ':effect:CollapsingAppBarDemo', ':effect:AdvancedFrescoDemo',
-        ':effect:WeChatQrScanner', ':effect:YLPoster',
+        ':effect:CollapsingAppBarDemo', ':effect:AdvancedFrescoDemo'
 
         ':ReactNativeDemo'
