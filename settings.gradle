@@ -1,4 +1,5 @@
 include ':try:AppMarshmallow', ':try:TryOpenGL', ':try:FullScreenDemo', ':try:FaceDetectDemo',
+        ':try:ViewDrawDemo',
         ':try:ReplaceableResApp', ':try:ReplaceableResLib',
 
         ':reproduce:NotificationTest', ':reproduce:MockitoDexMakerBug',
@@ -21,4 +22,4 @@ include ':try:AppMarshmallow', ':try:TryOpenGL', ':try:FullScreenDemo', ':try:Fa
         ':effect:RecyclerViewInsideScrollViewDemo', ':effect:FancyTransitionDemo',
         ':effect:CollapsingAppBarDemo', ':effect:AdvancedFrescoDemo'
 
-        ':ReactNativeDemo'
+':ReactNativeDemo'
