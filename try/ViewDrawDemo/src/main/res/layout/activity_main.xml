@@ -7,11 +7,16 @@
         tools:context="com.github.piasy.viewdrawdemo.MainActivity"
         >
 
-    <com.github.piasy.viewdrawdemo.CustomView
-            android:id="@+id/mCustomView"
+    <com.github.piasy.viewdrawdemo.CustomViewGroup
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            />
+            >
+        <com.github.piasy.viewdrawdemo.CustomView
+                android:id="@+id/mCustomView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+    </com.github.piasy.viewdrawdemo.CustomViewGroup>
 
     <Button
             android:id="@+id/mInvalidate"

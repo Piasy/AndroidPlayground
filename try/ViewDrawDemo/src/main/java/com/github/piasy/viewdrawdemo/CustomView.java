@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.Px;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 
 /**
@@ -60,5 +61,12 @@ public class CustomView extends View {
     protected void onDraw(Canvas canvas) {
         Log.d("CustomView", "onDraw");
         super.onDraw(canvas);
+    }
+
+    @Override
+    public boolean onTouchEvent(final MotionEvent event) {
+        getParent().requestDisallowInterceptTouchEvent(true);
+        Log.d("CustomView", "onTouchEvent " + MotionEvent.actionToString(event.getAction()));
+        return true;
     }
 }
