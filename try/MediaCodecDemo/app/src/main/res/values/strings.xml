@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">MediaCodecDemo</string>
+
+    <string name="toggleRecordingOn">Start recording</string>
+    <string name="toggleRecordingOff">Stop recording</string>
+</resources>
