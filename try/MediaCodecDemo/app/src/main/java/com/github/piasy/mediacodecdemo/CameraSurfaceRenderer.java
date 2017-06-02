@@ -4,7 +4,6 @@ import android.graphics.SurfaceTexture;
 import android.opengl.EGL14;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
-import android.os.Environment;
 import android.util.Log;
 import com.github.piasy.mediacodecdemo.gles.FullFrameRect;
 import com.github.piasy.mediacodecdemo.gles.Texture2dProgram;
@@ -25,14 +24,12 @@ public class CameraSurfaceRenderer implements GLSurfaceView.Renderer {
     private static final int RECORDING_OFF = 0;
     private static final int RECORDING_ON = 1;
     private static final int RECORDING_RESUMED = 2;
-
+    private final float[] mSTMatrix = new float[16];
     private CameraCaptureActivity.CameraHandler mCameraHandler;
     private TextureMovieEncoder mVideoEncoder;
+    //private TextureMovieEncoder mHqVideoEncoder;
     private File mOutputFile;
-
     private FullFrameRect mFullScreen;
-
-    private final float[] mSTMatrix = new float[16];
     private int mTextureId;
 
     private SurfaceTexture mSurfaceTexture;
@@ -48,10 +45,10 @@ public class CameraSurfaceRenderer implements GLSurfaceView.Renderer {
     private int mCurrentFilter;
     private int mNewFilter;
 
-
     /**
      * Constructs CameraSurfaceRenderer.
      * <p>
+     *
      * @param cameraHandler Handler for communicating with UI thread
      * @param movieEncoder video encoder object
      * @param outputFile output file for encoded video; forwarded to movieEncoder
@@ -60,6 +57,7 @@ public class CameraSurfaceRenderer implements GLSurfaceView.Renderer {
             File outputFile) {
         mCameraHandler = cameraHandler;
         mVideoEncoder = new TextureMovieEncoder();
+        //mHqVideoEncoder = new TextureMovieEncoder();
         mOutputFile = outputFile;
 
         mTextureId = -1;
@@ -131,30 +129,34 @@ public class CameraSurfaceRenderer implements GLSurfaceView.Renderer {
             case CameraCaptureActivity.FILTER_BLUR:
                 programType = Texture2dProgram.ProgramType.TEXTURE_EXT_FILT;
                 kernel = new float[] {
-                        1f/16f, 2f/16f, 1f/16f,
-                        2f/16f, 4f/16f, 2f/16f,
-                        1f/16f, 2f/16f, 1f/16f };
+                        1f / 16f, 2f / 16f, 1f / 16f,
+                        2f / 16f, 4f / 16f, 2f / 16f,
+                        1f / 16f, 2f / 16f, 1f / 16f
+                };
                 break;
             case CameraCaptureActivity.FILTER_SHARPEN:
                 programType = Texture2dProgram.ProgramType.TEXTURE_EXT_FILT;
                 kernel = new float[] {
                         0f, -1f, 0f,
                         -1f, 5f, -1f,
-                        0f, -1f, 0f };
+                        0f, -1f, 0f
+                };
                 break;
             case CameraCaptureActivity.FILTER_EDGE_DETECT:
                 programType = Texture2dProgram.ProgramType.TEXTURE_EXT_FILT;
                 kernel = new float[] {
                         -1f, -1f, -1f,
                         -1f, 8f, -1f,
-                        -1f, -1f, -1f };
+                        -1f, -1f, -1f
+                };
                 break;
             case CameraCaptureActivity.FILTER_EMBOSS:
                 programType = Texture2dProgram.ProgramType.TEXTURE_EXT_FILT;
                 kernel = new float[] {
                         2f, 0f, 0f,
                         0f, -1f, 0f,
-                        0f, 0f, -1f };
+                        0f, 0f, -1f
+                };
                 colorAdj = 0.5f;
                 break;
             default:
@@ -245,12 +247,17 @@ public class CameraSurfaceRenderer implements GLSurfaceView.Renderer {
                     Log.d(TAG, "START recording");
                     // start recording
                     mVideoEncoder.startRecording(new TextureMovieEncoder.EncoderConfig(
-                            mOutputFile, 640, 480, 1000000, EGL14.eglGetCurrentContext()));
+                            mOutputFile, 800, 448, 500_000, EGL14.eglGetCurrentContext()));
+                    //mHqVideoEncoder.startRecording(new TextureMovieEncoder.EncoderConfig(
+                    //        new File(Environment.getExternalStorageDirectory(),
+                    //                "camera-test-hq.mp4"),
+                    //        1280, 720, 1000000, EGL14.eglGetCurrentContext()));
                     mRecordingStatus = RECORDING_ON;
                     break;
                 case RECORDING_RESUMED:
                     Log.d(TAG, "RESUME recording");
                     mVideoEncoder.updateSharedContext(EGL14.eglGetCurrentContext());
+                    //mHqVideoEncoder.updateSharedContext(EGL14.eglGetCurrentContext());
                     mRecordingStatus = RECORDING_ON;
                     break;
                 case RECORDING_ON:
@@ -266,6 +273,7 @@ public class CameraSurfaceRenderer implements GLSurfaceView.Renderer {
                     // stop recording
                     Log.d(TAG, "STOP recording");
                     mVideoEncoder.stopRecording();
+                    //mHqVideoEncoder.stopRecording();
                     mRecordingStatus = RECORDING_OFF;
                     break;
                 case RECORDING_OFF:
@@ -282,10 +290,12 @@ public class CameraSurfaceRenderer implements GLSurfaceView.Renderer {
         //
         // TODO: be less lame.
         mVideoEncoder.setTextureId(mTextureId);
+        //mHqVideoEncoder.setTextureId(mTextureId);
 
         // Tell the video encoder thread that a new frame is available.
         // This will be ignored if we're not actually recording.
         mVideoEncoder.frameAvailable(mSurfaceTexture);
+        //mHqVideoEncoder.frameAvailable(mSurfaceTexture);
 
         if (mIncomingWidth <= 0 || mIncomingHeight <= 0) {
             // Texture size isn't set yet.  This is only used for the filters, but to be

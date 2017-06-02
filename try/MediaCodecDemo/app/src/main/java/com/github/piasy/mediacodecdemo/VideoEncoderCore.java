@@ -42,8 +42,8 @@ public class VideoEncoderCore {
 
     // TODO: these ought to be configurable as well
     public static final String MIME_TYPE = "video/avc";    // H.264 Advanced Video Coding
-    public static final int FRAME_RATE = 30;               // 30fps
-    public static final int IFRAME_INTERVAL = 5;           // 5 seconds between I-frames
+    public static final int FRAME_RATE = 25;               // 30fps
+    public static final int IFRAME_INTERVAL = 2;           // 5 seconds between I-frames
 
     private Surface mInputSurface;
     private MediaMuxer mMuxer;
@@ -67,6 +67,10 @@ public class VideoEncoderCore {
         format.setInteger(MediaFormat.KEY_COLOR_FORMAT,
                 MediaCodecInfo.CodecCapabilities.COLOR_FormatSurface);
         format.setInteger(MediaFormat.KEY_BIT_RATE, bitRate);
+        format.setInteger("bitrate-mode", 1);
+        //format.setInteger(MediaFormat.KEY_BITRATE_MODE,
+        //        MediaCodecInfo.EncoderCapabilities.BITRATE_MODE_CQ);
+        //format.setInteger("max-bitrate", (int) (bitRate * 1.5));
         format.setInteger(MediaFormat.KEY_FRAME_RATE, FRAME_RATE);
         format.setInteger(MediaFormat.KEY_I_FRAME_INTERVAL, IFRAME_INTERVAL);
         if (VERBOSE) Log.d(TAG, "format: " + format);

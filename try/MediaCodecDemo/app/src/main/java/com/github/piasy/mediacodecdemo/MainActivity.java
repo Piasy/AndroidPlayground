@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
         MediaCodecInfo codecInfo = selectCodec(MIME_TYPE);
         MediaCodecInfo.CodecCapabilities capabilities = codecInfo.getCapabilitiesForType(MIME_TYPE);
 
+        MediaCodecInfo.EncoderCapabilities encoderCapabilities = capabilities.getEncoderCapabilities();
+
         tvInfo.setText(
                 "MaxSupportedInstances: " + capabilities.getMaxSupportedInstances() + "\n"
         );

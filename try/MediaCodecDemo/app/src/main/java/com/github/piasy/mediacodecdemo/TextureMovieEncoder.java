@@ -79,9 +79,6 @@ public class TextureMovieEncoder implements Runnable {
     private WindowSurface mInputWindowSurface;
     private VideoEncoderCore mVideoEncoder;
 
-    private WindowSurface mHqInputWindowSurface;
-    private VideoEncoderCore mHqVideoEncoder;
-
     // ----- accessed by multiple threads -----
     private volatile EncoderHandler mHandler;
 
@@ -335,12 +332,6 @@ public class TextureMovieEncoder implements Runnable {
         mInputWindowSurface.setPresentationTime(timestampNanos);
         mInputWindowSurface.swapBuffers();
 
-        mHqVideoEncoder.drainEncoder(false);
-        mHqInputWindowSurface.makeCurrent();
-        mFullScreen.drawFrame(mTextureId, transform);
-        mHqInputWindowSurface.setPresentationTime(timestampNanos);
-        mHqInputWindowSurface.swapBuffers();
-
         drawBox(mFrameNum++);
     }
 
@@ -364,7 +355,6 @@ public class TextureMovieEncoder implements Runnable {
     private void handleStopRecording() {
         Log.d(TAG, "handleStopRecording");
         mVideoEncoder.drainEncoder(true);
-        mHqVideoEncoder.drainEncoder(true);
         releaseEncoder();
     }
 
@@ -388,7 +378,6 @@ public class TextureMovieEncoder implements Runnable {
 
         // Release the EGLSurface and EGLContext.
         mInputWindowSurface.releaseEglSurface();
-        mHqInputWindowSurface.releaseEglSurface();
         mFullScreen.release(false);
         mEglCore.release();
 
@@ -396,8 +385,6 @@ public class TextureMovieEncoder implements Runnable {
         mEglCore = new EglCore(newSharedContext, EglCore.FLAG_RECORDABLE);
         mInputWindowSurface.recreate(mEglCore);
         mInputWindowSurface.makeCurrent();
-
-        mHqInputWindowSurface.recreate(mEglCore);
 
         // Create new programs and such for the new context.
         mFullScreen = new FullFrameRect(
@@ -408,14 +395,11 @@ public class TextureMovieEncoder implements Runnable {
             File outputFile) {
         try {
             mVideoEncoder = new VideoEncoderCore(width, height, bitRate, outputFile);
-            mHqVideoEncoder = new VideoEncoderCore(1280, 720, bitRate,
-                    new File(Environment.getExternalStorageDirectory(), "camera-test-hq.mp4"));
         } catch (IOException ioe) {
             throw new RuntimeException(ioe);
         }
         mEglCore = new EglCore(sharedContext, EglCore.FLAG_RECORDABLE);
         mInputWindowSurface = new WindowSurface(mEglCore, mVideoEncoder.getInputSurface(), true);
-        mHqInputWindowSurface = new WindowSurface(mEglCore, mHqVideoEncoder.getInputSurface(), true);
 
         mInputWindowSurface.makeCurrent();
 
@@ -425,14 +409,9 @@ public class TextureMovieEncoder implements Runnable {
 
     private void releaseEncoder() {
         mVideoEncoder.release();
-        mHqVideoEncoder.release();
         if (mInputWindowSurface != null) {
             mInputWindowSurface.release();
             mInputWindowSurface = null;
-        }
-        if (mHqInputWindowSurface != null) {
-            mHqInputWindowSurface.release();
-            mHqInputWindowSurface = null;
         }
         if (mFullScreen != null) {
             mFullScreen.release(false);
