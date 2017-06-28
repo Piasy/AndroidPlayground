@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/mContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.github.piasy.realclock.MainActivity"
+        >
+
+    <com.github.piasy.realclock.TickSurfaceView
+            android:id="@+id/mSurfaceView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+    <Button
+            android:id="@+id/mBtnStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="20dp"
+            android:text="start"
+            />
+</FrameLayout>
