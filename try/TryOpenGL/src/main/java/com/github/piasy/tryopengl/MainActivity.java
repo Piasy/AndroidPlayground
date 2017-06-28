@@ -9,6 +9,7 @@ import android.opengl.GLUtils;
 import android.opengl.Matrix;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
@@ -32,8 +33,16 @@ public class MainActivity extends AppCompatActivity {
         mGlSurfaceView.setEGLContextClientVersion(2);
         mRenderer = new MyRenderer(getResources());
         mGlSurfaceView.setRenderer(mRenderer);
-        mGlSurfaceView.setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);
+        mGlSurfaceView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
         mRendererSet = true;
+
+        findViewById(R.id.mBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                mRenderer.changePos();
+                mGlSurfaceView.requestRender();
+            }
+        });
     }
 
     @Override
@@ -73,11 +82,19 @@ public class MainActivity extends AppCompatActivity {
                 "void main() {" +
                 "  gl_FragColor = texture2D( s_texture, v_texCoord );" +
                 "}";
-        private static final float[] VERTEX = {   // in counterclockwise order:
-                1, 1, 0,   // top right
-                -1, 1, 0,  // top left
-                -1, -1, 0, // bottom left
-                1, -1, 0,  // bottom right
+        private static final float[][] VERTEX = {   // in counterclockwise order:
+                {
+                        1, 1, 0,   // top right
+                        -1, 1, 0,  // top left
+                        -1, -1, 0, // bottom left
+                        1, -1, 0,  // bottom right
+                },
+                {
+                        0, 1, 0,   // top right
+                        1, 0, 0,  // top left
+                        0, -1, 0, // bottom left
+                        -1, 0, 0,  // bottom right
+                }
         };
         private static final short[] VERTEX_INDEX = { 0, 1, 2, 2, 0, 3 };
         private static final float[] UV_TEX_VERTEX = {   // in clockwise order:
@@ -109,10 +126,10 @@ public class MainActivity extends AppCompatActivity {
 
         MyRenderer(Resources resources) {
             mResources = resources;
-            mVertexBuffer = ByteBuffer.allocateDirect(VERTEX.length * 4)
+            mVertexBuffer = ByteBuffer.allocateDirect(VERTEX[0].length * 4)
                     .order(ByteOrder.nativeOrder())
                     .asFloatBuffer()
-                    .put(VERTEX);
+                    .put(VERTEX[0]);
             mVertexBuffer.position(0);
 
             mVertexIndexBuffer = ByteBuffer.allocateDirect(VERTEX_INDEX.length * 2)
@@ -195,7 +212,7 @@ public class MainActivity extends AppCompatActivity {
             GLES20.glDisableVertexAttribArray(mPositionHandle);
             GLES20.glDisableVertexAttribArray(mTexCoordHandle);
 
-            Utils.sendImage(mWidth, mHeight);
+            //Utils.sendImage(mWidth, mHeight);
         }
 
         void destroy() {
@@ -207,6 +224,14 @@ public class MainActivity extends AppCompatActivity {
             GLES20.glShaderSource(shader, shaderCode);
             GLES20.glCompileShader(shader);
             return shader;
+        }
+
+        private int mVertexIndex = 0;
+
+        public void changePos() {
+            mVertexIndex = (mVertexIndex + 1) % VERTEX.length;
+            mVertexBuffer.put(VERTEX[mVertexIndex]);
+            mVertexBuffer.position(0);
         }
     }
 }
