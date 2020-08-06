@@ -2,6 +2,7 @@
 
 buildscript {
     repositories {
+        google()
         jcenter()
         mavenCentral()
         maven {
@@ -9,21 +10,22 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.2'
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
-        classpath 'com.netflix.nebula:gradle-extra-configurations-plugin:3.0.3'
-        classpath 'com.squareup.sqldelight:gradle-plugin:0.5.1'
-        classpath 'me.tatarka:gradle-retrolambda:3.2.5'
+        classpath 'com.android.tools.build:gradle:4.0.0'
+        // classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        // classpath 'com.netflix.nebula:gradle-extra-configurations-plugin:3.0.3'
+        // classpath 'com.squareup.sqldelight:gradle-plugin:0.5.1'
+        // classpath 'me.tatarka:gradle-retrolambda:3.2.5'
 
-        classpath 'org.aspectj:aspectjtools:1.8.9'
+        // classpath 'org.aspectj:aspectjtools:1.8.9'
 
-        classpath 'com.google.gms:google-services:3.0.0'
+        // classpath 'com.google.gms:google-services:3.0.0'
 
     }
 }
 
 allprojects {
     repositories {
+        google()
         jcenter()
         mavenCentral()
         mavenLocal()
@@ -44,11 +46,10 @@ task clean(type: Delete) {
 }
 
 ext {
-    androidCompileSdkVersion = 24
-    androidBuildToolsVersion = '25.0.2'
-    androidSupportSdkVersion = '25.3.1'
+    androidCompileSdkVersion = 29
+    androidBuildToolsVersion = '29.0.3'
     minSdkVersion = 16
-    targetSdkVersion = 24
+    targetSdkVersion = 29
 
     releaseVersionCode = 1
     releaseVersionName = '1.0.0'

@@ -1,25 +1,47 @@
-include ':try:AppMarshmallow', ':try:TryOpenGL', ':try:FullScreenDemo', ':try:FaceDetectDemo',
-        ':try:ViewDrawDemo',
-        ':try:ReplaceableResApp', ':try:ReplaceableResLib',
 
-        ':reproduce:NotificationTest', ':reproduce:MockitoDexMakerBug',
-        ':reproduce:RecyclerViewScrollBug', ':reproduce:FlexLayoutTextSizeBug',
-        ':reproduce:OnceKillRestoreBug', ':reproduce:MX5Camera2YUV_420_888Bug',
-        ':reproduce:RetroLambdaChaosRepro',
+// include  ':try:AppMarshmallow'
+// include  ':try:TryOpenGL'
+// include  ':try:FullScreenDemo'
+// include  ':try:FaceDetectDemo'
+// include  ':try:ViewDrawDemo'
+// include  ':try:ReplaceableResApp'
+// include  ':try:ReplaceableResLib'
 
-        ':perf:RefectAutoGsonPerf', ':perf:ReflectlessAutoGsonPerf', ':perf:LayoutPerfDemo',
-        ':perf:BitmapLoadTest', ':perf:MultilayerFragmentPerf', ':perf:InstanceOfPerf',
+// include  ':reproduce:NotificationTest'
+// include  ':reproduce:MockitoDexMakerBug'
+// include  ':reproduce:RecyclerViewScrollBug'
+// include  ':reproduce:FlexLayoutTextSizeBug'
+// include  ':reproduce:OnceKillRestoreBug'
+// include  ':reproduce:MX5Camera2YUV_420_888Bug'
+// include  ':reproduce:RetroLambdaChaosRepro'
 
-        ':aop:AOPDemo', ':aop:AOPDemoLib',
+// include  ':perf:RefectAutoGsonPerf'
+// include  ':perf:ReflectlessAutoGsonPerf'
+// include  ':perf:LayoutPerfDemo'
+// include  ':perf:BitmapLoadTest'
+// include  ':perf:MultilayerFragmentPerf'
+// include  ':perf:InstanceOfPerf'
 
-        ':showcase:Dagger2ScopeInstanceDemo', ':showcase:TaskDemo',
-        ':showcase:OrientationDemo',
+// include  ':aop:AOPDemo'
+// include  ':aop:AOPDemoLib'
 
-        ':effect:RecyclerViewAdvancedDemo', ':effect:ImageInlineTextDemo',
-        ':effect:GuestureDetectorDemo', ':effect:MultipleFragmentLayerDemo',
-        ':effect:AdvancedTextDemo', ':effect:BonusAnimationDemo', ':effect:FragmentAddOrderingDemo',
-        ':effect:WeChatLuckyMoneyEffect', ':effect:DialogFragmentDemo',
-        ':effect:RecyclerViewInsideScrollViewDemo', ':effect:FancyTransitionDemo',
-        ':effect:CollapsingAppBarDemo', ':effect:AdvancedFrescoDemo'
+// include  ':showcase:Dagger2ScopeInstanceDemo'
+// include  ':showcase:TaskDemo'
+// include  ':showcase:OrientationDemo'
 
-':ReactNativeDemo'
+// include  ':effect:RecyclerViewAdvancedDemo'
+// include  ':effect:ImageInlineTextDemo'
+// include  ':effect:GuestureDetectorDemo'
+// include  ':effect:MultipleFragmentLayerDemo'
+// include  ':effect:AdvancedTextDemo'
+// include  ':effect:BonusAnimationDemo'
+// include  ':effect:FragmentAddOrderingDemo'
+// include  ':effect:WeChatLuckyMoneyEffect'
+// include  ':effect:DialogFragmentDemo'
+// include  ':effect:RecyclerViewInsideScrollViewDemo'
+// include  ':effect:FancyTransitionDemo'
+// include  ':effect:CollapsingAppBarDemo'
+// include  ':effect:AdvancedFrescoDemo'
+include  ':effect:ViewCompatAnimate'
+
+// include  ':ReactNativeDemo'

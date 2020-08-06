@@ -37,7 +37,7 @@ public class TickSurfaceView extends SurfaceView implements Runnable {
         mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
         mPaint.setColor(Color.WHITE);
         mPaint.setStrokeWidth(3);
-        mPaint.setTextSize(100);
+        mPaint.setTextSize(200);
     }
 
     public void startTick() {
@@ -62,16 +62,16 @@ public class TickSurfaceView extends SurfaceView implements Runnable {
     @Override
     public void run() {
         while (mRunning) {
-            //if (!mSurfaceHolder.getSurface().isValid()) {
-            //    Log.d("ClockTick", "invalid surface");
-            //    continue;
-            //}
+            if (!mSurfaceHolder.getSurface().isValid()) {
+                Log.d("ClockTick", "invalid surface");
+                continue;
+            }
 
             long ts = System.currentTimeMillis();
             Canvas canvas = mSurfaceHolder.lockCanvas();
             long lockCanvas = System.currentTimeMillis();
-            //canvas.drawColor(Color.BLACK, PorterDuff.Mode.CLEAR);
-            //canvas.drawText(String.valueOf(ts), 100, 100, mPaint);
+            canvas.drawColor(Color.BLACK, PorterDuff.Mode.CLEAR);
+            canvas.drawText(String.valueOf(ts % 1_000_000_000), 50, 200, mPaint);
             long drawFinish = System.currentTimeMillis();
             mSurfaceHolder.unlockCanvasAndPost(canvas);
             long unlockCanvas = System.currentTimeMillis();
