@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    >
+
+  <Button
+      android:id="@+id/external_public"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="external public"
+      />
+
+  <Button
+      android:id="@+id/external_private"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="external private"
+      />
+
+  <Button
+      android:id="@+id/internal_private"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="internal private"
+      />
+
+  <Button
+      android:id="@+id/search"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="search"
+      />
+
+</LinearLayout>

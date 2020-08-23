@@ -5,7 +5,7 @@ android {
     buildToolsVersion rootProject.ext.androidBuildToolsVersion
 
     defaultConfig {
-        applicationId "com.piasy.playground.ViewCompatAnimate"
+        applicationId "com.piasy.playground.InsertMediaStore"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode rootProject.ext.releaseVersionCode
@@ -24,4 +24,7 @@ android {
 dependencies {
     implementation 'androidx.core:core:1.1.0'
     implementation 'androidx.appcompat:appcompat:1.1.0'
+
+    implementation "org.permissionsdispatcher:permissionsdispatcher:4.7.0"
+    annotationProcessor "org.permissionsdispatcher:permissionsdispatcher-processor:4.7.0"
 }

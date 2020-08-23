@@ -1,4 +1,4 @@
-package com.github.piasy.ViewCompatAnimate;
+package com.piasy.playground.ViewCompatAnimate;
 
 import android.os.Bundle;
 import android.view.View;

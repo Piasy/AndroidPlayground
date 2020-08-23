@@ -1,4 +1,3 @@
-
 // include  ':try:AppMarshmallow'
 // include  ':try:TryOpenGL'
 // include  ':try:FullScreenDemo'
@@ -6,6 +5,7 @@
 // include  ':try:ViewDrawDemo'
 // include  ':try:ReplaceableResApp'
 // include  ':try:ReplaceableResLib'
+include ':try:InsertMediaStore'
 
 // include  ':reproduce:NotificationTest'
 // include  ':reproduce:MockitoDexMakerBug'
@@ -21,6 +21,7 @@
 // include  ':perf:BitmapLoadTest'
 // include  ':perf:MultilayerFragmentPerf'
 // include  ':perf:InstanceOfPerf'
+ include  ':perf:RecyclerViewItemPerf'
 
 // include  ':aop:AOPDemo'
 // include  ':aop:AOPDemoLib'
@@ -43,5 +44,6 @@
 // include  ':effect:CollapsingAppBarDemo'
 // include  ':effect:AdvancedFrescoDemo'
 include  ':effect:ViewCompatAnimate'
+include  ':effect:ExoPlayerInRecyclerView'
 
 // include  ':ReactNativeDemo'
