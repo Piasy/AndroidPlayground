@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="72dp"
+    >
+
+  <ImageView
+      android:id="@+id/thumbnail"
+      android:layout_width="48dp"
+      android:layout_height="48dp"
+      android:layout_gravity="center_vertical"
+      android:layout_marginStart="12dp"
+      android:clickable="false"
+      android:src="@mipmap/ic_launcher"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      />
+
+  <TextView
+      android:id="@+id/filename"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="13dp"
+      android:layout_marginTop="16dp"
+      android:ellipsize="middle"
+      android:singleLine="true"
+      android:text="2048.jpg"
+      android:textSize="16sp"
+      app:layout_constraintStart_toEndOf="@id/thumbnail"
+      app:layout_constraintTop_toTopOf="parent"
+      />
+
+  <TextView
+      android:id="@+id/node_info"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:ellipsize="end"
+      android:maxLines="1"
+      android:text="55.86KB . 24 Jul 2020 20:49"
+      android:textSize="14sp"
+      app:layout_constraintStart_toStartOf="@id/filename"
+      app:layout_constraintTop_toBottomOf="@id/filename"
+      />
+
+  <ImageView
+      android:id="@+id/three_dots"
+      android:layout_width="24dp"
+      android:layout_height="24dp"
+      android:layout_marginEnd="10dp"
+      android:background="@null"
+      android:src="@drawable/ic_dots_vertical_grey"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      />
+</androidx.constraintlayout.widget.ConstraintLayout>
