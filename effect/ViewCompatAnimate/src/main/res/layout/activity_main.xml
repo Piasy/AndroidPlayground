@@ -1,32 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/activity_main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
 
-  <Button
-      android:id="@+id/test"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="bottom|center_horizontal"
-      android:text="test"
-      />
+    <Button
+            android:id="@+id/test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:text="test"
+            />
 
-  <View
-      android:id="@+id/dst"
-      android:layout_width="100dp"
-      android:layout_height="100dp"
-      android:layout_marginLeft="8dp"
-      android:layout_marginTop="20dp"
-      android:background="@color/colorAccent"
-      />
+    <View
+            android:id="@+id/dst"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorAccent"
+            />
+    <View
+            android:id="@+id/src"
+            android:layout_width="200dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            android:background="@color/colorPrimary"
+            />
 
-  <View
-      android:id="@+id/src"
-      android:layout_width="200dp"
-      android:layout_height="300dp"
-      android:layout_gravity="center"
-      android:background="@color/colorPrimary"
-      />
+    <com.github.piasy.ViewCompatAnimate.HoleMaskView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="20dp"
+            app:foregroundColor="@android:color/white"
+            app:holeType="roundCorner"
+            app:roundCornerRadius="4dp"
+            />
+
 </FrameLayout>

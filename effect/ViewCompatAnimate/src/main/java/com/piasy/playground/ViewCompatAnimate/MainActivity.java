@@ -1,5 +1,6 @@
 package com.piasy.playground.ViewCompatAnimate;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,11 @@ public class MainActivity extends AppCompatActivity {
 
     findViewById(R.id.test).setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
+        //if (true) {
+        //  startActivity(new Intent(MainActivity.this, ExoActivity.class));
+        //  return;
+        //}
+
         int[] srcLoc = new int[2];
         src.getLocationOnScreen(srcLoc);
         int[] dstLoc = new int[2];

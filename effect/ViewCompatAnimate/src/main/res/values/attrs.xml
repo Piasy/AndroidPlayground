@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="ShapedDrawee">
-        <attr format="reference" name="maskShape"/>
-        <attr format="reference" name="placeholder"/>
+        <attr format="reference" name="maskShape" />
+        <attr format="reference" name="placeholder" />
+    </declare-styleable>
+
+    <declare-styleable name="HoleMaskView">
+        <attr format="color" name="foregroundColor" />
+        <attr name="holeType">
+            <enum name="roundCorner" value="1" />
+        </attr>
+        <attr format="dimension" name="roundCornerRadius" />
     </declare-styleable>
 </resources>
